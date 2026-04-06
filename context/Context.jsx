@@ -32,7 +32,7 @@ export default function Context({ children }) {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/subcategorylist") // your Node API
+    fetch("http://40.192.14.4:8000/api/subcategorylist") // your Node API
       .then((res) => res.json())
       .then((data) => {
         setcategorybanner(data);
