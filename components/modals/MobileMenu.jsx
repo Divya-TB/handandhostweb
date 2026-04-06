@@ -65,7 +65,7 @@ export default function MobileMenu() {
               </button>
             </form>
             <ul className="nav-ul-mb" id="wrapper-menu-navigation">
-              <li className="nav-mb-item active">
+              {/* <li className="nav-mb-item active">
                 <a
                   href="#dropdown-menu-one"
                   className={`collapsed mb-menu-link ${
@@ -100,7 +100,7 @@ export default function MobileMenu() {
                     ))}
                   </ul>
                 </div>
-              </li>
+              </li> */}
               <li className="nav-mb-item">
                 <a
                   href="#dropdown-menu-two"

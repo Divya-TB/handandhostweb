@@ -1,5 +1,6 @@
 "use client";
-import { allProducts } from "@/data/products";
+ import { allProducts } from "@/data/products";
+
 import { openCartModal } from "@/utlis/openCartModal";
 import { openWistlistModal } from "@/utlis/openWishlist";
 
@@ -11,12 +12,35 @@ export const useContextElement = () => {
 };
 
 export default function Context({ children }) {
+  const [homebanner, sethomebanner] = useState([]);
+  const [categorybanner, setcategorybanner] = useState([]);
   const [cartProducts, setCartProducts] = useState([]);
   const [wishList, setWishList] = useState([1, 2, 3]);
   const [compareItem, setCompareItem] = useState([1, 2, 3]);
   const [quickViewItem, setQuickViewItem] = useState(allProducts[0]);
   const [quickAddItem, setQuickAddItem] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0);
+
+  useEffect(() => {
+    fetch("http://40.192.14.4:8000/api/homebanner") // your Node API
+      .then((res) => res.json())
+      .then((data) => {
+        sethomebanner(data);
+        console.log("Home Banner Data:", data); // check in console
+      })
+      .catch((err) => console.log("API error:", err));
+  }, []);
+
+  useEffect(() => {
+    fetch("http://localhost:8000/api/subcategorylist") // your Node API
+      .then((res) => res.json())
+      .then((data) => {
+        setcategorybanner(data);
+        console.log("Category Banner Data:", data); // check in console
+      })
+      .catch((err) => console.log("API error:", err));
+  }, []);
+
   useEffect(() => {
     const subtotal = cartProducts.reduce((accumulator, product) => {
       return accumulator + product.quantity * product.price;
@@ -111,6 +135,8 @@ export default function Context({ children }) {
   }, [wishList]);
 
   const contextElement = {
+    homebanner, 
+    categorybanner,
     cartProducts,
     setCartProducts,
     totalPrice,
