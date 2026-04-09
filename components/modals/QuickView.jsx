@@ -172,10 +172,10 @@ export default function QuickView() {
                           ? (
                               (quickViewItem?.price ?? 0) *
                               (cartProducts.find((elm) => elm.id == quickViewItem?.id)?.quantity ?? 1)
-                            ).toFixed(2)
+                            )
                           : (
                               (quickViewItem?.discount_price ?? 0) * (quantity ?? 1)
-                            ).toFixed(2)}
+                            )}
                       </span>
                     </a>
                     <a
