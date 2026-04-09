@@ -1,16 +1,17 @@
 "use client";
-
+import { useContextElement } from "/context/Context";
 import ProductCard1 from "@/components/productCards/ProductCard1";
 import { products8 } from "@/data/products";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 export default function Products5() {
+  const { product } = useContextElement();
   return (
     <section className="flat-spacing">
       <div className="container">
         <div className="heading-section text-center wow fadeInUp">
-          <h3 className="heading">Today's Top Picks</h3>
+          <h3 className="heading">Product</h3>
           <p className="subheading text-secondary">
             Fresh styles just in! Elevate your look.
           </p>
@@ -31,7 +32,7 @@ export default function Products5() {
             el: ".spd6",
           }}
         >
-          {products8.map((product, i) => (
+          {product.map((product, i) => (
             <SwiperSlide key={i} className="swiper-slide">
               <ProductCard1 product={product} />
             </SwiperSlide>

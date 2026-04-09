@@ -11,7 +11,7 @@ export default function ProductCard1({
   isNotImageRatio = false,
   radiusClass = "",
 }) {
-  const [currentImage, setCurrentImage] = useState(product.imgSrc);
+  const [currentImage, setCurrentImage] = useState(product.mainimage);
 
   const {
     setQuickAddItem,
@@ -25,7 +25,7 @@ export default function ProductCard1({
   } = useContextElement();
 
   useEffect(() => {
-    setCurrentImage(product.imgSrc);
+    setCurrentImage(product.mainimage);
   }, [product]);
 
   return (
@@ -50,7 +50,7 @@ export default function ProductCard1({
 
           <Image
             className="lazyload img-hover"
-            src={product.imgHover}
+            src={product.mainimage}
             alt={product.title}
             width={600}
             height={800}
@@ -177,9 +177,11 @@ export default function ProductCard1({
             </div>
           </div>
         )}
-        {product.oldPrice ? (
+        {product.discount_price ? (
           <div className="on-sale-wrap">
-            <span className="on-sale-item">-25%</span>
+            <span className="on-sale-item">-{Math.round(
+        ((product.price - product.discount_price) / product.price) * 100
+      )}%</span>
           </div>
         ) : (
           ""
@@ -212,7 +214,9 @@ export default function ProductCard1({
           </a>
           <a
             href="#quickView"
-            onClick={() => setQuickViewItem(product)}
+            onClick={async () => {
+              await setQuickViewItem(product.id);
+            }}
             data-bs-toggle="modal"
             className="box-icon quickview tf-btn-loading"
           >
@@ -243,14 +247,14 @@ export default function ProductCard1({
         </div>
       </div>
       <div className="card-product-info">
-        <Link href={`/product-detail/${product.id}`} className="title link">
+        <Link href={`http://localhost:8000/api/home/products/view/${product.id}`} className="title link">
           {product.title}
         </Link>
         <span className="price">
-          {product.oldPrice && (
-            <span className="old-price">${product.oldPrice.toFixed(2)}</span>
+          {product.discount_price && (
+            <span className="old-price">Rs{product.price.toFixed(2)}</span>
           )}{" "}
-          ${product.price?.toFixed(2)}
+          Rs{product.discount_price?.toFixed(2)}
         </span>
         {product.colors && (
           <ul className="list-color-product">

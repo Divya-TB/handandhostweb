@@ -14,10 +14,12 @@ export const useContextElement = () => {
 export default function Context({ children }) {
   const [homebanner, sethomebanner] = useState([]);
   const [categorybanner, setcategorybanner] = useState([]);
+  const [product, setProduct] = useState([]);
   const [cartProducts, setCartProducts] = useState([]);
   const [wishList, setWishList] = useState([1, 2, 3]);
   const [compareItem, setCompareItem] = useState([1, 2, 3]);
-  const [quickViewItem, setQuickViewItem] = useState(allProducts[0]);
+  // const [quickViewItem, setQuickViewItem] = useState(allProducts[0]);
+   const [quickViewItem, setQuickViewItemState] = useState();
   const [quickAddItem, setQuickAddItem] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0);
 
@@ -40,6 +42,32 @@ export default function Context({ children }) {
       })
       .catch((err) => console.log("API error:", err));
   }, []);
+
+  useEffect(() => {
+    fetch("http://localhost:8000/api/homeproduct") // your Node API
+      .then((res) => res.json())
+      .then((data) => {
+        setProduct(data);
+        console.log("Product Data:", data); // check in console
+      })
+      .catch((err) => console.log("API error:", err));
+  }, []);
+
+   const setQuickViewItem = async (id) => {
+    try {
+      const res = await fetch(`http://localhost:8000/api/home/products/view/${id}`);
+      const data = await res.json();
+      
+      if (data.length != 0) {
+        console.log("Quick View Item Data:", data);
+        setQuickViewItemState(data); // 👈 important (based on your API response)
+      } else {
+        console.error("API error:", data);
+      }
+    } catch (error) {
+      console.error("Fetch failed:", error);
+    }
+  };
 
   useEffect(() => {
     const subtotal = cartProducts.reduce((accumulator, product) => {
@@ -79,10 +107,41 @@ export default function Context({ children }) {
     }
   };
 
-  const addToWishlist = (id) => {
-    if (!wishList.includes(id)) {
-      setWishList((pre) => [...pre, id]);
-      openWistlistModal();
+  // const addToWishlist = (id) => {
+  //   if (!wishList.includes(id)) {
+  //     setWishList((pre) => [...pre, id]);
+  //     openWistlistModal();
+  //   }
+  // };
+
+
+  const addToWishlist = async (id) => {
+    try {
+      // Call backend API
+      const res = await fetch("http://localhost:8000/api/add-to-wishlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          product_ID: id,
+          User_ID: 1, //replace with logged-in user id
+        }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        // Update frontend state only if API success
+        if (!wishList.includes(id)) {
+          setWishList((pre) => [...pre, id]);
+          openWistlistModal();
+        }
+      } else {
+        console.error("Wishlist API error:", data);
+      }
+    } catch (error) {
+      console.error("API failed:", error);
     }
   };
 
@@ -137,6 +196,7 @@ export default function Context({ children }) {
   const contextElement = {
     homebanner, 
     categorybanner,
+    product,
     cartProducts,
     setCartProducts,
     totalPrice,

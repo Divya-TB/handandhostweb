@@ -64,7 +64,7 @@ export default function HomePage() {
       <Hero />
       <MarqueeSection2 />
       <Collections />
-      <Categories parentClass="" />
+      {/* <Categories parentClass="" /> */}
       <Products5 />
       <Banner />
       <BannerTab2 parentClass="flat-spacing" />

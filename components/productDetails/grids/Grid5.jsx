@@ -7,10 +7,15 @@ import Image from "next/image";
 export default function Grid5({
   activeColor = "gray",
   setActiveColor = () => {},
-  firstItem,
+  images = [],
 }) {
-  const finalItems = [...images];
-  images[0].src = firstItem ?? images[0].src;
+const finalItems =
+  images.length > 0
+    ? images.map((img, index) => ({
+        src: img.images,
+        dataScroll: `img-${index}`,
+      }))
+    : [];
 
   // itemsFinal2[0].src = products[0].imgSrc;
 
