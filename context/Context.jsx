@@ -44,7 +44,7 @@ export default function Context({ children }) {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/homeproduct") // your Node API
+    fetch("http://40.192.14.4:8000/api/homeproduct") // your Node API
       .then((res) => res.json())
       .then((data) => {
         setProduct(data);
@@ -55,7 +55,7 @@ export default function Context({ children }) {
 
    const setQuickViewItem = async (id) => {
     try {
-      const res = await fetch(`http://localhost:8000/api/home/products/view/${id}`);
+      const res = await fetch(`http://40.192.14.4:8000/api/home/products/view/${id}`);
       const data = await res.json();
       
       if (data.length != 0) {
@@ -118,7 +118,7 @@ export default function Context({ children }) {
   const addToWishlist = async (id) => {
     try {
       // Call backend API
-      const res = await fetch("http://localhost:8000/api/add-to-wishlist", {
+      const res = await fetch("http://40.192.14.4:8000/api/add-to-wishlist", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

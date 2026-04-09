@@ -247,7 +247,7 @@ export default function ProductCard1({
         </div>
       </div>
       <div className="card-product-info">
-        <Link href={`http://localhost:8000/api/home/products/view/${product.id}`} className="title link">
+        <Link href={`http://40.192.14.4:8000/api/home/products/view/${product.id}`} className="title link">
           {product.title}
         </Link>
         <span className="price">
