@@ -252,9 +252,9 @@ export default function ProductCard1({
         </Link>
         <span className="price">
           {product.discount_price && (
-            <span className="old-price">Rs{product.price.toFixed(2)}</span>
+            <span className="old-price">Rs{product.price}</span>
           )}{" "}
-          Rs{product.discount_price?.toFixed(2)}
+          Rs{product.discount_price}
         </span>
         {product.colors && (
           <ul className="list-color-product">
