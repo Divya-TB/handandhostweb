@@ -170,13 +170,12 @@ export default function QuickView() {
                         Rs
                         {isAddedToCartProducts(quickViewItem?.id)
                           ? (
-                              quickViewItem?.price *
-                              cartProducts.filter(
-                                (elm) => elm.id == quickViewItem?.id
-                              )[0].quantity
-                          
-                           ).toFixed(2)
-                          : (quickViewItem?.discount_price * quantity).toFixed(2)}
+                              (quickViewItem?.price ?? 0) *
+                              (cartProducts.find((elm) => elm.id == quickViewItem?.id)?.quantity ?? 1)
+                            ).toFixed(2)
+                          : (
+                              (quickViewItem?.discount_price ?? 0) * (quantity ?? 1)
+                            ).toFixed(2)}
                       </span>
                     </a>
                     <a
