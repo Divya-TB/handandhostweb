@@ -118,13 +118,13 @@ export const demoItems = [
     name: "Decor",
     label: [],
   },
-  {
-    href: "/home-furniture",
-    src: "/images/demo/home-furniture.jpg",
-    alt: "home-furniture",
-    name: "Furniture",
-    label: [],
-  },
+  // {
+  //   href: "/home-furniture",
+  //   src: "/images/demo/home-furniture.jpg",
+  //   alt: "home-furniture",
+  //   name: "Furniture",
+  //   label: [],
+  // },
   {
     href: "/home-jewelry-01",
     src: "/images/demo/home-jewelry.jpg",
