@@ -160,12 +160,28 @@ export default function Context({ children }) {
       setCompareItem((pre) => [...pre.filter((elm) => elm != id)]);
     }
   };
-  const isAddedtoWishlist = (id) => {
-    if (wishList.includes(id)) {
-      return true;
+
+  const isAddedtoWishlist = async (id) => {
+    try {
+      const res = await fetch(`http://40.192.14.4:8000/api/home/products/view/${id}`);
+      const data = await res.json();
+      
+      if (data.length != 0) {
+        console.log("Quick View Item Data:", data);
+        setQuickViewItemState(data); // 👈 important (based on your API response)
+      } else {
+        console.error("API error:", data);
+      }
+    } catch (error) {
+      console.error("Fetch failed:", error);
     }
-    return false;
   };
+  // const isAddedtoWishlist = (id) => {
+  //   if (wishList.includes(id)) {
+  //     return true;
+  //   }
+  //   return false;
+  // };
   const isAddedtoCompareItem = (id) => {
     if (compareItem.includes(id)) {
       return true;

@@ -1985,6 +1985,7 @@ a:focus, a:hover {
   gap: 4px;
   transition: all 0.3s ease;
   position: relative;
+  color: #8e5d13;
 }
 
 #header .box-nav-ul .item-link .icon {
@@ -8414,7 +8415,8 @@ input.style-line-bottom::placeholder {
 }
 
 .collection-position-2 .cls-btn .text {
-  color: inherit;
+  /* color: inherit; */
+  color: #d1d9db;
   z-index: 1;
 }
 
@@ -8448,10 +8450,12 @@ input.style-line-bottom::placeholder {
 
 .collection-position-2.style-6 .content, .collection-position-2.style-4 .content {
   text-align: center;
+  background-color: #8e5d13;
 }
 
 .collection-position-2.style-6 .cls-btn, .collection-position-2.style-4 .cls-btn {
   display: inline-flex;
+  background-color: #8e5d13;
 }
 
 .collection-position-2.style-5 .content {
@@ -9217,8 +9221,10 @@ input.style-line-bottom::placeholder {
   font-size: 12px;
   line-height: 20px;
   text-transform: uppercase;
-  background-color: var(--white);
-  color: var(--main);
+  /* background-color: var(--white); */
+  background-color: #8e5d13;
+  /* color: var(--main); */
+  color: #d1d9db;
   border-radius: 44px;
   transition: all 0.4s ease;
   -webkit-line-clamp: 1;

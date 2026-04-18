@@ -1,6 +1,7 @@
 "use client";
 import { usePathname } from "next/navigation";
 import "../public/scss/main.scss";
+import "../public/css/custom.css";
 import "photoswipe/style.css";
 import "react-range-slider-input/dist/style.css";
 import "../public/css/image-compare-viewer.min.css";
