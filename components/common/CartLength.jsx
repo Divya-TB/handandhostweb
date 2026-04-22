@@ -1,8 +1,13 @@
 "use client";
 
+import React from "react";
 import { useContextElement } from "@/context/Context";
 
 export default function CartLength() {
-  const { cartProducts } = useContextElement();
+  const context = useContextElement();
+
+  const cartProducts =
+    context?.cartProducts || [];
+
   return <>{cartProducts.length}</>;
 }

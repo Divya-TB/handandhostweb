@@ -56,9 +56,9 @@ export default function CartModal() {
                           className="link text-button"
                           onClick={() => addProductToCart(product.id, 1, false)}
                         >
-                          {isAddedToCartProducts(product.id)
+                          {/* {isAddedToCartProducts(product.id)
                             ? "Already Added"
-                            : "Add to cart"}
+                            : "Add to cart"} */}
                         </a>
                       </div>
                     </div>

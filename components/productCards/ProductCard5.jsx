@@ -179,12 +179,19 @@ export default function ProductCard5({ product = products34[0] }) {
             onClick={() => addToWishlist(product.id)}
             className="box-icon wishlist btn-icon-action"
           >
-            <span className="icon icon-heart" />
+            {/* <span className="icon icon-heart" />
             <span className="tooltip">
               {isAddedtoWishlist(product.id)
                 ? "Already Wishlished"
                 : "Wishlist"}
-            </span>
+            </span> */}
+
+            <span
+            className="icon icon-heart"
+            style={{
+              color: product.isWishlisted ? "red" : "white",
+            }}
+          />
           </a>
           <a
             href="#compare"

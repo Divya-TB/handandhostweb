@@ -221,3 +221,7 @@
 .icon-lightning:before {
   content: "\e93b";
 }
+
+.icon-heart-fill:before {
+  content: "\e93f";
+}

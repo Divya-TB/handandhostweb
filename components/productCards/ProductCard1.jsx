@@ -1,9 +1,323 @@
+// "use client";
+// import React, { useEffect, useState } from "react";
+// import Image from "next/image";
+// import Link from "next/link";
+// import CountdownTimer from "../common/Countdown";
+// import { useContextElement } from "@/context/Context";
+// export default function ProductCard1({
+//   product,
+//   gridClass = "",
+//   parentClass = "card-product wow fadeInUp",
+//   isNotImageRatio = false,
+//   radiusClass = "",
+// }) {
+//   const [currentImage, setCurrentImage] = useState(product.mainimage);
+
+//   const {
+//     setQuickAddItem,
+//     addToWishlist,
+//     isAddedtoWishlist,
+//     addToCompareItem,
+//     isAddedtoCompareItem,
+//     setQuickViewItem,
+//     addProductToCart,
+//     isAddedToCartProducts,
+//     wishList
+//   } = useContextElement();
+
+// const isWishlisted =
+//   Number(product.isWishlisted) === 1 ||
+//   wishList.includes(Number(product.id));
+
+//   console.log("Product....:", product.id);
+// console.log("DB............:", product.isWishlisted);
+// console.log("wishList..............:", wishList);
+// console.log("Final....................:", isWishlisted);
+
+//   useEffect(() => {
+//     setCurrentImage(product.mainimage);
+//   }, [product]);
+
+//   return (
+//     <div
+//       className={`${parentClass} ${gridClass} ${
+//         product.isOnSale ? "on-sale" : ""
+//       } ${product.sizes ? "card-product-size" : ""}`}
+//     >
+//       <div
+//         className={`card-product-wrapper ${
+//           isNotImageRatio ? "aspect-ratio-0" : ""
+//         } ${radiusClass} `}
+//       >
+//         <Link href={`/product-detail/${product.id}`} className="product-img">
+//           <Image
+//             className="lazyload img-product"
+//             src={currentImage}
+//             alt={product.title}
+//             width={600}
+//             height={800}
+//           />
+
+//           <Image
+//             className="lazyload img-hover"
+//             src={product.mainimage}
+//             alt={product.title}
+//             width={600}
+//             height={800}
+//           />
+//         </Link>
+//         {product.hotSale && (
+//           <div className="marquee-product bg-main">
+//             <div className="marquee-wrapper">
+//               <div className="initial-child-container">
+//                 <div className="marquee-child-item">
+//                   <p className="font-2 text-btn-uppercase fw-6 text-white">
+//                     Hot Sale 25% OFF
+//                   </p>
+//                 </div>
+//                 <div className="marquee-child-item">
+//                   <span className="icon icon-lightning text-critical" />
+//                 </div>
+//                 <div className="marquee-child-item">
+//                   <p className="font-2 text-btn-uppercase fw-6 text-white">
+//                     Hot Sale 25% OFF
+//                   </p>
+//                 </div>
+//                 <div className="marquee-child-item">
+//                   <span className="icon icon-lightning text-critical" />
+//                 </div>
+//                 <div className="marquee-child-item">
+//                   <p className="font-2 text-btn-uppercase fw-6 text-white">
+//                     Hot Sale 25% OFF
+//                   </p>
+//                 </div>
+//                 <div className="marquee-child-item">
+//                   <span className="icon icon-lightning text-critical" />
+//                 </div>
+//                 <div className="marquee-child-item">
+//                   <p className="font-2 text-btn-uppercase fw-6 text-white">
+//                     Hot Sale 25% OFF
+//                   </p>
+//                 </div>
+//                 <div className="marquee-child-item">
+//                   <span className="icon icon-lightning text-critical" />
+//                 </div>
+//                 <div className="marquee-child-item">
+//                   <p className="font-2 text-btn-uppercase fw-6 text-white">
+//                     Hot Sale 25% OFF
+//                   </p>
+//                 </div>
+//                 <div className="marquee-child-item">
+//                   <span className="icon icon-lightning text-critical" />
+//                 </div>
+//               </div>
+//             </div>
+//             <div className="marquee-wrapper">
+//               <div className="initial-child-container">
+//                 <div className="marquee-child-item">
+//                   <p className="font-2 text-btn-uppercase fw-6 text-white">
+//                     Hot Sale 25% OFF
+//                   </p>
+//                 </div>
+//                 <div className="marquee-child-item">
+//                   <span className="icon icon-lightning text-critical" />
+//                 </div>
+//                 <div className="marquee-child-item">
+//                   <p className="font-2 text-btn-uppercase fw-6 text-white">
+//                     Hot Sale 25% OFF
+//                   </p>
+//                 </div>
+//                 <div className="marquee-child-item">
+//                   <span className="icon icon-lightning text-critical" />
+//                 </div>
+//                 <div className="marquee-child-item">
+//                   <p className="font-2 text-btn-uppercase fw-6 text-white">
+//                     Hot Sale 25% OFF
+//                   </p>
+//                 </div>
+//                 <div className="marquee-child-item">
+//                   <span className="icon icon-lightning text-critical" />
+//                 </div>
+//                 <div className="marquee-child-item">
+//                   <p className="font-2 text-btn-uppercase fw-6 text-white">
+//                     Hot Sale 25% OFF
+//                   </p>
+//                 </div>
+//                 <div className="marquee-child-item">
+//                   <span className="icon icon-lightning text-critical" />
+//                 </div>
+//                 <div className="marquee-child-item">
+//                   <p className="font-2 text-btn-uppercase fw-6 text-white">
+//                     Hot Sale 25% OFF
+//                   </p>
+//                 </div>
+//                 <div className="marquee-child-item">
+//                   <span className="icon icon-lightning text-critical" />
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+//         )}
+//         {product.isOnSale && (
+//           <div className="on-sale-wrap">
+//             <span className="on-sale-item">-{product.salePercentage}</span>
+//           </div>
+//         )}
+//         {product.sizes && (
+//           <div className="variant-wrap size-list">
+//             <ul className="variant-box">
+//               {product.sizes.map((size) => (
+//                 <li key={size} className="size-item">
+//                   {size}
+//                 </li>
+//               ))}
+//             </ul>
+//           </div>
+//         )}
+//         {product.countdown && (
+//           <div className="variant-wrap countdown-wrap">
+//             <div className="variant-box">
+//               <div
+//                 className="js-countdown"
+//                 data-timer={product.countdown}
+//                 data-labels="D :,H :,M :,S"
+//               >
+//                 <CountdownTimer />
+//               </div>
+//             </div>
+//           </div>
+//         )}
+//         {product.discount_price ? (
+//           <div className="on-sale-wrap">
+//             <span className="on-sale-item">-{Math.round(
+//         ((product.price - product.discount_price) / product.price) * 100
+//       )}%</span>
+//           </div>
+//         ) : (
+//           ""
+//         )}
+//         <div className="list-product-btn">
+          
+        
+//           <a
+//             onClick={() => {
+//               if (isWishlisted) return;
+
+//               addToWishlist(product.id);
+//             }}
+//             className="box-icon wishlist btn-icon-action"
+//           >
+//             <span
+//               className="icon icon-heart"
+//               style={{
+//                 color: isWishlisted ? "red" : "black",
+//               }}
+//             />
+
+//             <span className="tooltip">
+//               {isWishlisted
+//                 ? "Already Wishlisted"
+//                 : "Wishlist"}
+//             </span>
+//           </a>
+//           <a
+//             href="#compare"
+//             data-bs-toggle="offcanvas"
+//             aria-controls="compare"
+//             onClick={() => addToCompareItem(product.id)}
+//             className="box-icon compare btn-icon-action"
+//           >
+//             <span className="icon icon-gitDiff" />
+//             <span className="tooltip">
+//               {isAddedtoCompareItem(product.id)
+//                 ? "Already compared"
+//                 : "Compare"}
+//             </span>
+//           </a>
+//           <a
+//             href="#quickView"
+//             onClick={async () => {
+//               await setQuickViewItem(product.id);
+//             }}
+//             data-bs-toggle="modal"
+//             className="box-icon quickview tf-btn-loading"
+//           >
+//             <span className="icon icon-eye" />
+//             <span className="tooltip">Quick View</span>
+//           </a>
+//         </div>
+//         <div className="list-btn-main">
+//           {product.addToCart == "Quick Add" ? (
+//             <a
+//               className="btn-main-product"
+//               href="#quickAdd"
+//               onClick={() => setQuickAddItem(product.id)}
+//               data-bs-toggle="modal"
+//             >
+//               Quick Add
+//             </a>
+//           ) : (
+//             <a
+//               className="btn-main-product"
+//                onClick={() => {
+//                 if (product.isAddedToCart === "1") return;
+
+//                 addProductToCart(product.id)
+//               }}
+//             >
+//               {product.isAddedToCart === "1"
+//                 ? "Already Added to Cart"
+//                 : "Add to Cart"}
+//             </a>
+//           )}
+//         </div>
+//       </div>
+//       <div className="card-product-info">
+//         <Link href={`http://40.192.14.4:8000/api/home/products/view/${product.id}`} className="title link">
+//           {product.title}
+//         </Link>
+//         <span className="price">
+//           {product.discount_price && (
+//             <span className="old-price">Rs{product.price}</span>
+//           )}{" "}
+//           Rs{product.discount_price}
+//         </span>
+//         {product.colors && (
+//           <ul className="list-color-product">
+//             {product.colors.map((color, index) => (
+//               <li
+//                 key={index}
+//                 className={`list-color-item color-swatch ${
+//                   currentImage == color.imgSrc ? "active" : ""
+//                 } ${color.bgColor == "bg-white" ? "line" : ""}`}
+//                 onMouseOver={() => setCurrentImage(color.imgSrc)}
+//               >
+//                 <span className={`swatch-value ${color.bgColor}`} />
+//                 <Image
+//                   className="lazyload"
+//                   src={color.imgSrc}
+//                   alt="color variant"
+//                   width={600}
+//                   height={800}
+//                 />
+//               </li>
+//             ))}
+//           </ul>
+//         )}
+//       </div>
+//     </div>
+//   );
+// }
+
+
+
 "use client";
+
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import CountdownTimer from "../common/Countdown";
 import { useContextElement } from "@/context/Context";
+
 export default function ProductCard1({
   product,
   gridClass = "",
@@ -11,22 +325,43 @@ export default function ProductCard1({
   isNotImageRatio = false,
   radiusClass = "",
 }) {
-  const [currentImage, setCurrentImage] = useState(product.mainimage);
+  const noImage = "/images/no-image.png";
+
+  const getImage = (img) => {
+    return img && img.trim() !== ""
+      ? img
+      : noImage;
+  };
+
+  const [currentImage, setCurrentImage] = useState(
+    getImage(product.mainimage)
+  );
 
   const {
     setQuickAddItem,
     addToWishlist,
+    removeFromWishlist,
     isAddedtoWishlist,
-    addToCompareItem,
-    isAddedtoCompareItem,
     setQuickViewItem,
     addProductToCart,
-    isAddedToCartProducts,
   } = useContextElement();
 
+  /* ---------- FIXED WISHLIST CHECK ---------- */
+  const isWishlisted = isAddedtoWishlist(product.id);
+
+  /* ---------- IMAGE FIX ---------- */
   useEffect(() => {
-    setCurrentImage(product.mainimage);
+    setCurrentImage(getImage(product.mainimage));
   }, [product]);
+
+  /* ---------- WISHLIST ---------- */
+  const handleWishlist = async () => {
+    if (isWishlisted) {
+      await removeFromWishlist(product.id);
+    } else {
+      await addToWishlist(product.id);
+    }
+  };
 
   return (
     <div
@@ -37,199 +372,101 @@ export default function ProductCard1({
       <div
         className={`card-product-wrapper ${
           isNotImageRatio ? "aspect-ratio-0" : ""
-        } ${radiusClass} `}
+        } ${radiusClass}`}
       >
-        <Link href={`/product-detail/${product.id}`} className="product-img">
+        {/* PRODUCT IMAGE */}
+        <Link
+          href={`/product-detail/${product.id}`}
+          className="product-img"
+        >
           <Image
             className="lazyload img-product"
             src={currentImage}
-            alt={product.title}
+            alt={product.title || "Product"}
             width={600}
             height={800}
           />
 
           <Image
             className="lazyload img-hover"
-            src={product.mainimage}
-            alt={product.title}
+            src={getImage(product.mainimage)}
+            alt={product.title || "Product"}
             width={600}
             height={800}
           />
         </Link>
-        {product.hotSale && (
-          <div className="marquee-product bg-main">
-            <div className="marquee-wrapper">
-              <div className="initial-child-container">
-                <div className="marquee-child-item">
-                  <p className="font-2 text-btn-uppercase fw-6 text-white">
-                    Hot Sale 25% OFF
-                  </p>
-                </div>
-                <div className="marquee-child-item">
-                  <span className="icon icon-lightning text-critical" />
-                </div>
-                <div className="marquee-child-item">
-                  <p className="font-2 text-btn-uppercase fw-6 text-white">
-                    Hot Sale 25% OFF
-                  </p>
-                </div>
-                <div className="marquee-child-item">
-                  <span className="icon icon-lightning text-critical" />
-                </div>
-                <div className="marquee-child-item">
-                  <p className="font-2 text-btn-uppercase fw-6 text-white">
-                    Hot Sale 25% OFF
-                  </p>
-                </div>
-                <div className="marquee-child-item">
-                  <span className="icon icon-lightning text-critical" />
-                </div>
-                <div className="marquee-child-item">
-                  <p className="font-2 text-btn-uppercase fw-6 text-white">
-                    Hot Sale 25% OFF
-                  </p>
-                </div>
-                <div className="marquee-child-item">
-                  <span className="icon icon-lightning text-critical" />
-                </div>
-                <div className="marquee-child-item">
-                  <p className="font-2 text-btn-uppercase fw-6 text-white">
-                    Hot Sale 25% OFF
-                  </p>
-                </div>
-                <div className="marquee-child-item">
-                  <span className="icon icon-lightning text-critical" />
-                </div>
-              </div>
-            </div>
-            <div className="marquee-wrapper">
-              <div className="initial-child-container">
-                <div className="marquee-child-item">
-                  <p className="font-2 text-btn-uppercase fw-6 text-white">
-                    Hot Sale 25% OFF
-                  </p>
-                </div>
-                <div className="marquee-child-item">
-                  <span className="icon icon-lightning text-critical" />
-                </div>
-                <div className="marquee-child-item">
-                  <p className="font-2 text-btn-uppercase fw-6 text-white">
-                    Hot Sale 25% OFF
-                  </p>
-                </div>
-                <div className="marquee-child-item">
-                  <span className="icon icon-lightning text-critical" />
-                </div>
-                <div className="marquee-child-item">
-                  <p className="font-2 text-btn-uppercase fw-6 text-white">
-                    Hot Sale 25% OFF
-                  </p>
-                </div>
-                <div className="marquee-child-item">
-                  <span className="icon icon-lightning text-critical" />
-                </div>
-                <div className="marquee-child-item">
-                  <p className="font-2 text-btn-uppercase fw-6 text-white">
-                    Hot Sale 25% OFF
-                  </p>
-                </div>
-                <div className="marquee-child-item">
-                  <span className="icon icon-lightning text-critical" />
-                </div>
-                <div className="marquee-child-item">
-                  <p className="font-2 text-btn-uppercase fw-6 text-white">
-                    Hot Sale 25% OFF
-                  </p>
-                </div>
-                <div className="marquee-child-item">
-                  <span className="icon icon-lightning text-critical" />
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-        {product.isOnSale && (
-          <div className="on-sale-wrap">
-            <span className="on-sale-item">-{product.salePercentage}</span>
-          </div>
-        )}
-        {product.sizes && (
-          <div className="variant-wrap size-list">
-            <ul className="variant-box">
-              {product.sizes.map((size) => (
-                <li key={size} className="size-item">
-                  {size}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-        {product.countdown && (
-          <div className="variant-wrap countdown-wrap">
-            <div className="variant-box">
-              <div
-                className="js-countdown"
-                data-timer={product.countdown}
-                data-labels="D :,H :,M :,S"
-              >
-                <CountdownTimer />
-              </div>
-            </div>
-          </div>
-        )}
+
+        {/* DISCOUNT */}
         {product.discount_price ? (
           <div className="on-sale-wrap">
-            <span className="on-sale-item">-{Math.round(
-        ((product.price - product.discount_price) / product.price) * 100
-      )}%</span>
+            <span className="on-sale-item">
+              -
+              {Math.round(
+                ((product.price -
+                  product.discount_price) /
+                  product.price) *
+                  100
+              )}
+              %
+            </span>
           </div>
-        ) : (
-          ""
-        )}
+        ) : null}
+
+        {/* BUTTONS */}
         <div className="list-product-btn">
+          {/* WISHLIST */}
           <a
-            onClick={() => addToWishlist(product.id)}
+            onClick={handleWishlist}
             className="box-icon wishlist btn-icon-action"
+            style={{ cursor: "pointer" }}
           >
-            <span className="icon icon-heart" />
+            <span
+              className="icon icon-heart"
+              style={{
+                color: isWishlisted
+                  ? "red"
+                  : "black",
+                transition: "0.3s",
+              }}
+            />
+
             <span className="tooltip">
-              {isAddedtoWishlist(product.id)
-                ? "Already Wishlished"
+              {isWishlisted
+                ? "Already Wishlisted"
                 : "Wishlist"}
             </span>
           </a>
-          <a
-            href="#compare"
-            data-bs-toggle="offcanvas"
-            aria-controls="compare"
-            onClick={() => addToCompareItem(product.id)}
-            className="box-icon compare btn-icon-action"
-          >
-            <span className="icon icon-gitDiff" />
-            <span className="tooltip">
-              {isAddedtoCompareItem(product.id)
-                ? "Already compared"
-                : "Compare"}
-            </span>
-          </a>
+
+          {/* QUICK VIEW */}
           <a
             href="#quickView"
             onClick={async () => {
-              await setQuickViewItem(product.id);
+              await setQuickViewItem(
+                product.id
+              );
             }}
             data-bs-toggle="modal"
             className="box-icon quickview tf-btn-loading"
           >
             <span className="icon icon-eye" />
-            <span className="tooltip">Quick View</span>
+            <span className="tooltip">
+              Quick View
+            </span>
           </a>
         </div>
+
+        {/* ADD TO CART */}
         <div className="list-btn-main">
-          {product.addToCart == "Quick Add" ? (
+          {product.addToCart ==
+          "Quick Add" ? (
             <a
               className="btn-main-product"
               href="#quickAdd"
-              onClick={() => setQuickAddItem(product.id)}
+              onClick={() =>
+                setQuickAddItem(
+                  product.id
+                )
+              }
               data-bs-toggle="modal"
             >
               Quick Add
@@ -237,47 +474,46 @@ export default function ProductCard1({
           ) : (
             <a
               className="btn-main-product"
-              onClick={() => addProductToCart(product.id)}
+              onClick={() => {
+                if (
+                  product.isAddedToCart ===
+                  "1"
+                )
+                  return;
+
+                addProductToCart(
+                  product.id
+                );
+              }}
             >
-              {isAddedToCartProducts(product.id)
-                ? "Already Added"
-                : "ADD TO CART"}
+              {product.isAddedToCart ===
+              "1"
+                ? "Already Added to Cart"
+                : "Add to Cart"}
             </a>
           )}
         </div>
       </div>
+
+      {/* PRODUCT INFO */}
       <div className="card-product-info">
-        <Link href={`http://40.192.14.4:8000/api/home/products/view/${product.id}`} className="title link">
+        <Link
+          href={`/product-detail/${product.id}`}
+          className="title link"
+        >
           {product.title}
         </Link>
+
         <span className="price">
           {product.discount_price && (
-            <span className="old-price">Rs{product.price}</span>
+            <span className="old-price">
+              Rs{product.price}
+            </span>
           )}{" "}
-          Rs{product.discount_price}
+          Rs
+          {product.discount_price ||
+            product.price}
         </span>
-        {product.colors && (
-          <ul className="list-color-product">
-            {product.colors.map((color, index) => (
-              <li
-                key={index}
-                className={`list-color-item color-swatch ${
-                  currentImage == color.imgSrc ? "active" : ""
-                } ${color.bgColor == "bg-white" ? "line" : ""}`}
-                onMouseOver={() => setCurrentImage(color.imgSrc)}
-              >
-                <span className={`swatch-value ${color.bgColor}`} />
-                <Image
-                  className="lazyload"
-                  src={color.imgSrc}
-                  alt="color variant"
-                  width={600}
-                  height={800}
-                />
-              </li>
-            ))}
-          </ul>
-        )}
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 "use client";
 import { usePathname } from "next/navigation";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import "../public/scss/main.scss";
 import "../public/css/custom.css";
 import "photoswipe/style.css";
