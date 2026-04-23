@@ -17,7 +17,7 @@ export default function BlogGrid() {
                       className="lazyload"
                       data-src={blog.imgSrc}
                       alt={blog.alt}
-                      src={blog.imgSrc}
+                      src="/images/default-product.jpg"
                       width={615}
                       height={461}
                     />

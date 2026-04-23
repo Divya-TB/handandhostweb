@@ -50,7 +50,7 @@ export default function RelatedBlogs() {
                       <Image
                         className="lazyload"
                         alt=""
-                        src={post.imgSrc}
+                        src="/images/avatar/user-1.jpg"
                         width={615}
                         height={461}
                       />

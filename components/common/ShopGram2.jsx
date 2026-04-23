@@ -35,7 +35,7 @@ export default function ShopGram() {
                 <Image
                   className="lazyload img-hover"
                   alt="image-gallery"
-                  src={product.imgSrc}
+                  src="/images/avatar/user-1.jpg"
                   width={640}
                   height={640}
                 />

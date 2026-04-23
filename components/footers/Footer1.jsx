@@ -98,17 +98,17 @@ export default function Footer1({
                           alt=""
                           src={
                             dark
-                              ? "/images/logo/logo-white.svg"
-                              : "/images/logo/logo.svg"
+                              ? "/images/logo/Logo (2).png"
+                              : "/images/logo/Logo (2).png"
                           }
-                          width={127}
+                          width={120}
                           height={24}
-                          style={{ width: "auto", height: "auto" }}
+                          // style={{ width: "auto", height: "auto" }}
                         />
                       </Link>
                     </div>
                     <div className="footer-address">
-                      <p>549 Oak St.Crystal Lake, IL 60014</p>
+                      <p>Hand & Host LLP<br></br>Basement floor, 5/257A8, Pallath Square, FACT  kalamassery Rd, Kalamassery, Ernakulam, Kerala, 683104, Ernakulam, Kerala-683104</p>
                       <Link
                         href={`/contact`}
                         className={`tf-btn-default fw-6 ${
@@ -122,7 +122,7 @@ export default function Footer1({
                     <ul className="footer-info">
                       <li>
                         <i className="icon-mail" />
-                        <p>themesflat@gmail.com</p>
+                        <p> handandhost@gmail.com</p>
                       </li>
                       <li>
                         <i className="icon-phone" />

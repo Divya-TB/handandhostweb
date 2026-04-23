@@ -32,7 +32,7 @@ export default function Brands({ parentClass = "flat-spacing-5 line-top" }) {
             <a href="#" className="brand-item">
               <Image
                 alt={brand.alt}
-                src={brand.imgSrc}
+                src="/images/avatar/user-1.jpg"
                 width={brand.width}
                 height={brand.height}
               />

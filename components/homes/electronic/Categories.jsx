@@ -45,7 +45,7 @@ export default function Categories() {
                       className="lazyload"
                       data-src={category.imgSrc}
                       alt={category.alt}
-                      src={category.imgSrc}
+                      src="/images/avatar/user-1.jpg"
                       width={253}
                       height={252}
                     />

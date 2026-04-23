@@ -118,7 +118,7 @@ export default function BannerTab() {
                           className="lazyload"
                           data-src={item.imgSrc}
                           alt="banner-cls"
-                          src={item.imgSrc}
+                          src="/images/avatar/user-1.jpg"
                           width={710}
                           height={945}
                         />

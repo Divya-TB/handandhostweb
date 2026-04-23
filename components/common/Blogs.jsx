@@ -54,7 +54,7 @@ export default function Blogs({
                     className="aspect-ratio-1 ls-is-cached lazyload"
                     data-src={post.imgSrc}
                     alt={post.alt}
-                    src={post.imgSrc}
+                    src="/images/avatar/user-1.jpg"
                     width={615}
                     height={461}
                   />

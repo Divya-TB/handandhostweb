@@ -35,7 +35,7 @@ export default function ShopGram3({ parentClass = "" }) {
                     className="lazyload img-hover"
                     data-src={item.imgSrc}
                     alt="image-gallery"
-                    src={item.imgSrc}
+                    src="/images/avatar/user-1.jpg"
                     width={640}
                     height={640}
                   />

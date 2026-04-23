@@ -49,7 +49,7 @@ export default function Categories({ parentClass = "flat-spacing pt-0" }) {
                       className="lazyload"
                       data-src={item.imgSrc}
                       alt={item.alt}
-                      src={item.imgSrc}
+                      src="/images/avatar/user-1.jpg"
                       width={285}
                       height={285}
                     />

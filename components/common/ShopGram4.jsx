@@ -44,7 +44,7 @@ export default function ShopGram4() {
                   className="lazyload img-hover"
                   data-src={item.imgSrc}
                   alt={item.alt}
-                  src={item.imgSrc}
+                  src="/images/avatar/user-1.jpg"
                   width={480}
                   height={480}
                 />

@@ -36,21 +36,21 @@ export default function About() {
                     className={`item-title ${activeTab == 2 ? "active" : ""} `}
                     onClick={() => setActiveTab(2)}
                   >
-                    <span className="inner text-button">Our Vision</span>
+                    <span className="inner text-button">Our Commitment to Quality & Trust</span>
                   </li>
                   <li
                     className={`item-title ${activeTab == 3 ? "active" : ""} `}
                     onClick={() => setActiveTab(3)}
                   >
                     <span className="inner text-button">
-                      What Sets Us Apart
+                      What Makes Kreenz Different
                     </span>
                   </li>
                   <li
                     className={`item-title ${activeTab == 4 ? "active" : ""} `}
                     onClick={() => setActiveTab(4)}
                   >
-                    <span className="inner text-button">Our Commitment</span>
+                    <span className="inner text-button">Our Promise</span>
                   </li>
                 </ul>
                 <div className="widget-content-tab wow fadeInUp">
@@ -60,14 +60,9 @@ export default function About() {
                     } `}
                   >
                     <p>
-                      Welcome to Modave Store, your premier destination for
-                      fashion-forward clothing and accessories. We pride
-                      ourselves on offering a curated selection of rare and
-                      beautiful items sourced both locally and globally. Our
-                      mission is to bring you the latest trends and timeless
-                      styles, ensuring every piece reflects quality and
-                      elegance. Discover the perfect addition to your wardrobe
-                      at Modave Store.
+                      At Hand & Host, we believe that wellness should be simple, enjoyable, and trustworthy. What started as a shared vision between two partners has grown into a purpose-driven brand focused on bringing unique, high-quality products to people who value both health and experience.
+                      We are building more than just an eCommerce platform—we are creating a marketplace where carefully curated, innovative products meet everyday needs. Our journey begins with a category we are deeply passionate about: nutraceutical and Ayurvedic gummies under our brand, Kreenz.
+
                     </p>
                   </div>
                   <div
@@ -76,15 +71,20 @@ export default function About() {
                     } `}
                   >
                     <p>
-                      Welcome to Modave Store, your premier destination for
-                      fashion-forward clothing and accessories. We pride
-                      ourselves on offering a curated selection of rare and
-                      beautiful items sourced both locally and globally. Our
-                      mission is to bring you the latest trends and timeless
-                      styles, ensuring every piece reflects quality and
-                      elegance. Discover the perfect addition to your wardrobe
-                      at Modave Store.
+                      Trust is the foundation of everything we do. At Hand & Host, and through our brand Kreenz, we prioritize:
+                      
                     </p>
+                    <ul style={{ listStyleType: "disc", paddingLeft: "20px" }}>
+                        <li>
+                            Premium Ingredients – Carefully sourced, safe, and effective ingredients that blend modern nutraceutical science with trusted traditional knowledge.
+                        </li>
+                         <li>
+                            Strict Quality Control – Every batch undergoes rigorous testing to ensure safety, consistency, and high performance.
+                        </li>
+                        <li>
+                            Transparency – Clear labeling and honest formulations, so you always know what you're consuming.
+                        </li>
+                     </ul>
                   </div>
                   <div
                     className={`widget-content-inner ${
@@ -92,15 +92,20 @@ export default function About() {
                     } `}
                   >
                     <p>
-                      Welcome to Modave Store, your premier destination for
-                      fashion-forward clothing and accessories. We pride
-                      ourselves on offering a curated selection of rare and
-                      beautiful items sourced both locally and globally. Our
-                      mission is to bring you the latest trends and timeless
-                      styles, ensuring every piece reflects quality and
-                      elegance. Discover the perfect addition to your wardrobe
-                      at Modave Store.
+                     We focus on creating products that stand out—not just for their benefits, but for the experience they deliver.
+                     
                     </p>
+                    <ul style={{ listStyleType: "disc", paddingLeft: "20px" }}>
+                        <li>
+                            Enjoyable Wellness – No more swallowing pills—Kreenz Gummies make daily health easy and delicious.
+                        </li>
+                         <li>
+                            Innovative Formulations – Unique combinations designed to address real lifestyle needs.
+                        </li>
+                        <li>
+                            Customer-First Approach – Every product is built with your comfort, convenience, and results in mind.
+                        </li>
+                     </ul>
                   </div>
                   <div
                     className={`widget-content-inner ${
@@ -108,15 +113,12 @@ export default function About() {
                     } `}
                   >
                     <p>
-                      Welcome to Modave Store, your premier destination for
-                      fashion-forward clothing and accessories. We pride
-                      ourselves on offering a curated selection of rare and
-                      beautiful items sourced both locally and globally. Our
-                      mission is to bring you the latest trends and timeless
-                      styles, ensuring every piece reflects quality and
-                      elegance. Discover the perfect addition to your wardrobe
-                      at Modave Store.
+                      We are here to simplify wellness, build trust through quality, and bring you products that feel as good as they are effective.
+Hand & Host — Proud creators of Kreenz Gummies, where wellness meets taste, and quality meets trust.
+
                     </p>
+                    
+
                   </div>
                 </div>
               </div>

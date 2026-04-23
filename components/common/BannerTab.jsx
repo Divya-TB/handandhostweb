@@ -86,7 +86,7 @@ export default function BannerTab({ parentClass = "flat-spacing pt-0" }) {
                       <div className="hover-image">
                         <Image
                           alt="Hover Image"
-                          src={item.imgSrc}
+                          src="/images/avatar/user-1.jpg"
                           width={710}
                           height={945}
                         />
@@ -118,7 +118,7 @@ export default function BannerTab({ parentClass = "flat-spacing pt-0" }) {
                           className="lazyload"
                           data-src={item.imgSrc}
                           alt="banner-cls"
-                          src={item.imgSrc}
+                          src="/images/avatar/user-1.jpg"
                           width={710}
                           height={945}
                         />

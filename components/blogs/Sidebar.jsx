@@ -61,7 +61,7 @@ export default function Sidebar() {
                 <Image
                   className="lazyload"
                   alt=""
-                  src={post.imgSrc}
+                  src="/images/avatar/user-1.jpg"
                   width={540}
                   height={360}
                 />

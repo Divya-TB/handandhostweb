@@ -374,36 +374,34 @@ export default function Context({
 
   /* PRODUCTS + WISHLIST PRELOAD */
   useEffect(() => {
-    fetch(
-      `http://40.192.14.4:8000/api/homeproduct?userid=${userId}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setProduct(data);
+  fetch(`http://40.192.14.4:8000/api/homeproduct?userid=${userId}`)
+    .then((res) => res.json())
+    .then((data) => {
+      setProduct(data);
 
-        console.log(data)
+      /* Wishlist preload */
+      const wishlistData = data
+        .filter((item) => Number(item.isWishlisted) === 1)
+        .map((item) => ({
+          product_ID: Number(item.id),
+          productwishlist_ID: Number(item.productwishlist_ID) || 0,
+        }));
 
-        /* YOUR REQUIRED LOGIC */
-        const wishlistData = data
-          .filter(
-            (item) =>
-              Number(
-                item.isWishlisted
-              ) === 1
-          )
-          .map((item) => ({
-            product_ID: Number(
-              item.id
-            ),
-            productwishlist_ID:
-              Number(
-                item.productwishlist_ID
-              ) || 0,
-          }));
+      setWishList(wishlistData);
 
-        setWishList(wishlistData);
-      });
-  }, []);
+      /* Cart preload */
+      const cartData = data
+        .filter((item) => Number(item.isAddedToCart) === 1)
+        .map((item) => ({
+          ...item,
+          product_ID: Number(item.id),
+          User_ID: userId,
+          quantity: 1,
+        }));
+
+      setCartProducts(cartData);
+    });
+}, []);
 
   /* QUICK VIEW */
   const setQuickViewItem =
@@ -433,60 +431,99 @@ export default function Context({
   }, [cartProducts]);
 
   /* CART */
-  const isAddedToCartProducts = (
-    id
-  ) => {
-    return cartProducts.some(
-      (item) =>
-        Number(item.id) ===
-        Number(id)
+  const isAddedToCartProducts = (productId) => {
+  return cartProducts.some(
+    item =>
+      Number(item.product_ID || item.id) === Number(productId) &&
+      Number(item.User_ID) === Number(userId)
+  );
+};
+
+  // const addProductToCart =
+  //   async (
+  //     id,
+  //     qty = 1,
+  //     isModal = true
+  //   ) => {
+  //     const response =
+  //       await fetch(
+  //         "http://localhost:8000/api/add-to-cart",
+  //         {
+  //           method: "POST",
+  //           headers: {
+  //             "Content-Type":
+  //               "application/json",
+  //           },
+  //           body: JSON.stringify({
+  //             product_ID: id,
+  //             User_ID: userId,
+  //             quantity: qty,
+  //             productvariant_ID: 0
+  //           }),
+  //         }
+  //       );
+
+  //     const data =
+  //       await response.json();
+
+  //     if (data.status === true) {
+  //       const item = {
+  //         ...allProducts.filter(
+  //           (elm) =>
+  //             elm.id == id
+  //         )[0],
+  //         quantity: qty,
+  //       };
+
+  //       setCartProducts((pre) => [
+  //         ...pre,
+  //         item,
+  //       ]);
+
+  //       // if (isModal)
+  //       //   openCartModal();
+  //     }
+  //   };
+
+
+  const addProductToCart = async (
+  id,
+  qty = 1,
+  isModal = true
+) => {
+  const response = await fetch(
+    "http://localhost:8000/api/add-to-cart",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        product_ID: id,
+        User_ID: userId,
+        quantity: qty,
+        productvariant_ID: 0,
+      }),
+    }
+  );
+
+  const data = await response.json();
+
+  if (data.status === true) {
+    const selectedProduct = product.find(
+      (item) => Number(item.id) === Number(id)
     );
-  };
 
-  const addProductToCart =
-    async (
-      id,
-      qty = 1,
-      isModal = true
-    ) => {
-      const response =
-        await fetch(
-          "http://40.192.14.4:8000/api/add-to-cart",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type":
-                "application/json",
-            },
-            body: JSON.stringify({
-              product_id: id,
-              user_id: userId,
-              quantity: qty,
-            }),
-          }
-        );
+    if (!selectedProduct) return;
 
-      const data =
-        await response.json();
-
-      if (data.status === true) {
-        const item = {
-          ...allProducts.filter(
-            (elm) =>
-              elm.id == id
-          )[0],
-          quantity: qty,
-        };
-
-        setCartProducts((pre) => [
-          ...pre,
-          item,
-        ]);
-
-        if (isModal)
-          openCartModal();
-      }
+    const item = {
+      ...selectedProduct,
+      quantity: qty,
     };
+
+    setCartProducts((pre) => [...pre, item]);
+  }
+};
 
   const updateQuantity = (
     id,

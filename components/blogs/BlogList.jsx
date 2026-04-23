@@ -16,7 +16,7 @@ export default function BlogList() {
                   <Image
                     className="lazyload"
                     alt=""
-                    src={post.imgSrc}
+                    src="/images/avatar/user-1.jpg"
                     width={600}
                     height={399}
                   />

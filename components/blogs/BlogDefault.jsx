@@ -19,7 +19,7 @@ export default function BlogDefault() {
                     <Image
                       className="lazyload"
                       alt=""
-                      src={post.imgSrc}
+                      src="/images/default-product.jpg"
                       width={1275}
                       height={717}
                     />
