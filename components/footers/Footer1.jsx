@@ -109,7 +109,7 @@ export default function Footer1({
                     </div>
                     <div className="footer-address">
                       <p>Hand & Host LLP<br></br>Basement floor, 5/257A8, Pallath Square, FACT  kalamassery Rd, Kalamassery, Ernakulam, Kerala, 683104, Ernakulam, Kerala-683104</p>
-                      <Link
+                      {/* <Link
                         href={`/contact`}
                         className={`tf-btn-default fw-6 ${
                           dark ? "style-white" : ""
@@ -117,18 +117,27 @@ export default function Footer1({
                       >
                         GET DIRECTION
                         <i className="icon-arrowUpRight" />
-                      </Link>
+                      </Link> */}
                     </div>
                     <ul className="footer-info">
-                      <li>
-                        <i className="icon-mail" />
-                        <p> handandhost@gmail.com</p>
-                      </li>
-                      <li>
-                        <i className="icon-phone" />
-                        <p>315-666-6688</p>
-                      </li>
-                    </ul>
+  <li>
+    <i className="icon-mail" />
+    <p>
+      <a href="mailto:handandhost@gmail.com">
+        handandhost@gmail.com
+      </a>
+    </p>
+  </li>
+
+  <li>
+    <i className="icon-phone" />
+    <p>
+      <a href="tel:+918921254349" >
+        +91 8921254349
+      </a>
+    </p>
+  </li>
+</ul>
                     <ul
                       className={`tf-social-icon  ${
                         dark ? "style-white" : ""

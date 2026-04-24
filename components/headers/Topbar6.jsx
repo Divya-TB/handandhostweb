@@ -10,22 +10,22 @@ export default function Topbar6({ bgColor = "bg-blue-2" }) {
           <ul className="topbar-left">
             <li>
               <a className="text-caption-1 text-white" href="tel:315-666-6688">
-                315-666-6688
+                +91 8921254349
               </a>
             </li>
             <li>
-              <a className="text-caption-1 text-white" href="#">
-                themesflat@gmail.com
+              <a className="text-caption-1 text-white" href="mailto:handandhost@gmail.com">
+                handandhost@gmail.com
               </a>
             </li>
-            <li>
+            {/* <li>
               <Link
                 className="text-caption-1 text-white text-decoration-underline"
                 href={`/store-list`}
               >
                 Our Store
               </Link>
-            </li>
+            </li> */}
           </ul>
           <div className="topbar-right d-none d-xl-block">
             <div className="tf-cur justify-content-end">

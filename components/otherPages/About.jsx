@@ -265,7 +265,8 @@ export default function AboutUs() {
     { id: 2, title: "Wellness Reinvented" },
     { id: 3, title: "Quality & Trust" },
     { id: 4, title: "Kreenz Difference" },
-    { id: 5, title: "Our Vision" },
+    {id: 5, title:"Looking Ahead"},
+    { id: 6, title: "Our promise" },
   ];
 
   return (
@@ -314,7 +315,7 @@ export default function AboutUs() {
                 </p>
                 <p>
                   We are building more than just an eCommerce platform—we are creating a marketplace where carefully curated, innovative products meet everyday needs. Our journey begins with a category we are deeply passionate about: 
-                  <br>nutraceutical and Ayurvedic gummies under our brand, Kreenz.</br>
+                  <b>nutraceutical and Ayurvedic gummies under our brand, Kreenz.</b>
                 </p>
               </div>
             )}
@@ -370,6 +371,15 @@ export default function AboutUs() {
             )}
 
             {active === 5 && (
+              <div className="p-3 bg-light rounded-3">
+                <p>
+                 While Kreenz Gummies are just the beginning, our vision goes far beyond. Hand & Host is evolving into a dynamic online marketplace featuring distinctive products across categories such as supplements, cosmetics, jewellery, toys, and more—each curated with a strong focus on quality, uniqueness, and trust.
+                </p>
+              </div>
+            )}
+
+
+            {active === 6 && (
               <div className="p-3 bg-light rounded-3">
                 <p>
                   We are here to simplify wellness, build trust through quality, and bring you products that feel as good as they are effective.

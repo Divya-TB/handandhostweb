@@ -60,18 +60,18 @@ export default function Hero() {
                         className="fade-item fade-item-1 heading title-display text-white"
                         dangerouslySetInnerHTML={{ __html: slide.V_Title}}
                       />
-                      <p className="fade-item fade-item-2 body-text-1 text-white">
+                      {/* <p className="fade-item fade-item-2 body-text-1 text-white">
                         {slide.V_Description}
-                      </p>
+                      </p> */}
                     </div>
-                    <div className="fade-item fade-item-3 box-btn-slider">
+                    {/* <div className="fade-item fade-item-3 box-btn-slider">
                       <Link
                         href={`/shop-default-grid`}
                         className="tf-btn btn-fill btn-square btn-white"
                       >
-                        {/* <span className="text">Shop Now</span> */}
+                        <span className="text">Shop Now</span>
                       </Link>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>

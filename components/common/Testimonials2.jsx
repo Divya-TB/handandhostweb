@@ -6,15 +6,14 @@ import Image from "next/image";
 import { useContextElement } from "@/context/Context";
 import { Pagination } from "swiper/modules";
 export default function Testimonials2() {
-  const { setQuickViewItem } = useContextElement();
+  const { setQuickViewItem, productreview } = useContextElement();
   return (
     <section className="flat-spacing-6">
       <div className="container">
         <div className="heading-section text-center">
           <h3 className="heading wow fadeInUp">Customer Say!</h3>
           <p className="subheading wow fadeInUp">
-            Our customers adore our products, and we constantly aim to delight
-            them.
+            Our supplements are crafted to be truly cherished—our customers love them, and we are committed to inspiring better health with every product.
           </p>
         </div>
         <Swiper
@@ -34,7 +33,7 @@ export default function Testimonials2() {
             el: ".spd32",
           }}
         >
-          {testimonialsWithProduct.map((item, index) => (
+          {productreview.map((item, index) => (
             <SwiperSlide className="swiper-slide" key={index}>
               <div className="testimonial-item hover-img">
                 <div className="img-style">
@@ -58,8 +57,11 @@ export default function Testimonials2() {
                 <div className="content">
                   <div className="content-top">
                     <div className="list-star-default">
-                      {[...Array(5)].map((_, i) => (
-                        <i className="icon icon-star" key={i} />
+                     {[...Array(5)].map((_, i) => (
+                        <i
+                          key={i}
+                          className={`icon ${i < item.rating ? "icon-star" : "icon-star-empty"}`}
+                        />
                       ))}
                     </div>
                     <p className="text-secondary">{item.quote}</p>
@@ -81,7 +83,7 @@ export default function Testimonials2() {
                     <div className="avatar avt-60 round">
                       <Image
                         alt="avt"
-                        src={item.avatar}
+                        src={item.mainimage}
                         width={351}
                         height={468}
                       />
@@ -91,7 +93,7 @@ export default function Testimonials2() {
                         {item.title}
                       </p>
                       <div className="text-button price">
-                        ${item.price.toFixed(2)}
+                        Rs{item.price}
                       </div>
                     </div>
                   </div>

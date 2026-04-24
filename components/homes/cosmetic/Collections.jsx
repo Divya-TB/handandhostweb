@@ -17,9 +17,9 @@ export default function Collections() {
       <div className="container">
         <div className="heading-section text-center wow fadeInUp">
           <h3 className="heading">Shop by Type</h3>
-          <p className="subheading text-secondary">
+          {/* <p className="subheading text-secondary">
             Fresh styles just in! Elevate your look.
-          </p>
+          </p> */}
         </div>
         <div className="tf-grid-layout tf-col-2 md-col-3">
           {categorybanner.map((collection, index) => (

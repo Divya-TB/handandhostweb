@@ -65,7 +65,7 @@ export default function MobileMenu() {
               </button>
             </form>
             <ul className="nav-ul-mb" id="wrapper-menu-navigation">
-              {/* <li className="nav-mb-item active">
+              <li className="nav-mb-item active">
                 <a
                   href="#dropdown-menu-one"
                   className={`collapsed mb-menu-link ${
@@ -100,8 +100,8 @@ export default function MobileMenu() {
                     ))}
                   </ul>
                 </div>
-              </li> */}
-              <li className="nav-mb-item">
+              </li>
+              {/* <li className="nav-mb-item">
                 <a
                   href="#dropdown-menu-two"
                   className={`collapsed mb-menu-link ${
@@ -279,8 +279,8 @@ export default function MobileMenu() {
                     </li>
                   </ul>
                 </div>
-              </li>
-              <li className="nav-mb-item">
+              </li> */}
+              {/* <li className="nav-mb-item">
                 <a
                   href="#dropdown-menu-three"
                   className={`collapsed mb-menu-link ${
@@ -374,8 +374,8 @@ export default function MobileMenu() {
                           ))}
                         </ul>
                       </div>
-                    </li>
-                    <li>
+                    </li> */}
+                    {/* <li>
                       <a
                         href="#sub-product-three"
                         className={`sub-nav-link collapsed ${
@@ -415,8 +415,8 @@ export default function MobileMenu() {
                     </li>
                   </ul>
                 </div>
-              </li>
-              <li className="nav-mb-item">
+              </li> */}
+              {/* <li className="nav-mb-item">
                 <a
                   href="#dropdown-menu-four"
                   className={`collapsed mb-menu-link ${
@@ -451,8 +451,8 @@ export default function MobileMenu() {
                     ))}
                   </ul>
                 </div>
-              </li>
-              <li className="nav-mb-item">
+              </li> */}
+              {/* <li className="nav-mb-item">
                 <a
                   href="#dropdown-menu-five"
                   className={`collapsed mb-menu-link ${
@@ -487,15 +487,15 @@ export default function MobileMenu() {
                     ))}
                   </ul>
                 </div>
-              </li>
-              <li className="nav-mb-item">
+              </li> */}
+              {/* <li className="nav-mb-item">
                 <a
                   href="https://themeforest.net/user/themesflat"
                   className="mb-menu-link"
                 >
                   Buy Theme
                 </a>
-              </li>
+              </li> */}
             </ul>
           </div>
           <div className="mb-other-content">
@@ -566,7 +566,7 @@ export default function MobileMenu() {
             <ul className="mb-info">
               <li>
                 <i className="icon icon-mail" />
-                <p>themesflat@gmail.com</p>
+                <p>handandhost@gmail.com</p>
               </li>
               <li>
                 <i className="icon icon-phone" />

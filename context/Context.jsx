@@ -336,6 +336,9 @@ export default function Context({
   const [wishList, setWishList] =
     useState([]);
 
+  const [productreview, setProductReview] =
+    useState([]);
+
   const [compareItem, setCompareItem] =
     useState([1, 2, 3]);
 
@@ -736,6 +739,15 @@ export default function Context({
     );
   }, [cartProducts]);
 
+
+useEffect(() => {
+  fetch("http://localhost:8000/api/product-review")
+    .then((res) => res.json())
+    .then((data) => {
+      setProductReview(data.data || []);
+    });
+}, []);
+
   /* CONTEXT */
   const contextElement = {
     homebanner,
@@ -748,6 +760,7 @@ export default function Context({
     addProductToCart,
     isAddedToCartProducts,
     updateQuantity,
+    
 
     wishList,
     addToWishlist,
@@ -765,6 +778,9 @@ export default function Context({
     removeFromCompareItem,
     compareItem,
     setCompareItem,
+
+    productreview
+
   };
 
   return (
