@@ -1,38 +1,97 @@
 "use client";
 
 import { useContextElement } from "@/context/Context";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import ProductCard1 from "../productCards/ProductCard1";
 import Pagination from "../common/Pagination";
 import Link from "next/link";
-import { allProducts } from "@/data/products";
 
 export default function Wishlist() {
-  const { removeFromWishlist, wishList } = useContextElement();
-  const [items, setItems] = useState([]);
+  const { wishList, product } =
+    useContextElement();
+
+  const [items, setItems] =
+    useState([]);
+
+  const [currentPage, setCurrentPage] =
+    useState(1);
+
+  const limit = 4; // products per page
+
   useEffect(() => {
-    setItems([...allProducts.filter((elm) => wishList.includes(elm.id))]);
-  }, [wishList]);
+    if (
+      Array.isArray(product) &&
+      Array.isArray(wishList)
+    ) {
+      const wishlistIds =
+        wishList.map((item) =>
+          Number(item.product_ID)
+        );
+
+      const filtered =
+        product.filter((elm) =>
+          wishlistIds.includes(
+            Number(elm.id)
+          )
+        );
+
+      setItems(filtered);
+      setCurrentPage(1);
+    }
+  }, [wishList, product]);
+
+  const totalPages = Math.ceil(
+    items.length / limit
+  );
+
+  const paginatedItems = useMemo(() => {
+    const start =
+      (currentPage - 1) * limit;
+    const end = start + limit;
+
+    return items.slice(start, end);
+  }, [items, currentPage]);
+
   return (
     <section className="flat-spacing">
       <div className="container">
         {items.length ? (
-          <div className="tf-grid-layout tf-col-2 md-col-3 xl-col-4">
-            {/* card product 1 */}
-            {items.map((product, i) => (
-              <ProductCard1 key={i} product={product} />
-            ))}
+          <>
+            <div className="tf-grid-layout tf-col-2 md-col-3 xl-col-4">
+              {paginatedItems.map(
+                (item) => (
+                  <ProductCard1
+                    key={item.id}
+                    product={item}
+                  />
+                )
+              )}
+            </div>
 
-            {/* pagination */}
-            <ul className="wg-pagination justify-content-center">
-              <Pagination />
-            </ul>
-          </div>
+            {totalPages > 1 && (
+              <ul className="wg-pagination justify-content-center mt-4">
+                <Pagination
+                  totalPages={
+                    totalPages
+                  }
+                  currentPage={
+                    currentPage
+                  }
+                  setCurrentPage={
+                    setCurrentPage
+                  }
+                />
+              </ul>
+            )}
+          </>
         ) : (
           <div className="p-5">
-            Your wishlist is empty. Start adding your favorite products to save
-            them for later!{" "}
-            <Link className="btn-line" href="/shop-default-grid">
+            Your wishlist is empty.
+
+            <Link
+              className="btn-line"
+              href="/shop-default-grid"
+            >
               Explore Products
             </Link>
           </div>
