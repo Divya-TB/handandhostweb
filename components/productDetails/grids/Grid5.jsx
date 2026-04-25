@@ -9,10 +9,18 @@ export default function Grid5({
   setActiveColor = () => {},
   images = [],
 }) {
+// const finalItems =
+//   images.length > 0
+//     ? images.map((img, index) => ({
+//         src: img.images,
+//         dataScroll: `img-${index}`,
+//       }))
+//     : [];
+
 const finalItems =
   images.length > 0
     ? images.map((img, index) => ({
-        src: img.images,
+        src: img.image || img.src,
         dataScroll: `img-${index}`,
       }))
     : [];

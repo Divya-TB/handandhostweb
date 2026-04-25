@@ -288,9 +288,9 @@
 
 "use client";
 
-import { allProducts } from "@/data/products";
-import { openCartModal } from "@/utlis/openCartModal";
-import { openWistlistModal } from "@/utlis/openWishlist";
+// import { allProducts } from "@/data/products";
+// import { openCartModal } from "@/utlis/openCartModal";
+// import { openWistlistModal } from "@/utlis/openWishlist";
 
 import React, {
   useEffect,
@@ -321,37 +321,18 @@ export default function Context({
 
   // const userId = 1;
 
-  const [homebanner, sethomebanner] =
-    useState([]);
-  const [
-    categorybanner,
-    setcategorybanner,
-  ] = useState([]);
-  const [product, setProduct] =
-    useState([]);
-  const [cartProducts, setCartProducts] =
-    useState([]);
+  const [homebanner, sethomebanner] = useState([]);
+  const [categorybanner, setcategorybanner] = useState([]);
+  const [product, setProduct] = useState([]);
+  const [cartProducts, setCartProducts] = useState([]);
 
   /* YOUR LOGIC ADDED */
-  const [wishList, setWishList] =
-    useState([]);
-
-  const [productreview, setProductReview] =
-    useState([]);
-
-  const [compareItem, setCompareItem] =
-    useState([1, 2, 3]);
-
-  const [
-    quickViewItem,
-    setQuickViewItemState,
-  ] = useState();
-
-  const [quickAddItem, setQuickAddItem] =
-    useState(1);
-
-  const [totalPrice, setTotalPrice] =
-    useState(0);
+  const [wishList, setWishList] = useState([]);
+  const [productreview, setProductReview] = useState([]);
+  const [compareItem, setCompareItem] = useState([1, 2, 3]);
+  const [ quickViewItem, setQuickViewItemState,] = useState();
+  const [quickAddItem, setQuickAddItem] = useState(1);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   /* HOME BANNER */
   useEffect(() => {
@@ -410,7 +391,7 @@ export default function Context({
   const setQuickViewItem =
     async (id) => {
       const res = await fetch(
-        `http://40.192.14.4:8000/api/home/products/view/${id}`
+        `http://localhost:8000/api/home/products/view/${id}`
       );
 
       const data =
@@ -663,7 +644,7 @@ export default function Context({
         },
       ]);
 
-      openWistlistModal();
+      // openWistlistModal();
     }
   } catch (error) {
     console.log(error);
@@ -764,7 +745,7 @@ export default function Context({
 
 
 useEffect(() => {
-  fetch("http://localhost:8000/api/product-review")
+  fetch("http://40.192.14.4:8000/api/product-review")
     .then((res) => res.json())
     .then((data) => {
       setProductReview(data.data || []);

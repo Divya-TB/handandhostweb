@@ -40,7 +40,7 @@ export default function Testimonials2() {
                   <Image
                     data-src={item.imgSrc}
                     alt={item.alt}
-                    src={item.imgSrc}
+                    src={item.mainimage}
                     width={351}
                     height={468}
                   />

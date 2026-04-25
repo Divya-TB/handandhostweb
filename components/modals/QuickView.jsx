@@ -30,11 +30,23 @@ export default function QuickView() {
       )
     : 0;
 
-  // console.log("quickViewItem in QuickView.jsx:", quickViewItem.productImages[0].images);
+  //  console.log("quickViewItem in QuickView.jsx:", quickViewItem.productImages[0].images);
   const imageSrc =
   quickViewItem?.productImages ||
   quickViewItem?.mainimage ||
   null;
+
+
+  const formattedImages =
+  quickViewItem?.productImages?.map((img, index) => ({
+    src: img.image,
+    href: img.image,
+    width: 1000,
+    height: 1200,
+    scroll: `img-${index}`,
+    alt: quickViewItem?.title,
+    zoom: img.image,
+  })) || [];
 
   const openModalSizeChoice = () => {
     const bootstrap = require("bootstrap"); // dynamically import bootstrap
@@ -59,12 +71,21 @@ export default function QuickView() {
     <div className="modal fullRight fade modal-quick-view" id="quickView">
       <div className="modal-dialog">
         <div className="modal-content">
+          
           {/* console.log("quickViewItem.............", quickViewItem); */}
+          {/* <Grid5
+            images={imageSrc}
+            activeColor={activeColor}
+            setActiveColor={setActiveColor}
+          /> */}
+
           <Grid5
-            images={quickViewItem?.productImages || []}
+            firstItem={formattedImages[0]?.src}
+            images={formattedImages}
             activeColor={activeColor}
             setActiveColor={setActiveColor}
           />
+
           <div className="wrap mw-100p-hidden">
             <div className="header">
               <h5 className="title">Quick View</h5>
@@ -73,10 +94,11 @@ export default function QuickView() {
                 data-bs-dismiss="modal"
               />
             </div>
-            <div className="tf-product-info-list">
+          
+            <div className="tf-product-info-list tf-product-info-list-style">
               <div className="tf-product-info-heading">
                 <div className="tf-product-info-name">
-                  <div className="text text-btn-uppercase">Clothing</div>
+                  <div className="text text-btn-uppercase">{quickViewItem?.category_name}</div>
                   <h3 className="name">{quickViewItem?.title}</h3>
                   <div className="sub">
                     <div className="tf-product-info-rate">
@@ -163,8 +185,8 @@ export default function QuickView() {
                     >
                       <span>
                         {isAddedToCartProducts(quickViewItem?.id)
-                          ? "Already Added"
-                          : "Add to cart -"}
+                          ? "Already Added - "
+                          : "Add to cart - "}
                       </span>
                       <span className="tf-qty-price total-price">
                         Rs
@@ -178,7 +200,7 @@ export default function QuickView() {
                             )}
                       </span>
                     </a>
-                    <a
+                    {/* <a
                       href="#compare"
                       onClick={() => addToCompareItem(quickViewItem?.id)}
                       data-bs-toggle="offcanvas"
@@ -192,7 +214,7 @@ export default function QuickView() {
                           ? "Already compared"
                           : "Compare"}
                       </span>
-                    </a>
+                    </a> */}
                     <a
                       onClick={() => addToWishlist(quickViewItem?.id)}
                       className="box-icon hover-tooltip text-caption-2 wishlist btn-icon-action"

@@ -11,14 +11,24 @@ export default function Grid1({
   firstItem,
 }) {
   const [finalItem, setFinalItem] = useState([]);
-  useEffect(() => {
-    setTimeout(() => {
-      const itemsFinal = [...items];
-      itemsFinal[0].src = firstItem;
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     const itemsFinal = [...items];
+  //     itemsFinal[0].src = firstItem;
 
-      setFinalItem(itemsFinal);
-    });
-  }, []);
+  //     setFinalItem(itemsFinal);
+  //   });
+  // }, []);
+  useEffect(() => {
+  if (!items || items.length === 0) return;
+
+  const itemsFinal = items.map((item, i) => ({
+    ...item,
+    src: i === 0 && firstItem ? firstItem : item.src,
+  }));
+
+  setFinalItem(itemsFinal);
+}, [firstItem, items]);
   useEffect(() => {
     // Function to initialize Drift
     const imageZoom = () => {
