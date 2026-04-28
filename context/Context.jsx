@@ -1207,6 +1207,7 @@ export default function Context({ children }) {
     fetch(`${API_URL}/api/homebanner`)
       .then((res) => res.json())
       .then((data) => sethomebanner(data));
+      // console.log('banner...................',data)
   }, []);
 
   /* ---------------- CATEGORY ---------------- */

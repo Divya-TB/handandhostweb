@@ -46,12 +46,32 @@ export default function Hero() {
         {homebanner.map((slide, index) => (
           <SwiperSlide key={index}>
             <div className="wrap-slider">
-              <Image
-                alt={slide.V_ImageAlt}
-                src={slide.V_DigitalFile}
-                width={1920}
-                height={796}
-              />
+              {slide.V_Type === "video" ? (
+                <video
+                   className="hero-video"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="auto"
+                    disablePictureInPicture
+                    controls={false}
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    objectFit: "cover",
+                  }}
+                >
+                  <source src={slide.V_DigitalFile} type="video/mp4" />
+                </video>
+              ) : (
+                <Image
+                  alt={slide.V_ImageAlt}
+                  src={slide.V_DigitalFile}
+                  width={1920}
+                  height={796}
+                />
+              )}
               <div className="box-content">
                 <div className="container">
                   <div className="content-slider">
