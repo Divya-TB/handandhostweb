@@ -3,15 +3,15 @@
 import { useState } from "react";
 
 const sizes = [
-  { id: "values-s", value: "S", price: 79.99, disabled: false },
-  { id: "values-m", value: "M", price: 79.99, disabled: false },
-  { id: "values-l", value: "L", price: 89.99, disabled: false },
-  { id: "values-xl", value: "XL", price: 89.99, disabled: false },
-  { id: "values-xxl", value: "XXL", price: 89.99, disabled: true },
+  { id: "values-XXL", value: "600ML", price: 79.99, disabled: true },
+  // { id: "values-m", value: "M", price: 79.99, disabled: false },
+  // { id: "values-l", value: "L", price: 89.99, disabled: false },
+  // { id: "values-xl", value: "XL", price: 89.99, disabled: false },
+  // { id: "values-xxl", value: "XXL", price: 89.99, disabled: true },
 ];
 
 export default function SizeSelect() {
-  const [selectedSize, setSelectedSize] = useState("L"); // Default value is "L"
+  const [selectedSize, setSelectedSize] = useState("ML"); // Default value is "L"
 
   const handleChange = (value) => {
     setSelectedSize(value);

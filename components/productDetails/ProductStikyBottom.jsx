@@ -30,18 +30,18 @@ export default function ProductStikyBottom() {
                   <Image
                     className="lazyload"
                     alt=""
-                    src={products41[2].imgSrc}
+                    src={products41[0].imgSrc}
                     width={600}
                     height={800}
                   />
                 </div>
                 <div className="content">
-                  <div className="text-title">{products41[2].title}</div>
+                  <div className="text-title">{products41[0].title}</div>
                   <div className="text-caption-1 text-secondary-2">
                     Green, XS, Cotton
                   </div>
                   <div className="text-title">
-                    ${products41[2].price.toFixed(2)}
+                    ${products41[0].price.toFixed(2)}
                   </div>
                 </div>
               </div>
@@ -54,15 +54,15 @@ export default function ProductStikyBottom() {
                   <QuantitySelect
                     styleClass="style-1"
                     quantity={
-                      isAddedToCartProducts(products41[2].id)
+                      isAddedToCartProducts(products41[0].id)
                         ? cartProducts.filter(
-                            (elm) => elm.id == products41[2].id
+                            (elm) => elm.id == products41[0].id
                           )[0].quantity
                         : quantity
                     }
                     setQuantity={(qty) => {
-                      if (isAddedToCartProducts(products41[2].id)) {
-                        updateQuantity(products41[2].id, qty);
+                      if (isAddedToCartProducts(products41[0].id)) {
+                        updateQuantity(products41[0].id, qty);
                       } else {
                         setQuantity(qty);
                       }
@@ -71,25 +71,25 @@ export default function ProductStikyBottom() {
                 </div>
                 <div className="tf-sticky-atc-btns">
                   <a
-                    onClick={() => addProductToCart(products41[2].id, quantity)}
+                    onClick={() => addProductToCart(products41[0].id, quantity)}
                     className="tf-btn w-100 btn-reset radius-4 btn-add-to-cart"
                   >
                     <span className="text text-btn-uppercase">
                       {" "}
-                      {isAddedToCartProducts(products41[2].id)
+                      {isAddedToCartProducts(products41[0].id)
                         ? "Already Added"
                         : "Add to cart -"}
                     </span>
                     <span className="tf-qty-price total-price">
                       $
-                      {isAddedToCartProducts(products41[2].id)
+                      {isAddedToCartProducts(products41[0].id)
                         ? (
-                            products41[2].price *
+                            products41[0].price *
                             cartProducts.filter(
-                              (elm) => elm.id == products41[2].id
+                              (elm) => elm.id == products41[0].id
                             )[0].quantity
                           ).toFixed(2)
-                        : (products41[2].price * quantity).toFixed(2)}
+                        : (products41[0].price * quantity).toFixed(2)}
                     </span>
                   </a>
                 </div>

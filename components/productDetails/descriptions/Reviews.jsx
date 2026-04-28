@@ -1,67 +1,333 @@
+// "use client";
+// import React from "react";
+// import Image from "next/image";
+// import ReviewSorting from "./ReviewSorting";
+// export default function Reviews() {
+//   return (
+//     <>
+//       <div className="tab-reviews-heading">
+//         {" "}
+//         <div className="top">
+//           <div className="text-center">
+//             <div className="number title-display">4.9</div>
+//             <div className="list-star">
+//               <i className="icon icon-star" />
+//               <i className="icon icon-star" />
+//               <i className="icon icon-star" />
+//               <i className="icon icon-star" />
+//               <i className="icon icon-star" />
+//             </div>
+//             <p>(168 Ratings)</p>
+//           </div>
+//           <div className="rating-score">
+//             <div className="item">
+//               <div className="number-1 text-caption-1">5</div>
+//               <i className="icon icon-star" />
+//               <div className="line-bg">
+//                 <div style={{ width: "94.67%" }} />
+//               </div>
+//               <div className="number-2 text-caption-1">59</div>
+//             </div>
+//             <div className="item">
+//               <div className="number-1 text-caption-1">4</div>
+//               <i className="icon icon-star" />
+//               <div className="line-bg">
+//                 <div style={{ width: "60%" }} />
+//               </div>
+//               <div className="number-2 text-caption-1">46</div>
+//             </div>
+//             <div className="item">
+//               <div className="number-1 text-caption-1">3</div>
+//               <i className="icon icon-star" />
+//               <div className="line-bg">
+//                 <div style={{ width: "0%" }} />
+//               </div>
+//               <div className="number-2 text-caption-1">0</div>
+//             </div>
+//             <div className="item">
+//               <div className="number-1 text-caption-1">2</div>
+//               <i className="icon icon-star" />
+//               <div className="line-bg">
+//                 <div style={{ width: "0%" }} />
+//               </div>
+//               <div className="number-2 text-caption-1">0</div>
+//             </div>
+//             <div className="item">
+//               <div className="number-1 text-caption-1">1</div>
+//               <i className="icon icon-star" />
+//               <div className="line-bg">
+//                 <div style={{ width: "0%" }} />
+//               </div>
+//               <div className="number-2 text-caption-1">0</div>
+//             </div>
+//           </div>
+//         </div>
+//         <div>
+//           <div className="btn-style-4 text-btn-uppercase letter-1 btn-comment-review btn-cancel-review">
+//             Cancel Review
+//           </div>
+//           <div className="btn-style-4 text-btn-uppercase letter-1 btn-comment-review btn-write-review">
+//             Write a review
+//           </div>
+//         </div>
+//       </div>
+//       <div className="reply-comment style-1 cancel-review-wrap">
+//         <div className="d-flex mb_24 gap-20 align-items-center justify-content-between flex-wrap">
+//           <h4 className="">03 Comments</h4>
+//           <div className="d-flex align-items-center gap-12">
+//             <div className="text-caption-1">Sort by:</div>
+//             <ReviewSorting />
+//           </div>
+//         </div>
+//         <div className="reply-comment-wrap">
+//           <div className="reply-comment-item">
+//             <div className="user">
+//               <div className="image">
+//                 <Image
+//                   alt=""
+//                   src="/images/avatar/user-default.jpg"
+//                   width={120}
+//                   height={120}
+//                 />
+//               </div>
+//               <div>
+//                 <h6>
+//                   <a href="#" className="link">
+//                     Superb quality apparel that exceeds expectations
+//                   </a>
+//                 </h6>
+//                 <div className="day text-secondary-2 text-caption-1">
+//                   1 days ago &nbsp;&nbsp;&nbsp;-
+//                 </div>
+//               </div>
+//             </div>
+//             <p className="text-secondary">
+//               Great theme - we were looking for a theme with lots of built in
+//               features and flexibility and this was perfect. We expected to need
+//               to employ a developer to add a few finishing touches. But we
+//               actually managed to do everything ourselves. We did have one small
+//               query and the support given was swift and helpful.
+//             </p>
+//           </div>
+//           <div className="reply-comment-item type-reply">
+//             <div className="user">
+//               <div className="image">
+//                 <Image
+//                   alt=""
+//                   src="/images/avatar/user-modave.jpg"
+//                   width={104}
+//                   height={104}
+//                 />
+//               </div>
+//               <div>
+//                 <h6>
+//                   <a href="#" className="link">
+//                     Reply from Modave
+//                   </a>
+//                 </h6>
+//                 <div className="day text-secondary-2 text-caption-1">
+//                   1 days ago &nbsp;&nbsp;&nbsp;-
+//                 </div>
+//               </div>
+//             </div>
+//             <p className="text-secondary">
+//               We love to hear it! Part of what we love most about Modave is how
+//               much it empowers store owners like yourself to build a beautiful
+//               website without having to hire a developer :) Thank you for this
+//               fantastic review!
+//             </p>
+//           </div>
+//           <div className="reply-comment-item">
+//             <div className="user">
+//               <div className="image">
+//                 <Image
+//                   alt=""
+//                   src="/images/avatar/user-default.jpg"
+//                   width={120}
+//                   height={120}
+//                 />
+//               </div>
+//               <div>
+//                 <h6>
+//                   <a href="#" className="link">
+//                     Superb quality apparel that exceeds expectations
+//                   </a>
+//                 </h6>
+//                 <div className="day text-secondary-2 text-caption-1">
+//                   1 days ago &nbsp;&nbsp;&nbsp;-
+//                 </div>
+//               </div>
+//             </div>
+//             <p className="text-secondary">
+//               Great theme - we were looking for a theme with lots of built in
+//               features and flexibility and this was perfect. We expected to need
+//               to employ a developer to add a few finishing touches. But we
+//               actually managed to do everything ourselves. We did have one small
+//               query and the support given was swift and helpful.
+//             </p>
+//           </div>
+//         </div>
+//       </div>
+//       <form
+//         className="form-write-review write-review-wrap"
+//         onSubmit={(e) => e.preventDefault()}
+//       >
+//         <div className="heading">
+//           <h4>Write a review:</h4>
+//           <div className="list-rating-check">
+//             <input type="radio" id="star5" name="rate" defaultValue={5} />
+//             <label htmlFor="star5" title="text" />
+//             <input type="radio" id="star4" name="rate" defaultValue={4} />
+//             <label htmlFor="star4" title="text" />
+//             <input type="radio" id="star3" name="rate" defaultValue={3} />
+//             <label htmlFor="star3" title="text" />
+//             <input type="radio" id="star2" name="rate" defaultValue={2} />
+//             <label htmlFor="star2" title="text" />
+//             <input type="radio" id="star1" name="rate" defaultValue={1} />
+//             <label htmlFor="star1" title="text" />
+//           </div>
+//         </div>
+//         <div className="mb_32">
+//           <div className="mb_8">Review Title</div>
+//           <fieldset className="mb_20">
+//             <input
+//               className=""
+//               type="text"
+//               placeholder="Give your review a title"
+//               name="text"
+//               tabIndex={2}
+//               defaultValue=""
+//               aria-required="true"
+//               required
+//             />
+//           </fieldset>
+//           <div className="mb_8">Review</div>
+//           <fieldset className="d-flex mb_20">
+//             <textarea
+//               className=""
+//               rows={4}
+//               placeholder="Write your comment here"
+//               tabIndex={2}
+//               aria-required="true"
+//               required
+//               defaultValue={""}
+//             />
+//           </fieldset>
+//           <div className="cols mb_20">
+//             <fieldset className="">
+//               <input
+//                 className=""
+//                 type="text"
+//                 placeholder="You Name (Public)"
+//                 name="text"
+//                 tabIndex={2}
+//                 defaultValue=""
+//                 aria-required="true"
+//                 required
+//               />
+//             </fieldset>
+//             <fieldset className="">
+//               <input
+//                 className=""
+//                 type="email"
+//                 placeholder="Your email (private)"
+//                 name="email"
+//                 tabIndex={2}
+//                 defaultValue=""
+//                 aria-required="true"
+//                 required
+//               />
+//             </fieldset>
+//           </div>
+//           <div className="d-flex align-items-center check-save">
+//             <input
+//               type="checkbox"
+//               name="availability"
+//               className="tf-check"
+//               id="check1"
+//             />
+//             <label className="text-secondary text-caption-1" htmlFor="check1">
+//               Save my name, email, and website in this browser for the next time
+//               I comment.
+//             </label>
+//           </div>
+//         </div>
+//         <div className="button-submit">
+//           <button className="text-btn-uppercase" type="submit">
+//             Submit Reviews
+//           </button>
+//         </div>
+//       </form>
+//     </>
+//   );
+// }
+
+
+
 "use client";
 import React from "react";
 import Image from "next/image";
 import ReviewSorting from "./ReviewSorting";
-export default function Reviews() {
+
+export default function Reviews({ reviews = [], ratingStats }) {
+
+  const avgRating = Number(ratingStats?.averageRating || 0);
+  const total = Number(ratingStats?.totalReviews || 0);
+
+  const renderStars = (rating) => {
+    return [...Array(5)].map((_, i) => (
+      <i
+        key={i}
+        className={`icon icon-star ${i < Math.round(rating) ? "active" : ""}`}
+      />
+    ));
+  };
+
+  const getPercent = (count) => {
+    if (!total) return 0;
+    return (count / total) * 100;
+  };
+
   return (
     <>
+      {/* ================= TOP SUMMARY ================= */}
       <div className="tab-reviews-heading">
-        {" "}
         <div className="top">
+
           <div className="text-center">
-            <div className="number title-display">4.9</div>
+            <div className="number title-display">
+              {avgRating.toFixed(1)}
+            </div>
+
             <div className="list-star">
-              <i className="icon icon-star" />
-              <i className="icon icon-star" />
-              <i className="icon icon-star" />
-              <i className="icon icon-star" />
-              <i className="icon icon-star" />
+              {renderStars(avgRating)}
             </div>
-            <p>(168 Ratings)</p>
+
+            <p>({total} Ratings)</p>
           </div>
+
+          {/* ================= RATING BREAKDOWN ================= */}
           <div className="rating-score">
-            <div className="item">
-              <div className="number-1 text-caption-1">5</div>
-              <i className="icon icon-star" />
-              <div className="line-bg">
-                <div style={{ width: "94.67%" }} />
-              </div>
-              <div className="number-2 text-caption-1">59</div>
-            </div>
-            <div className="item">
-              <div className="number-1 text-caption-1">4</div>
-              <i className="icon icon-star" />
-              <div className="line-bg">
-                <div style={{ width: "60%" }} />
-              </div>
-              <div className="number-2 text-caption-1">46</div>
-            </div>
-            <div className="item">
-              <div className="number-1 text-caption-1">3</div>
-              <i className="icon icon-star" />
-              <div className="line-bg">
-                <div style={{ width: "0%" }} />
-              </div>
-              <div className="number-2 text-caption-1">0</div>
-            </div>
-            <div className="item">
-              <div className="number-1 text-caption-1">2</div>
-              <i className="icon icon-star" />
-              <div className="line-bg">
-                <div style={{ width: "0%" }} />
-              </div>
-              <div className="number-2 text-caption-1">0</div>
-            </div>
-            <div className="item">
-              <div className="number-1 text-caption-1">1</div>
-              <i className="icon icon-star" />
-              <div className="line-bg">
-                <div style={{ width: "0%" }} />
-              </div>
-              <div className="number-2 text-caption-1">0</div>
-            </div>
+
+            {[5, 4, 3, 2, 1].map((star) => {
+              const count = Number(ratingStats?.[star] || 0);
+
+              return (
+                <div className="item" key={star}>
+                  <div className="number-1 text-caption-1">{star}</div>
+                  <i className="icon icon-star" />
+
+                  <div className="line-bg">
+                    <div style={{ width: `${getPercent(count)}%` }} />
+                  </div>
+
+                  <div className="number-2 text-caption-1">{count}</div>
+                </div>
+              );
+            })}
           </div>
         </div>
+
         <div>
           <div className="btn-style-4 text-btn-uppercase letter-1 btn-comment-review btn-cancel-review">
             Cancel Review
@@ -71,191 +337,107 @@ export default function Reviews() {
           </div>
         </div>
       </div>
+
+      {/* ================= COMMENTS ================= */}
       <div className="reply-comment style-1 cancel-review-wrap">
+
         <div className="d-flex mb_24 gap-20 align-items-center justify-content-between flex-wrap">
-          <h4 className="">03 Comments</h4>
+          <h4>{reviews.length} Comments</h4>
+
           <div className="d-flex align-items-center gap-12">
             <div className="text-caption-1">Sort by:</div>
             <ReviewSorting />
           </div>
         </div>
+
         <div className="reply-comment-wrap">
-          <div className="reply-comment-item">
-            <div className="user">
-              <div className="image">
-                <Image
-                  alt=""
-                  src="/images/avatar/user-default.jpg"
-                  width={120}
-                  height={120}
-                />
-              </div>
-              <div>
-                <h6>
-                  <a href="#" className="link">
-                    Superb quality apparel that exceeds expectations
-                  </a>
-                </h6>
-                <div className="day text-secondary-2 text-caption-1">
-                  1 days ago &nbsp;&nbsp;&nbsp;-
+
+          {reviews.length > 0 ? (
+            reviews.map((r) => (
+              <div className="reply-comment-item" key={r.review_ID}>
+                <div className="user">
+
+                  <div className="image">
+                    <Image
+                      alt=""
+                      src="/images/avatar/user-default.jpg"
+                      width={120}
+                      height={120}
+                    />
+                  </div>
+
+                  <div>
+                    <h6>
+                      <a href="#" className="link">
+                        {r.user_name || "Anonymous"}
+                      </a>
+                    </h6>
+
+                    <div className="list-star">
+                      {renderStars(r.rating)}
+                    </div>
+
+                    <div className="day text-secondary-2 text-caption-1">
+                      {new Date(r.created_at).toLocaleDateString()}
+                    </div>
+                  </div>
                 </div>
+
+                <p className="text-secondary">{r.review}</p>
               </div>
-            </div>
-            <p className="text-secondary">
-              Great theme - we were looking for a theme with lots of built in
-              features and flexibility and this was perfect. We expected to need
-              to employ a developer to add a few finishing touches. But we
-              actually managed to do everything ourselves. We did have one small
-              query and the support given was swift and helpful.
-            </p>
-          </div>
-          <div className="reply-comment-item type-reply">
-            <div className="user">
-              <div className="image">
-                <Image
-                  alt=""
-                  src="/images/avatar/user-modave.jpg"
-                  width={104}
-                  height={104}
-                />
-              </div>
-              <div>
-                <h6>
-                  <a href="#" className="link">
-                    Reply from Modave
-                  </a>
-                </h6>
-                <div className="day text-secondary-2 text-caption-1">
-                  1 days ago &nbsp;&nbsp;&nbsp;-
-                </div>
-              </div>
-            </div>
-            <p className="text-secondary">
-              We love to hear it! Part of what we love most about Modave is how
-              much it empowers store owners like yourself to build a beautiful
-              website without having to hire a developer :) Thank you for this
-              fantastic review!
-            </p>
-          </div>
-          <div className="reply-comment-item">
-            <div className="user">
-              <div className="image">
-                <Image
-                  alt=""
-                  src="/images/avatar/user-default.jpg"
-                  width={120}
-                  height={120}
-                />
-              </div>
-              <div>
-                <h6>
-                  <a href="#" className="link">
-                    Superb quality apparel that exceeds expectations
-                  </a>
-                </h6>
-                <div className="day text-secondary-2 text-caption-1">
-                  1 days ago &nbsp;&nbsp;&nbsp;-
-                </div>
-              </div>
-            </div>
-            <p className="text-secondary">
-              Great theme - we were looking for a theme with lots of built in
-              features and flexibility and this was perfect. We expected to need
-              to employ a developer to add a few finishing touches. But we
-              actually managed to do everything ourselves. We did have one small
-              query and the support given was swift and helpful.
-            </p>
-          </div>
+            ))
+          ) : (
+            <p>No reviews yet.</p>
+          )}
+
         </div>
       </div>
+
+      {/* ================= WRITE REVIEW FORM (STATIC UI) ================= */}
       <form
         className="form-write-review write-review-wrap"
         onSubmit={(e) => e.preventDefault()}
       >
         <div className="heading">
           <h4>Write a review:</h4>
+
           <div className="list-rating-check">
-            <input type="radio" id="star5" name="rate" defaultValue={5} />
-            <label htmlFor="star5" title="text" />
-            <input type="radio" id="star4" name="rate" defaultValue={4} />
-            <label htmlFor="star4" title="text" />
-            <input type="radio" id="star3" name="rate" defaultValue={3} />
-            <label htmlFor="star3" title="text" />
-            <input type="radio" id="star2" name="rate" defaultValue={2} />
-            <label htmlFor="star2" title="text" />
-            <input type="radio" id="star1" name="rate" defaultValue={1} />
-            <label htmlFor="star1" title="text" />
+            {[5, 4, 3, 2, 1].map((star) => (
+              <React.Fragment key={star}>
+                <input type="radio" id={`star${star}`} name="rate" value={star} />
+                <label htmlFor={`star${star}`} />
+              </React.Fragment>
+            ))}
           </div>
         </div>
+
         <div className="mb_32">
+
           <div className="mb_8">Review Title</div>
           <fieldset className="mb_20">
-            <input
-              className=""
-              type="text"
-              placeholder="Give your review a title"
-              name="text"
-              tabIndex={2}
-              defaultValue=""
-              aria-required="true"
-              required
-            />
+            <input type="text" placeholder="Give your review a title" required />
           </fieldset>
+
           <div className="mb_8">Review</div>
-          <fieldset className="d-flex mb_20">
-            <textarea
-              className=""
-              rows={4}
-              placeholder="Write your comment here"
-              tabIndex={2}
-              aria-required="true"
-              required
-              defaultValue={""}
-            />
+          <fieldset className="mb_20">
+            <textarea rows={4} placeholder="Write your comment here" required />
           </fieldset>
+
           <div className="cols mb_20">
-            <fieldset className="">
-              <input
-                className=""
-                type="text"
-                placeholder="You Name (Public)"
-                name="text"
-                tabIndex={2}
-                defaultValue=""
-                aria-required="true"
-                required
-              />
-            </fieldset>
-            <fieldset className="">
-              <input
-                className=""
-                type="email"
-                placeholder="Your email (private)"
-                name="email"
-                tabIndex={2}
-                defaultValue=""
-                aria-required="true"
-                required
-              />
-            </fieldset>
+            <input type="text" placeholder="Your Name (Public)" required />
+            <input type="email" placeholder="Your email (private)" required />
           </div>
+
           <div className="d-flex align-items-center check-save">
-            <input
-              type="checkbox"
-              name="availability"
-              className="tf-check"
-              id="check1"
-            />
-            <label className="text-secondary text-caption-1" htmlFor="check1">
-              Save my name, email, and website in this browser for the next time
-              I comment.
+            <input type="checkbox" id="check1" />
+            <label htmlFor="check1">
+              Save my details for next time
             </label>
           </div>
         </div>
+
         <div className="button-submit">
-          <button className="text-btn-uppercase" type="submit">
-            Submit Reviews
-          </button>
+          <button type="submit">Submit Reviews</button>
         </div>
       </form>
     </>
