@@ -3,7 +3,7 @@ import Header1 from "@/components/headers/Header1";
 import Topbar6 from "@/components/headers/Topbar6";
 import Breadcumb from "@/components/productDetails/Breadcumb";
 import Descriptions1 from "@/components/productDetails/descriptions/Descriptions1";
-import DetailsPickupAvilable from "@/components/productDetails/details/DetailsPickupAvilable";
+// import DetailsPickupAvilable from "@/components/productDetails/details/DetailsPickupAvilable";
 import RelatedProducts from "@/components/productDetails/RelatedProducts";
 import { allProducts } from "@/data/products";
 import React from "react";
@@ -23,7 +23,7 @@ export default async function ProductPickupAvailablePage({ params }) {
       <Topbar6 bgColor="bg-main" />
       <Header1 />
       <Breadcumb product={product} />
-      <DetailsPickupAvilable product={product} />
+      {/* <DetailsPickupAvilable product={product} /> */}
       <Descriptions1 />
       <RelatedProducts />
       <Footer1 hasPaddingBottom />

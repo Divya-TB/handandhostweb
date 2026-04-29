@@ -1,7 +1,7 @@
 "use client";
 import { useContextElement } from "/context/Context";
 import ProductCard1 from "@/components/productCards/ProductCard1";
-import { products8 } from "@/data/products";
+// import { products8 } from "@/data/products";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 

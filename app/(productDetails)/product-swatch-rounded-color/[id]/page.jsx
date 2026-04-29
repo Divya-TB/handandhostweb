@@ -4,7 +4,7 @@ import Topbar6 from "@/components/headers/Topbar6";
 import Breadcumb from "@/components/productDetails/Breadcumb";
 import Descriptions1 from "@/components/productDetails/descriptions/Descriptions1";
 
-import DetailsRoundedColor from "@/components/productDetails/details/DetailsRoundedColor";
+// import DetailsRoundedColor from "@/components/productDetails/details/DetailsRoundedColor";
 import RelatedProducts from "@/components/productDetails/RelatedProducts";
 import { allProducts } from "@/data/products";
 import React from "react";
@@ -24,7 +24,7 @@ export default async function ProductSwatchRoundedColorPage({ params }) {
       <Topbar6 bgColor="bg-main" />
       <Header1 />
       <Breadcumb product={product} />
-      <DetailsRoundedColor product={product} />
+      {/* <DetailsRoundedColor product={product} /> */}
       <Descriptions1 />
       <RelatedProducts />
       <Footer1 hasPaddingBottom />

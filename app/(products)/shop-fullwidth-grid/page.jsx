@@ -1,7 +1,7 @@
 import Footer1 from "@/components/footers/Footer1";
 import Header1 from "@/components/headers/Header1";
 import Topbar6 from "@/components/headers/Topbar6";
-import Products10 from "@/components/products/Products10";
+// import Products10 from "@/components/products/Products10";
 import Link from "next/link";
 import React from "react";
 
@@ -33,7 +33,7 @@ export default function ShopFullwidthGridPage() {
           </div>
         </div>
       </div>
-      <Products10 />
+      {/* <Products10 /> */}
       <Footer1 />
     </>
   );

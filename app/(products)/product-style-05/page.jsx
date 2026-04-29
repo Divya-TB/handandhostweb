@@ -1,7 +1,7 @@
 import Footer1 from "@/components/footers/Footer1";
 import Header1 from "@/components/headers/Header1";
 import Topbar6 from "@/components/headers/Topbar6";
-import Products5 from "@/components/products/Products5";
+// import Products5 from "@/components/products/Products5";
 import Link from "next/link";
 import React from "react";
 
@@ -33,7 +33,7 @@ export default function ProductStylePage5() {
           </div>
         </div>
       </div>
-      <Products5 />
+      {/* <Products5 /> */}
       <Footer1 />
     </>
   );

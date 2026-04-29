@@ -4,7 +4,7 @@ import Topbar6 from "@/components/headers/Topbar6";
 import Breadcumb from "@/components/productDetails/Breadcumb";
 import Descriptions1 from "@/components/productDetails/descriptions/Descriptions1";
 
-import Details2 from "@/components/productDetails/details/Details2";
+// import Details2 from "@/components/productDetails/details/Details2";
 import RelatedProducts from "@/components/productDetails/RelatedProducts";
 import { allProducts } from "@/data/products";
 import React from "react";
@@ -23,7 +23,7 @@ export default async function ProductGridPage1({ params }) {
       <Topbar6 bgColor="bg-main" />
       <Header1 />
       <Breadcumb product={product} />
-      {product && <Details2 product={product} />}
+      {/* {product && <Details2 product={product} />} */}
       <Descriptions1 />
       <RelatedProducts />
       <Footer1 hasPaddingBottom />

@@ -3,7 +3,7 @@ import Header1 from "@/components/headers/Header1";
 import Topbar6 from "@/components/headers/Topbar6";
 import Breadcumb from "@/components/productDetails/Breadcumb";
 import Descriptions1 from "@/components/productDetails/descriptions/Descriptions1";
-import DetailsBoughtTogether from "@/components/productDetails/details/DetailsBoughtTogether";
+// import DetailsBoughtTogether from "@/components/productDetails/details/DetailsBoughtTogether";
 import RelatedProducts from "@/components/productDetails/RelatedProducts";
 
 import { allProducts } from "@/data/products";
@@ -24,7 +24,7 @@ export default async function ProductFrequentlyBoughtTogetherPage1({ params }) {
       <Topbar6 bgColor="bg-main" />
       <Header1 />
       <Breadcumb product={product} />
-      <DetailsBoughtTogether product={product} />
+      {/* <DetailsBoughtTogether product={product} /> */}
       <Descriptions1 />
       <RelatedProducts />
       <Footer1 hasPaddingBottom />
