@@ -6,6 +6,7 @@ import { products37 } from "@/data/products";
 import { useContextElement } from "@/context/Context";
 export default function BannerTab({ parentClass = "flat-spacing pt-0" }) {
   const { setQuickViewItem } = useContextElement();
+  
   useEffect(() => {
     const offsetX = 20;
     const offsetY = 20;
