@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useContextElement } from "@/context/Context";
+import SizeSelect from "../productDetails/SizeSelect";
 
 export default function ProductCard1({
   product,

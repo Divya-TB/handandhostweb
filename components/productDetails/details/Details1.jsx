@@ -217,9 +217,19 @@ const syncFromResponse = (updatedProduct) => {
 
                       </div>
 
-                      <div className="tf-product-info-price">
-                        <h5 className="price-on-sale font-2">
-                          ₹{Number(data.discount_price || data.price).toFixed(2)}
+                     <div
+                        className="tf-product-info-price"
+                        style={{ display: "flex", gap: "5px", alignItems: "center" }}
+                      >
+                        <h5
+                          className="old-price"
+                          style={{ textDecoration: "line-through", opacity: 0.6, margin: 0 }}
+                        >
+                          ₹{Number(data.price).toFixed(2)}
+                        </h5>
+
+                        <h5 className="price-on-sale font-2" style={{ margin: 0 }}>
+                          ₹{Number(data.discount_price).toFixed(2)}
                         </h5>
                       </div>
                     </div>
@@ -232,7 +242,7 @@ const syncFromResponse = (updatedProduct) => {
                         activeColor={activeColor}
                       /> */}
 
-                      <SizeSelect />
+                      <SizeSelect variant={data.variant} />
 
                       {/* QTY */}
                       <div className="tf-product-info-quantity">

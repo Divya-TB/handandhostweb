@@ -21,10 +21,10 @@ export default function Products5() {
           dir="ltr"
           spaceBetween={15}
           breakpoints={{
-            0: { slidesPerView: 2, spaceBetween: 15 },
+            // 0: { slidesPerView: , spaceBetween: 15 },
 
-            768: { slidesPerView: 3, spaceBetween: 30 },
-            1200: { slidesPerView: 4, spaceBetween: 30 },
+            768: { slidesPerView: 2, spaceBetween: 30 },
+            1200: { slidesPerView: 3, spaceBetween: 30 },
           }}
           modules={[Pagination]}
           pagination={{
@@ -33,7 +33,7 @@ export default function Products5() {
           }}
         >
           {product.map((product, i) => (
-            <SwiperSlide key={i} className="swiper-slide">
+            <SwiperSlide key={i} className="swiper-slide" >
               <ProductCard1 product={product} />
             </SwiperSlide>
           ))}

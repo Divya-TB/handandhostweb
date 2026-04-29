@@ -97,7 +97,7 @@ export default async function ProductDetailPage({ params }) {
 
   const product = data.product;
   const reviews = data.reviews || [];
-const ratingStats = data.ratingStats || {};
+  const ratingStats = data.ratingStats || {};
   const relatedProducts = data.relatedProducts;
 
   return (

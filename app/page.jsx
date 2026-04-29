@@ -64,13 +64,13 @@ export default function HomePage() {
       <Header1 />
       <Hero />
       <MarqueeSection2 />
-      <Collections />
+      {/* <Collections /> */}
       {/* <Categories parentClass="" /> */}
       <Products5 />
       {/* <Banner /> */}
       {/* <BannerTab2 parentClass="flat-spacing" /> */}
       <Testimonials2 />
-      <Features parentClass="flat-spacing line-top-container" />
+      {/* <Features parentClass="flat-spacing line-top-container" /> */}
       <Certificates/>
       {/* <ShopGram4 /> */}
       <Footer1 />

@@ -4,7 +4,7 @@ import Topbar6 from "@/components/headers/Topbar6";
 import Breadcumb from "@/components/productDetails/Breadcumb";
 import Descriptions1 from "@/components/productDetails/descriptions/Descriptions1";
 import Details1 from "@/components/productDetails/details/Details1";
-import DetailsCombo2 from "@/components/productDetails/details/DetailsCombo2";
+// import DetailsCombo2 from "@/components/productDetails/details/DetailsCombo2";
 import RelatedProducts from "@/components/productDetails/RelatedProducts";
 import { allProducts } from "@/data/products";
 import React from "react";
@@ -24,7 +24,7 @@ export default async function ProductDetailPage({ params }) {
       <Topbar6 bgColor="bg-main" />
       <Header1 />
       <Breadcumb product={product} />
-      <DetailsCombo2 product={product} />
+      {/* <DetailsCombo2 product={product} /> */}
       <Descriptions1 />
       <RelatedProducts />
       <Footer1 hasPaddingBottom />

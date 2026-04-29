@@ -1,61 +1,61 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const sizes = [
-  { id: "values-XXL", value: "600ML", price: 79.99, disabled: true },
-  // { id: "values-m", value: "M", price: 79.99, disabled: false },
-  // { id: "values-l", value: "L", price: 89.99, disabled: false },
-  // { id: "values-xl", value: "XL", price: 89.99, disabled: false },
-  // { id: "values-xxl", value: "XXL", price: 89.99, disabled: true },
-];
+export default function SizeSelect({ variant }) {
+  const values = variant?.values || [];
 
-export default function SizeSelect() {
-  const [selectedSize, setSelectedSize] = useState("ML"); // Default value is "L"
+  const [selectedSize, setSelectedSize] = useState("");
 
-  const handleChange = (value) => {
-    setSelectedSize(value);
-  };
+  // set default value when API loads
+  useEffect(() => {
+    if (values.length > 0 && !selectedSize) {
+      setSelectedSize(values[0]);
+    }
+  }, [values]);
+
   return (
     <div className="variant-picker-item">
+      
+      {/* LABEL */}
       <div className="d-flex justify-content-between mb_12">
         <div className="variant-picker-label">
-          selected size:
+          {variant?.variant || "Variant"}:
           <span className="text-title variant-picker-label-value">
-            {selectedSize}
+            {" "}{selectedSize}
           </span>
         </div>
-        <a
-          href="#size-guide"
-          data-bs-toggle="modal"
-          className="size-guide text-title link"
-        >
-          Size Guide
-        </a>
       </div>
-      <div className="variant-picker-values gap12">
-        {sizes.map(({ id, value, price, disabled }) => (
-          <div key={id} onClick={() => handleChange(value)}>
-            <input
-              type="radio"
-              id={id}
-              checked={selectedSize === value}
-              disabled={disabled}
-              readOnly
-            />
-            <label
-              className={`style-text size-btn ${
-                disabled ? "type-disable" : ""
-              }`}
-              htmlFor={id}
-              data-value={value}
-              data-price={price}
-            >
-              <span className="text-title">{value}</span>
-            </label>
-          </div>
-        ))}
-      </div>
+
+      {/* OPTIONS */}
+      {/* <div className="variant-picker-values gap12">
+        {values.map((value, index) => {
+          const id = `variant-${index}`;
+
+          return (
+            <div key={id} onClick={() => setSelectedSize(value)}>
+              <input
+                type="radio"
+                id={id}
+                checked={selectedSize === value}
+                readOnly
+              />
+
+              <label
+                className={`style-text size-btn ${
+                  !value ? "type-disable" : ""
+                }`}
+                htmlFor={id}
+                data-value={value}
+              >
+                <span className="text-title">
+                  {value || "Not Available"}
+                </span>
+              </label>
+            </div>
+          );
+        })}
+      </div> */}
     </div>
   );
 }
