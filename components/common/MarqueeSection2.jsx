@@ -7,7 +7,7 @@ export default function MarqueeSection2({ parentClass = "tf-marquee" }) {
         <div className="initial-child-container">
           <div className="marquee-child-item">
             <p className="text-btn-uppercase">
-              Free shipping on all orders over $20.00
+              Free shipping on all orders
             </p>
           </div>
           <div className="marquee-child-item">
@@ -15,7 +15,7 @@ export default function MarqueeSection2({ parentClass = "tf-marquee" }) {
           </div>
           <div className="marquee-child-item">
             <p className="text-btn-uppercase">
-              Returns are free within 14 days
+              24x7 Customer Support
             </p>
           </div>
           <div className="marquee-child-item">
@@ -24,7 +24,7 @@ export default function MarqueeSection2({ parentClass = "tf-marquee" }) {
           {/* 2 */}
           <div className="marquee-child-item">
             <p className="text-btn-uppercase">
-              Free shipping on all orders over $20.00
+              Free shipping on all orders
             </p>
           </div>
           <div className="marquee-child-item">
@@ -32,7 +32,7 @@ export default function MarqueeSection2({ parentClass = "tf-marquee" }) {
           </div>
           <div className="marquee-child-item">
             <p className="text-btn-uppercase">
-              Returns are free within 14 days
+              24x7 Customer Support
             </p>
           </div>
           <div className="marquee-child-item">
@@ -41,7 +41,7 @@ export default function MarqueeSection2({ parentClass = "tf-marquee" }) {
           {/* 3 */}
           <div className="marquee-child-item">
             <p className="text-btn-uppercase">
-              Free shipping on all orders over $20.00
+              Free shipping on all orders
             </p>
           </div>
           <div className="marquee-child-item">
@@ -49,7 +49,7 @@ export default function MarqueeSection2({ parentClass = "tf-marquee" }) {
           </div>
           <div className="marquee-child-item">
             <p className="text-btn-uppercase">
-              Returns are free within 14 days
+              24x7 Customer Support
             </p>
           </div>
           <div className="marquee-child-item">
@@ -58,7 +58,7 @@ export default function MarqueeSection2({ parentClass = "tf-marquee" }) {
           {/* 4 */}
           <div className="marquee-child-item">
             <p className="text-btn-uppercase">
-              Free shipping on all orders over $20.00
+              Free shipping on all orders
             </p>
           </div>
           <div className="marquee-child-item">
@@ -66,7 +66,7 @@ export default function MarqueeSection2({ parentClass = "tf-marquee" }) {
           </div>
           <div className="marquee-child-item">
             <p className="text-btn-uppercase">
-              Returns are free within 14 days
+              24x7 Customer Support
             </p>
           </div>
           <div className="marquee-child-item">
@@ -75,7 +75,7 @@ export default function MarqueeSection2({ parentClass = "tf-marquee" }) {
           {/* 5 */}
           <div className="marquee-child-item">
             <p className="text-btn-uppercase">
-              Free shipping on all orders over $20.00
+              Free shipping on all orders 
             </p>
           </div>
           <div className="marquee-child-item">
@@ -83,7 +83,7 @@ export default function MarqueeSection2({ parentClass = "tf-marquee" }) {
           </div>
           <div className="marquee-child-item">
             <p className="text-btn-uppercase">
-              Returns are free within 14 days
+              24x7 Customer Support
             </p>
           </div>
           <div className="marquee-child-item">
@@ -92,7 +92,7 @@ export default function MarqueeSection2({ parentClass = "tf-marquee" }) {
           {/* 6 */}
           <div className="marquee-child-item">
             <p className="text-btn-uppercase">
-              Free shipping on all orders over $20.00
+              Free shipping on all orders
             </p>
           </div>
           <div className="marquee-child-item">
@@ -100,7 +100,7 @@ export default function MarqueeSection2({ parentClass = "tf-marquee" }) {
           </div>
           <div className="marquee-child-item">
             <p className="text-btn-uppercase">
-              Returns are free within 14 days
+              24x7 Customer Support
             </p>
           </div>
           <div className="marquee-child-item">

@@ -552,9 +552,7 @@ export default function MobileMenu() {
               </Link>
             </div>
             <div className="mb-contact">
-              <p className="text-caption-1">
-                549 Oak St.Crystal Lake, IL 60014
-              </p>
+              <p>Hand & Host LLP<br></br>Basement floor, 5/257A8, <br></br>Pallath Square, FACT  kalamassery Rd,<br></br> Ernakulam, Kerala, India - 683104</p>
               <Link
                 href={`/contact`}
                 className="tf-btn-default text-btn-uppercase"
@@ -566,11 +564,11 @@ export default function MobileMenu() {
             <ul className="mb-info">
               <li>
                 <i className="icon icon-mail" />
-                <p>handandhost@gmail.com</p>
+                <p>support@handandhost.com</p>
               </li>
               <li>
                 <i className="icon icon-phone" />
-                <p>315-666-6688</p>
+                <p>+91 8921254349</p>
               </li>
             </ul>
           </div>

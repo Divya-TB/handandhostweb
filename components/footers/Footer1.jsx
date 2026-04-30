@@ -108,7 +108,7 @@ export default function Footer1({
                       </Link>
                     </div>
                     <div className="footer-address">
-                      <p>Hand & Host LLP<br></br>Basement floor, 5/257A8, Pallath Square, FACT  kalamassery Rd, Kalamassery, Ernakulam, Kerala, 683104, Ernakulam, Kerala-683104</p>
+                      <p>Hand & Host LLP<br></br>Basement floor, 5/257A8, <br></br>Pallath Square, FACT  kalamassery Rd,<br></br> Ernakulam, Kerala, India - 683104</p>
                       {/* <Link
                         href={`/contact`}
                         className={`tf-btn-default fw-6 ${
@@ -123,8 +123,8 @@ export default function Footer1({
   <li>
     <i className="icon-mail" />
     <p>
-      <a href="mailto:handandhost@gmail.com">
-        handandhost@gmail.com
+      <a href="mailto:support@handandhost.com">
+        support@handandhost.com
       </a>
     </p>
   </li>
@@ -260,7 +260,7 @@ export default function Footer1({
                               Terms of Service
                             </Link>{" "}
                             and{" "}
-                            <a className="fw-6 link" href="#">
+                            <a className="fw-6 link" href={`/privacy-policy`}>
                               Privacy Policy
                             </a>
                             .

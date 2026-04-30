@@ -1,7 +1,7 @@
 import Footer1 from "@/components/footers/Footer1";
 import Header1 from "@/components/headers/Header1";
 import Topbar6 from "@/components/headers/Topbar6";
-import Terms from "@/components/otherPages/Terms";
+import PrivacyPolicy from "@/components/otherPages/PrivacyPolicy";
 import React from "react";
 import Link from "next/link";
 export const metadata = {
@@ -10,7 +10,7 @@ export const metadata = {
   description: "Modave - Multipurpose React Nextjs eCommerce Template",
 };
 
-export default function TermsPage() {
+export default function PrivacyPolicyPage() {
   return (
     <>
       <Topbar6 bgColor="bg-main" />
@@ -46,7 +46,7 @@ export default function TermsPage() {
           </div>
         </div>
       </div>
-      <Terms />
+      <PrivacyPolicy />
       <Footer1 />
     </>
   );

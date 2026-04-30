@@ -309,7 +309,7 @@ export default function Testimonials2() {
                         {item.title}
                       </p>
                       <div className="text-button price">
-                        Rs {item.price}
+                        ₹ {item.price}
                       </div>
                     </div>
                   </div>

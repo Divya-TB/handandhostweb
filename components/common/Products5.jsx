@@ -13,7 +13,7 @@ export default function Products5() {
         <div className="heading-section text-center wow fadeInUp">
           <h3 className="heading">Product</h3>
           <p className="subheading text-secondary">
-            Fresh styles just in! Elevate your look.
+           From beauty to immunity—one gummy does it all.
           </p>
         </div>
         <Swiper

@@ -37,7 +37,7 @@ const sections = [
    {id: 11, text: "Contact Us", scroll: "Contact Us" },
 ];
 
-export default function Terms() {
+export default function PrivacyPolicy() {
   const [activeSection, setActiveSection] = useState(sectionIds[0]);
 
   useEffect(() => {

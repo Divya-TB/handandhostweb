@@ -359,6 +359,7 @@ export const otherPageLinks = [
   { href: "/404", name: "404" },
   { href: "/FAQs", name: "FAQs" },
   { href: "/term-of-use", name: "Terms Of Use" },
+  { href: "/privacy-policy", name: "Privacy Policy" },
   { href: "/coming-soon", name: "Coming Soon" },
   { href: "/customer-feedback", name: "Customer Feedbacks" },
 ];

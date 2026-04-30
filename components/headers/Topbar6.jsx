@@ -14,8 +14,8 @@ export default function Topbar6({ bgColor = "bg-blue-2" }) {
               </a>
             </li>
             <li>
-              <a className="text-caption-1 text-white" href="mailto:handandhost@gmail.com">
-                handandhost@gmail.com
+              <a className="text-caption-1 text-white" href="mailto:support@handandhost.com">
+                support@handandhost.com
               </a>
             </li>
             {/* <li>
