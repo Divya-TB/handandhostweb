@@ -51,9 +51,9 @@ export default function AboutUsPage() {
         </div>
       </div>
       <About />
-      <Features2 parentClass="flat-spacing line-bottom-container" />
+      {/* <Features2 parentClass="flat-spacing line-bottom-container" /> */}
       <Team />
-      <Brands parentClass="flat-spacing-5 bg-surface" />
+      {/* <Brands parentClass="flat-spacing-5 bg-surface" /> */}
       <Testimonials />
       <Footer1 />
     </>

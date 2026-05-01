@@ -76,10 +76,10 @@ export default function Hero() {
                 <div className="container">
                   <div className="content-slider">
                     <div className="box-title-slider">
-                      <div
+                      {/* <div
                         className="fade-item fade-item-1 heading title-display text-white"
                         dangerouslySetInnerHTML={{ __html: slide.V_Title}}
-                      />
+                      /> */}
                       {/* <p className="fade-item fade-item-2 body-text-1 text-white">
                         {slide.V_Description}
                       </p> */}
