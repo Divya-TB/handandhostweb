@@ -22,6 +22,7 @@ import DemoModal from "@/components/modals/DemoModal";
 import Categories from "@/components/modals/Categories";
 import RtlToggler from "@/components/common/RtlToggler";
 import AccountSidebar from "@/components/modals/AccountSidebar";
+import {AuthProvider} from "@/context/AuthContext"; 
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
@@ -126,23 +127,26 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="preload-wrapper popup-loader">
-        <Context>
-          <RtlToggler />
-          <div id="wrapper">{children}</div>
-          <CartModal />
-          <QuickView />
-          <QuickAdd />
-          <Compare />
-          <MobileMenu />
+        <AuthProvider>
+          <Context>
+            <RtlToggler />
+            <div id="wrapper">{children}</div>
 
-          {/* <NewsLetterModal /> */}
-          <SearchModal />
-          <SizeGuide />
-          <Wishlist />
-          <DemoModal />
-          <Categories />
-          <AccountSidebar />
-        </Context>
+            <CartModal />
+            <QuickView />
+            <QuickAdd />
+            <Compare />
+            <MobileMenu />
+
+            <SearchModal />
+            <SizeGuide />
+            <Wishlist />
+            <DemoModal />
+            <Categories />
+            <AccountSidebar />
+          </Context>
+        </AuthProvider> 
+        
       </body>
     </html>
   );

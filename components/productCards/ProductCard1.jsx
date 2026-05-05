@@ -4,6 +4,10 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useContextElement } from "@/context/Context";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
+
+
 import SizeSelect from "../productDetails/SizeSelect";
 
 export default function ProductCard1({
@@ -13,6 +17,17 @@ export default function ProductCard1({
   isNotImageRatio = false,
   radiusClass = "",
 }) {
+
+  const router = useRouter();
+  const { isLoggedIn } = useAuth();
+
+  const requireLogin = (callback) => {
+    if (!isLoggedIn) {
+      router.push("/login");
+      return;
+    }
+    callback();
+  };
   const noImage = "/images/no-image.png";
 
   const getImage = (img) => {
@@ -180,8 +195,10 @@ const decreaseQty = async () => {
         {/* SIDE BUTTONS */}
         <div className="list-product-btn">
           {/* WISHLIST */}
-          <a
-            onClick={handleWishlist}
+          {/* <a
+            onClick={() =>
+              requireLogin(() => handleWishlist())
+            }
             className="box-icon wishlist btn-icon-action"
             style={{ cursor: "pointer" }}
           >
@@ -197,7 +214,7 @@ const decreaseQty = async () => {
                 ? "Already Wishlisted"
                 : "Wishlist"}
             </span>
-          </a>
+          </a> */}
 
           {/* QUICK VIEW */}
           <a
@@ -227,7 +244,9 @@ const decreaseQty = async () => {
           ) : !isCartAdded ? (
             <a
               className="btn-main-product"
-              onClick={handleCart}
+              onClick={() =>
+                requireLogin(() => handleCart())
+              }
               style={{ cursor: "pointer" }}
             >
               Add to Cart

@@ -3,6 +3,9 @@
 "use client";
 
 import React, { useEffect, useContext, useState } from "react";
+import { useAuth } from "@/context/AuthContext";
+
+// const { useAuth  } = useAuth();
 
 const dataContext = React.createContext({
   cartProducts: [],
@@ -15,7 +18,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 export const useContextElement = () => useContext(dataContext);
 
 export default function Context({ children }) {
-  const [userId, setUserId] = useState(0);
+  const { userId } = useAuth();
 
   const [homebanner, sethomebanner] = useState([]);
   const [categorybanner, setcategorybanner] = useState([]);
@@ -27,11 +30,29 @@ export default function Context({ children }) {
   const [quickViewItem, setQuickViewItemState] = useState();
   const [quickAddItem, setQuickAddItem] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [teamMembers, setteamMember] = useState([]);
+  const [customerReview, setCustomerReview] = useState([]);
 
-  // console.log('user_Id.............................................',Number(localStorage.getItem("userId")))
+  // // console.log('user_Id.............................................',Number(localStorage.getItem("userId")))
+  // useEffect(() => {
+  //   const userId = Number(localStorage.getItem("userId")) || 0;
+  //   setUserId(userId);
+  // }, []);
+
+  /*********************Team Members************************************** */
+
   useEffect(() => {
-    const userId = Number(localStorage.getItem("userId")) || 0;
-    setUserId(userId);
+    fetch(`${API_URL}/api/team-members`)
+      .then((res) => res.json())
+      .then((data) => setteamMember(data.data || []));
+      // console.log('banner...................',data)
+  }, []);
+
+   useEffect(() => {
+    fetch(`${API_URL}/api/customer-review`)
+      .then((res) => res.json())
+      .then((data) => setCustomerReview(data.data || []));
+      // console.log('banner...................',data)
   }, []);
 
   /* ---------------- HOME BANNER ---------------- */
@@ -110,13 +131,16 @@ export default function Context({ children }) {
 
 
   /* ---------------- GET WISHLIST ---------------- */
+
   useEffect(() => {
+    if (!userId) return;
+
     fetch(`${API_URL}/api/get-wishlist/${userId}`)
       .then((res) => res.json())
       .then((data) => {
         setWishList(data.data || []);
       });
-  }, []);
+  }, [userId]);
 
   /* ---------------- GET CART ---------------- */
 useEffect(() => {
@@ -360,6 +384,13 @@ const addProductToCart = async (productId, qty = 1) => {
       });
   }, []);
 
+   // reset cart + wishlist when user changes
+
+  useEffect(() => {
+    setCartProducts([]);
+    setWishList([]);
+  }, [userId]);
+
   /* ---------------- CONTEXT ---------------- */
   const contextElement = {
     homebanner,
@@ -392,6 +423,8 @@ const addProductToCart = async (productId, qty = 1) => {
     setCompareItem,
 
     productreview,
+    teamMembers,
+    customerReview
   };
 
   return (

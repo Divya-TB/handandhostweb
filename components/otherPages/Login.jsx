@@ -677,6 +677,7 @@ import React, {
 } from "react";
 import Link from "next/link";
 import axios from "axios";
+import { useAuth } from "@/context/AuthContext";
 import {
   useRouter,
   useSearchParams,
@@ -684,6 +685,7 @@ import {
 
 function LoginContent() {
   const router = useRouter();
+  const { login } = useAuth();
   const searchParams =
     useSearchParams();
 
@@ -806,15 +808,8 @@ function LoginContent() {
           }
         );
 
-      if (
-        res.data?.user?.id
-      ) {
-        localStorage.setItem(
-          "userId",
-          String(
-            res.data.user.id
-          )
-        );
+      if (res.data?.user?.id) {
+        login(res.data.user.id);
       }
 
       setSuccess(true);

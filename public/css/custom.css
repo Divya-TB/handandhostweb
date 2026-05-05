@@ -14848,7 +14848,7 @@ ul.list-text.type-number {
 }
 
 .team-item .image {
-  border-radius: 12px;
+  border-radius: 50%;
   overflow: hidden;
 }
 
@@ -14858,12 +14858,12 @@ ul.list-text.type-number {
   object-fit: cover;
 }
 
-.team-item .content {
+/* .team-item .content {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-}
+} */
 
 .team-item .content .name a {
   display: inline;
@@ -20879,6 +20879,146 @@ a.contact-link:hover {
 }
 .tf-slideshow .wrap-slider {
   height:auto;
+}
+
+.checkout-section {
+  padding: 60px 0;
+}
+
+.checkout-card,
+.order-summary {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.login-alert {
+  background: #f5f5f5;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+input {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.full-input {
+  margin-top: 15px;
+}
+
+.payment-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.payment-box {
+  border: 1px solid #ddd;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.payment-box.active {
+  border-color: #000;
+  background: #f9f9f9;
+}
+
+.place-order-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px;
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.summary-item {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.item-title {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.item-meta {
+  font-size: 13px;
+  color: #777;
+}
+
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.empty-cart {
+  color: #888;
+}
+
+.team-item .content{
+  display: block;
+}
+
+
+.testimonial-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.desktop-nav {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: none;
+  background: #fff;
+  color: #000;
+  font-size: 40px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* position left/right */
+.testimonial-prev {
+  position: absolute;
+  left: -60px;
+}
+
+.testimonial-next {
+  position: absolute;
+  right: -60px;
+}
+
+/*  hide arrows on mobile */
+@media (max-width: 767px) {
+  .desktop-nav {
+    display: none;
+  }
 }
 /* =========================
    MOBILE RESPONSIVE

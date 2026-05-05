@@ -90,6 +90,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { useContextElement } from "@/context/Context";
 
 export default function CartDrawer({ open, setOpen }) {
@@ -184,9 +185,9 @@ export default function CartDrawer({ open, setOpen }) {
 
         <div className="cart-footer">
           <h4>Total: ₹ {totalPrice}</h4>
-          <button className="checkout-btn">
-            Checkout
-          </button>
+          <Link href="/checkout">
+             <button className="checkout-btn">Checkout</button>
+          </Link>
         </div>
       </div>
     </>
