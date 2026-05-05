@@ -5,7 +5,7 @@ import Link from "next/link";
 
 import CurrencySelect from "../common/CurrencySelect";
 import LanguageSelect from "../common/LanguageSelect";
-import ToolbarBottom from "../headers/ToolbarBottom";
+// import ToolbarBottom from "../headers/ToolbarBottom";
 import ScrollTop from "../common/ScrollTop";
 import { footerLinks, socialLinks } from "@/data/footerLinks";
 import axios from "axios";
@@ -280,9 +280,9 @@ export default function Footer1({
                   <div className="footer-bottom-wrap">
                     <div className="left">
                       <p className="text-caption-1">
-                        ©{new Date().getFullYear()} Modave. All Rights Reserved.
+                        ©{new Date().getFullYear()} HandandHost. All Rights Reserved.
                       </p>
-                      <div className="tf-cur justify-content-end">
+                      {/* <div className="tf-cur justify-content-end">
                         <div className="tf-currencies">
                           <CurrencySelect light={dark ? true : false} />
                         </div>
@@ -293,7 +293,7 @@ export default function Footer1({
                             }`}
                           />
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                     <div className="tf-payment">
                       <p className="text-caption-1">Payment:</p>
@@ -314,38 +314,38 @@ export default function Footer1({
                             height={64}
                           />
                         </li>
-                        <li>
+                        {/* <li>
                           <Image
                             alt=""
                             src="/images/payment/img-3.png"
                             width={100}
                             height={64}
                           />
-                        </li>
-                        <li>
+                        </li> */}
+                        {/* <li>
                           <Image
                             alt=""
                             src="/images/payment/img-4.png"
                             width={98}
                             height={64}
                           />
-                        </li>
-                        <li>
+                        </li> */}
+                        {/* <li>
                           <Image
                             alt=""
                             src="/images/payment/img-5.png"
                             width={102}
                             height={64}
                           />
-                        </li>
-                        <li>
+                        </li> */}
+                        {/* <li>
                           <Image
                             alt=""
                             src="/images/payment/img-6.png"
                             width={98}
                             height={64}
                           />
-                        </li>
+                        </li> */}
                       </ul>
                     </div>
                   </div>
@@ -356,7 +356,7 @@ export default function Footer1({
         </div>
       </footer>
       <ScrollTop hasPaddingBottom={hasPaddingBottom} />
-      <ToolbarBottom />
+      {/* <ToolbarBottom /> */}
     </>
   );
 }

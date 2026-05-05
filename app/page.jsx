@@ -53,9 +53,9 @@ import Hero from "@/components/homes/cosmetic/Hero";
 import React from "react";
 
 export const metadata = {
-  title:
-    "Home Cosmetic || Modave - Multipurpose React Nextjs eCommerce Template",
-  description: "Modave - Multipurpose React Nextjs eCommerce Template",
+  title: "Hand & Host | Natural Wellness Gummies & Health Supplements",
+  description:
+    "Shop Hand & Host wellness gummies made with natural ingredients to support immunity, energy, and overall well-being. Trusted quality supplements delivered to your door.",
 };
 
 export default function HomePage() {

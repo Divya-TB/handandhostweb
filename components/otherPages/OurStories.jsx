@@ -78,95 +78,31 @@ export default function AboutUs() {
           /> */}
 
           <p style={{ color: "#777", fontSize: 16 }}>
-            Where wellness meets taste. Where quality meets trust.
+            Hand & Host began with a simple idea between two partners—why should taking care of your health feel like a task instead of something you enjoy?
           </p>
         </div>
 
         {/* ================= STORY (LEFT ALIGN) ================= */}
         <Block title="Our Story">
-          At Hand & Host, we believe wellness should feel effortless, enjoyable, and deeply trustworthy.
-          What began as a shared vision has evolved into a purpose-led brand focused on curating meaningful,
-          high-quality wellness experiences.
+          Like many others, we struggled with traditional supplements. Pills were easy to forget, powders were inconvenient, and consistency felt like a challenge. We realized that even the best products don’t work if people don’t enjoy using them. That’s when the idea struck us—to create something that people would actually look forward to every day.
           <br /><br />
-          We are not just building an eCommerce platform — we are shaping a curated world of products where
-          innovation meets everyday life. Our journey begins with Kreenz, our nutraceutical and Ayurvedic gummies range.
-        </Block>
-
-        {/* ================= CENTER HIGHLIGHT ================= */}
-        <Block title="Wellness Reinvented" align="center">
-          Traditional supplements often feel like a chore—hard to consume, easy to forget.
-          We saw an opportunity to change that.
+          This thought led to the birth of <b>Kreenz Gummies</b>.
+          <br></br>
+          We wanted to reimagine wellness by combining effectiveness with enjoyment. After extensive research and careful development, we created gummies that are not just tasty, but also meaningful—designed to support real needs like hair health, metabolism, better sleep, and overall vitality.
           <br /><br />
-          Kreenz Gummies transform daily nutrition into something enjoyable, combining Ayurveda’s wisdom with
-          modern nutraceutical science.
-        </Block>
-
-        {/* ================= QUALITY ================= */}
-        <Block title="Commitment to Quality & Trust">
-          Trust is not a feature — it is our foundation.
-          <br /><br />
-
-          <div style={{ marginTop: 10 }}>
-            • <b>Premium Ingredients</b> — safe, effective, and carefully curated<br />
-            • <b>Strict Quality Control</b> — every batch tested with precision<br />
-            • <b>Transparency</b> — honest labeling and clear formulations
-          </div>
-        </Block>
-
-        {/* ================= DIFFERENCE (CENTER + AIRY) ================= */}
-        <Block title="What Makes Kreenz Different" align="center">
-          We design wellness that fits into real life — not the other way around.
-          <br /><br />
-
-          • Enjoyable wellness — gummies instead of pills<br />
-          • Smart formulations built for modern lifestyles<br />
-          • Customer-first design philosophy
-        </Block>
-
-        {/* ================= LOOKING AHEAD ================= */}
-        <Block title="Looking Ahead">
-          Kreenz is only the beginning.
-          <br /><br />
-          Hand & Host is evolving into a curated lifestyle destination — spanning wellness, cosmetics, jewellery,
-          toys, and more. Every category will reflect our commitment to quality and intention.
-        </Block>
-
-        {/* ================= YOUR PROMISE (UNCHANGED EXACT UI) ================= */}
-        <div
-          style={{
-            padding: "70px 50px",
-            borderRadius: 20,
-            textAlign: "center",
-            background: "linear-gradient(135deg, #fffaf0, #ffffff)",
-            border: `1px solid rgba(200,162,74,0.35)`,
-          }}
-        >
-          <div
-            style={{
-              fontSize: 18,
-              letterSpacing: 4,
-              color: gold,
-              marginBottom: 20,
-              fontWeight: 600,
-            }}
-          >
-            OUR PROMISE
-          </div>
-
-          <p
-            style={{
-              fontSize: 17,
-              lineHeight: 2,
-              color: "#444",
-              maxWidth: 800,
-              margin: "0 auto",
-            }}
-          >
-            We exist to simplify wellness, elevate trust, and deliver products that feel as refined as they are effective.
+          But for us, it wasn’t just about making gummies. It was about building <b>trust</b>.
             <br /><br />
-            Hand & Host — Proud creators of Kreenz Gummies, where wellness meets taste, and quality meets trust.
-          </p>
-        </div>
+            From selecting high-quality ingredients to ensuring strict quality checks, every step we took was guided by one question: Would we confidently use this ourselves? If the answer wasn’t yes, we went back and improved it.
+            <br /><br />
+            As we built Kreenz, we also envisioned something bigger—Hand & Host as a platform where people can discover unique, thoughtfully curated products that stand out in quality and purpose.
+            <br /><br />
+            Today, our journey starts with Kreenz Gummies, but our story is just beginning. With every product we create and every customer we serve, we aim to make wellness simpler, better, and more enjoyable.
+                <br /><br />
+Because at the end of the day, we didn’t just want to build a business—we wanted to create something people can trust, every single day.
+
+        </Block>
+
+        
 
       </div>
     </section>

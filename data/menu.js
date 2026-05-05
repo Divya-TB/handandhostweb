@@ -352,6 +352,7 @@ export const blogLinks = [
 
 export const otherPageLinks = [
   { href: "/about-us", name: "About Us" },
+  { href: "/our-stories", name: "Our Stories" },
   { href: "/store-list", name: "Store List 1" },
   { href: "/store-list-02", name: "Store List 2" },
   { href: "/contact", name: "Contact Us 1" },

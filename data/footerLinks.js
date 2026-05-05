@@ -8,7 +8,7 @@ export const footerLinks = [
     heading: "Infomation",
     items: [
       { label: "About Us", href: "/about-us", isLink: true },
-      { label: "Our Stories", href: "#", isLink: false },
+      { label: "Our Stories", href: "/our-stories", isLink: true },
       { label: "Size Guide", href: "#", isLink: false },
       { label: "Contact us", href: "/contact", isLink: true },
       { label: "Career", href: "#", isLink: false },

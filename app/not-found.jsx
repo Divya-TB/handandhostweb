@@ -3,8 +3,8 @@ import React from "react";
 import Link from "next/link";
 export const metadata = {
   title:
-    "Page Not Found || Modave - Multipurpose React Nextjs eCommerce Template",
-  description: "Modave - Multipurpose React Nextjs eCommerce Template",
+    "404 Page Not Found || HandandHost Gummies - Health & Wellness Supplements",
+  description: "The page you requested could not be found. Discover HandandHost gummies made for daily wellness, immunity, and nutrition support.",
 };
 
 export default function PageNotFoundPage() {

@@ -10,8 +10,9 @@ import Testimonials from "@/components/otherPages/Testimonials";
 import React from "react";
 
 export const metadata = {
-  title: "About Us || Modave - Multipurpose React Nextjs eCommerce Template",
-  description: "Modave - Multipurpose React Nextjs eCommerce Template",
+  title: "About Us | Hand & Host - Wellness Gummies Brand Story",
+  description:
+    "Learn about Hand & Host, our mission to create premium wellness gummies that support a healthier lifestyle with natural, effective ingredients.",
 };
 
 export default function AboutUsPage() {

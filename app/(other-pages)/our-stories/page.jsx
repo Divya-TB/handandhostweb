@@ -52,9 +52,9 @@ export default function OurStoriesPage() {
       </div>
       <OurStories />
       {/* <Features2 parentClass="flat-spacing line-bottom-container" /> */}
-      <Team />
+      {/* <Team /> */}
       {/* <Brands parentClass="flat-spacing-5 bg-surface" /> */}
-      <Testimonials />
+      {/* <Testimonials /> */}
       <Footer1 />
     </>
   );

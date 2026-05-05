@@ -230,7 +230,7 @@ export default function Nav() {
             : ""
         } `}
       >
-        <a href="/about-us" className="item-link">
+        <a href="/our-stories" className="item-link">
           Our Stories
           {/* <i className="icon icon-arrow-down" /> */}
         </a>
