@@ -5,40 +5,43 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userId, setUserId] = useState(null); // ADD THIS
+  const [user, setUser] = useState(null); // 👈 store full user
 
   // check login once globally
   useEffect(() => {
-    const user = localStorage.getItem("userId");
+    const storedUser = localStorage.getItem("user");
 
-    if (user) {
+    if (storedUser) {
+      const parsedUser = JSON.parse(storedUser);
       setIsLoggedIn(true);
-      setUserId(Number(user)); // STORE USER ID
+      setUser(parsedUser);
     } else {
       setIsLoggedIn(false);
-      setUserId(null);
+      setUser(null);
     }
   }, []);
 
   // login
-  const login = (id) => {
-    localStorage.setItem("userId", id);
+
+  const login = (userData) => {
+    console.log("Logging in user:..............................", userData);
+    localStorage.setItem("user", JSON.stringify(userData));
     setIsLoggedIn(true);
-    setUserId(Number(id)); // UPDATE STATE
+    setUser(userData);
   };
 
   // logout
   const logout = () => {
-    localStorage.removeItem("userId");
+    localStorage.removeItem("user");
     setIsLoggedIn(false);
-    setUserId(null); // CLEAR USER
+    setUser(null);
   };
 
   return (
     <AuthContext.Provider
       value={{
         isLoggedIn,
-        userId,     // EXPORT THIS
+        user,   //  full user object
         login,
         logout,
       }}
@@ -48,5 +51,4 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-// custom hook
 export const useAuth = () => useContext(AuthContext);

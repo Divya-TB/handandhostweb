@@ -1,502 +1,403 @@
-// "use client";
-
-// import { useContextElement } from "@/context/Context";
-// import Image from "next/image";
-// import Link from "next/link";
-// import { useState } from "react";
-// import { Swiper, SwiperSlide } from "swiper/react";
-
-// const discounts = [
-//   {
-//     discount: "10% OFF",
-//     details: "For all orders from 200$",
-//     code: "Mo234231",
-//   },
-//   {
-//     discount: "10% OFF",
-//     details: "For all orders from 200$",
-//     code: "Mo234231",
-//   },
-//   {
-//     discount: "10% OFF",
-//     details: "For all orders from 200$",
-//     code: "Mo234231",
-//   },
-// ];
-
-// export default function Checkout() {
-//   const [activeDiscountIndex, setActiveDiscountIndex] = useState(1);
-//   const { cartProducts, totalPrice } = useContextElement();
-
-//   return (
-//     <section>
-//       <div className="container">
-//         <div className="row">
-//           <div className="col-xl-6">
-//             <div className="flat-spacing tf-page-checkout">
-
-//               {/* LOGIN */}
-//               <div className="wrap">
-//                 <div className="title-login">
-//                   <p>Already have an account?</p>{" "}
-//                   <Link href="/login" className="text-button">
-//                     Login here
-//                   </Link>
-//                 </div>
-
-//                 <form className="login-box" onSubmit={(e) => e.preventDefault()}>
-//                   <div className="grid-2">
-//                     <input type="text" placeholder="Your name/Email" />
-//                     <input type="password" placeholder="Password" />
-//                   </div>
-//                   <button className="tf-btn" type="submit">
-//                     <span className="text">Login</span>
-//                   </button>
-//                 </form>
-//               </div>
-
-//               {/* INFORMATION */}
-//               <div className="wrap">
-//                 <h5 className="title">Information</h5>
-
-//                 <form className="info-box" onSubmit={(e) => e.preventDefault()}>
-//                   <div className="grid-2">
-//                     <input type="text" placeholder="First Name*" />
-//                     <input type="text" placeholder="Last Name*" />
-//                   </div>
-
-//                   <div className="grid-2">
-//                     <input type="text" placeholder="Email Address*" />
-//                     <input type="text" placeholder="Phone Number*" />
-//                   </div>
-
-//                   {/* COUNTRY */}
-//                   <div className="tf-select">
-//                     <select
-//                       className="text-title"
-//                       name="address[country]"
-//                       defaultValue="Choose Country/Region"
-//                     >
-//                       <option value="Choose Country/Region">
-//                         Choose Country/Region
-//                       </option>
-
-//                       <option value="United States">United States</option>
-//                       <option value="Australia">Australia</option>
-//                       <option value="Austria">Austria</option>
-//                       <option value="Belgium">Belgium</option>
-//                       <option value="Canada">Canada</option>
-//                       <option value="Czech Republic">Czechia</option>
-//                       <option value="Denmark">Denmark</option>
-//                       <option value="Finland">Finland</option>
-//                       <option value="France">France</option>
-//                       <option value="Germany">Germany</option>
-//                       <option value="Hong Kong">Hong Kong SAR</option>
-//                       <option value="Ireland">Ireland</option>
-//                       <option value="Israel">Israel</option>
-//                       <option value="Italy">Italy</option>
-//                       <option value="Japan">Japan</option>
-//                       <option value="Malaysia">Malaysia</option>
-//                       <option value="Netherlands">Netherlands</option>
-//                       <option value="New Zealand">New Zealand</option>
-//                       <option value="Norway">Norway</option>
-//                       <option value="Poland">Poland</option>
-//                       <option value="Portugal">Portugal</option>
-//                       <option value="Singapore">Singapore</option>
-//                       <option value="South Korea">South Korea</option>
-//                       <option value="Spain">Spain</option>
-//                       <option value="Sweden">Sweden</option>
-//                       <option value="Switzerland">Switzerland</option>
-//                       <option value="United Arab Emirates">
-//                         United Arab Emirates
-//                       </option>
-//                       <option value="United Kingdom">United Kingdom</option>
-//                       <option value="Vietnam">Vietnam</option>
-//                     </select>
-//                   </div>
-
-//                   <div className="grid-2">
-//                     <input type="text" placeholder="Town/City*" />
-//                     <input type="text" placeholder="Street,..." />
-//                   </div>
-
-//                   {/* STATE */}
-//                   <div className="grid-2">
-//                     <div className="tf-select">
-//                       <select className="text-title" defaultValue="Choose State">
-//                         <option value="Choose State">Choose State</option>
-//                         <option value="California">California</option>
-//                         <option value="Alabama">Alabama</option>
-//                         <option value="Alaska">Alaska</option>
-//                         <option value="Arizona">Arizona</option>
-//                         <option value="Arkansas">Arkansas</option>
-//                         <option value="Florida">Florida</option>
-//                         <option value="Georgia">Georgia</option>
-//                         <option value="Hawaii">Hawaii</option>
-//                         <option value="Washington">Washington</option>
-//                         <option value="Texas">Texas</option>
-//                         <option value="Iowa">Iowa</option>
-//                         <option value="Nevada">Nevada</option>
-//                         <option value="Illinois">Illinois</option>
-//                       </select>
-//                     </div>
-
-//                     <input type="text" placeholder="Postal Code*" />
-//                   </div>
-
-//                   <textarea placeholder="Write note..." />
-//                 </form>
-//               </div>
-
-//               {/* PAYMENT */}
-//               <div className="wrap">
-//                 <h5 className="title">Choose payment Option:</h5>
-
-//                 <form className="form-payment" onSubmit={(e) => e.preventDefault()}>
-//                   <div className="payment-box" id="payment-box">
-
-//                     {/* CARD */}
-//                     <div className="payment-item payment-choose-card active">
-//                       <label className="payment-header" htmlFor="credit-card-method">
-//                         <input
-//                           type="radio"
-//                           name="payment-method"
-//                           className="tf-check-rounded"
-//                           id="credit-card-method"
-//                           defaultChecked
-//                         />
-//                         <span className="text-title">Credit Card</span>
-//                       </label>
-
-//                       <div className="payment-body">
-//                         <p className="text-secondary">
-//                           Make your payment directly into our bank account.
-//                         </p>
-//                       </div>
-//                     </div>
-
-//                     {/* COD */}
-//                     <div className="payment-item">
-//                       <label htmlFor="delivery-method" className="payment-header">
-//                         <input
-//                           type="radio"
-//                           name="payment-method"
-//                           className="tf-check-rounded"
-//                           id="delivery-method"
-//                         />
-//                         <span className="text-title">Cash on delivery</span>
-//                       </label>
-//                     </div>
-
-//                     {/* APPLE */}
-//                     <div className="payment-item">
-//                       <label htmlFor="apple-method" className="payment-header">
-//                         <input
-//                           type="radio"
-//                           name="payment-method"
-//                           className="tf-check-rounded"
-//                           id="apple-method"
-//                         />
-//                         <span className="text-title">Apple Pay</span>
-//                       </label>
-//                     </div>
-
-//                   </div>
-
-//                   <button className="tf-btn btn-reset">Payment</button>
-//                 </form>
-//               </div>
-//             </div>
-//           </div>
-
-
-//           {/* RIGHT SIDE CART */}
-// <div className="col-xl-5">
-//   <div className="flat-spacing flat-sidebar-checkout">
-
-//     <h5 className="title">Shopping Cart</h5>
-
-//     <div className="list-product">
-
-//       {Array.isArray(cartProducts) && cartProducts.length > 0 ? (
-//         cartProducts.map((elm, i) => (
-//           <div key={i} className="item-product">
-//             <Link href={`/product-detail/${elm.id}`} className="img-product">
-//               <Image
-//                 alt="img"
-//                 src={elm.imgSrc || "/images/no-image.png"}
-//                 width={600}
-//                 height={800}
-//               />
-//             </Link>
-
-//             <div className="content-box">
-//               <Link href={`/product-detail/${elm.id}`} className="name-product">
-//                 {elm.title}
-//               </Link>
-
-//               <div className="total-price">
-//                 {elm.quantity} x Rs {elm.price}
-//               </div>
-//             </div>
-//           </div>
-//         ))
-//       ) : (
-//         <p style={{ padding: "10px", color: "#888" }}>
-//           Your cart is empty
-//         </p>
-//       )}
-
-//     </div>
-
-//     <div className="bottom">
-//       <h5 className="d-flex justify-content-between">
-//         <span>Total</span>
-//         <span>${Number(totalPrice || 0).toFixed(2)}</span>
-//       </h5>
-//     </div>
-
-//   </div>
-// </div>
-
-//           {/* RIGHT SIDE CART
-//           <div className="col-xl-5">
-//             <div className="flat-spacing flat-sidebar-checkout">
-
-//               <h5 className="title">Shopping Cart</h5>
-
-//               <div className="list-product">
-//                 {cartProducts.map((elm, i) => (
-//                   <div key={i} className="item-product">
-//                     <Link href={`/product-detail/${elm.id}`} className="img-product">
-//                       <Image
-//                         alt="img"
-//                         src={elm.imgSrc || "/images/no-image.png"}
-//                         width={600}
-//                         height={800}
-//                       />
-//                     </Link>
-
-//                     <div className="content-box">
-//                       <Link href={`/product-detail/${elm.id}`} className="name-product">
-//                         {elm.title}
-//                       </Link>
-
-//                       <div className="total-price">
-//                         {elm.quantity} x Rs {elm.price}
-//                       </div>
-//                     </div>
-//                   </div>
-//                 ))}
-//               </div>
-
-//               <div className="bottom">
-//                 <h5 className="d-flex justify-content-between">
-//                   <span>Total</span>
-//                   <span>${totalPrice.toFixed(2)}</span>
-//                 </h5>
-//               </div>
-
-//             </div>
-//           </div> */}
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
-
-
-
 "use client";
 
 import { useContextElement } from "@/context/Context";
+import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Checkout() {
-  const { cartProducts, totalPrice } = useContextElement();
 
-  const [user, setUser] = useState(null);
-  const [paymentMethod, setPaymentMethod] = useState("razorpay");
+  const {
+    cartProducts,
+    totalPrice,
+    addresses,
+    selectedAddress,
+    setSelectedAddress,
+    saveAddress,
+    placeOrder,
+    openRazorpay,
+    } = useContextElement();
 
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
+
+    console.log("Addresses in Checkout:.............................", addresses);
+
+ 
+  const { user } = useAuth();
+
+  const [paymentMethod, setPaymentMethod] = useState("upi");
+
+  const [showAddressForm, setShowAddressForm] = useState(false);
+
+  const [addressForm, setAddressForm] = useState({
+    fullName: "",
     phone: "",
-    address: "",
+    addressLine1: "",
+    // addressLine2: "",
     city: "",
+    state: "",
     pincode: "",
+    landmark: "",
   });
 
-  //  Load user
+
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("userId"));
-    if (storedUser) {
-      setUser(storedUser);
-      setForm({
-        name: storedUser.name || "",
-        email: storedUser.email || "",
-        phone: storedUser.phone || "",
-        address: "",
-        city: "",
-        pincode: "",
-      });
+    if (user) {
+      setAddressForm((prev) => ({
+        ...prev,
+        fullName: user.name || "",
+        phone: user.phone_number || "",
+      }));
     }
-  }, []);
+  }, [user]);
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  // ✅ PAYMENT HANDLER
-  const handlePayment = async () => {
-    if (!form.name || !form.phone || !form.address) {
-      alert("Please fill all required fields");
-      return;
-    }
-
-    // COD
-    if (paymentMethod === "cod") {
-      alert("Order placed with Cash on Delivery");
-      return;
-    }
-
-    // Razorpay
-    const res = await fetch("/api/create-order", {
-      method: "POST",
-      body: JSON.stringify({ amount: totalPrice }),
+  const handleAddressChange = (e) => {
+    setAddressForm({
+      ...addressForm,
+      [e.target.name]: e.target.value,
     });
-
-    const data = await res.json();
-
-    const options = {
-      key: "YOUR_RAZORPAY_KEY",
-      amount: data.amount,
-      currency: "INR",
-      name: "Your Store",
-      description: "Order Payment",
-      order_id: data.id,
-      handler: function () {
-        alert("Payment Successful");
-      },
-      prefill: {
-        name: form.name,
-        email: form.email,
-        contact: form.phone,
-      },
-      theme: { color: "#000" },
-    };
-
-    const rzp = new window.Razorpay(options);
-    rzp.open();
   };
+
+  const handleSaveAddress = async () => {
+  const payload = {
+    user_ID: user.id,
+    fullname: addressForm.fullName,
+    mobile: addressForm.phone,
+    address:
+      addressForm.addressLine1,
+    //   " " +
+    //   addressForm.addressLine2,
+    city: addressForm.city,
+    state: addressForm.state,
+    pincode: addressForm.pincode,
+    country: addressForm.country,
+    is_default: addresses.length === 0 ? 1 : 0,
+  };
+
+  const res = await saveAddress(payload);
+
+  if (res?.success) {
+    setShowAddressForm(false);
+    // await getAddresses(); // refresh address list after adding new address
+  } else {
+    alert(res?.message || "Failed to save address");
+  }
+};
+
+// const handlePayment = async () => {
+//   if (!selectedAddress) {
+//     alert("Please select address");
+//     return;
+//   }
+
+//   const payload = {
+//     userId: user.id,
+//     addressId: selectedAddress,
+//     paymentMethod: paymentMethod, // upi | card | netbanking
+//     items: cartProducts.map((item) => ({
+//       productId: item.product_ID,
+//       quantity: item.quantity,
+//       price: item.discount_price,
+//     })),
+//     totalAmount: totalPrice,
+//   };
+
+//   const res = await placeOrder(payload);
+
+//   if (res?.success) {
+//     // redirect to payment gateway OR success page
+//     window.location.href = res.paymentUrl; 
+//   } else {
+//     alert(res.message || "Order failed");
+//   }
+// };
+
+
+const handlePayment = async () => {
+  if (!selectedAddress) {
+    alert("Please select address");
+    return;
+  }
+
+  const payload = {
+    user_ID: user.id,
+    address_ID: selectedAddress,
+    payment_method: paymentMethod, // upi | card | netbanking
+    items: cartProducts.map((item) => ({
+      product_ID: item.product_ID,
+      quantity: item.quantity,
+    })),
+    discount: 0,
+    shipping_charge: 0,
+  };
+
+  const res = await placeOrder(payload);
+
+  if (!res.success) {
+      alert(orderData.message || "Order failed");
+      return;
+    }
+
+    openRazorpay({ orderData });
+};
 
   return (
-    <section className="checkout-section">
+    <section className="checkout-section py-5">
       <div className="container">
-        <div className="row">
+        <div className="row g-4">
 
-          {/* LEFT */}
-          <div className="col-lg-7">
-            <div className="checkout-card">
+          {/* LEFT SIDE */}
+          <div className="col-lg-8">
 
-              <h4 className="section-title">Shipping Information</h4>
+            {/* ADDRESS SECTION */}
+            <div className="checkout-card mb-4">
+
+              <div className="d-flex justify-content-between align-items-center mb-3">
+                <h4>Delivery Address</h4>
+
+                <button
+                  className="btn btn-dark"
+                  onClick={() => setShowAddressForm(!showAddressForm)}
+                >
+                  + Add New Address
+                </button>
+              </div>
 
               {!user && (
-                <div className="login-alert">
+                <div className="alert alert-warning">
                   Already have an account? <Link href="/login">Login</Link>
                 </div>
               )}
 
-              <div className="form-grid">
-                <input name="name" placeholder="Full Name" value={form.name} onChange={handleChange} />
-                <input name="email" placeholder="Email Address" value={form.email} onChange={handleChange} />
-                <input name="phone" placeholder="Phone Number" value={form.phone} onChange={handleChange} />
-                <input name="city" placeholder="City" value={form.city} onChange={handleChange} />
+              {/* ADDRESS FORM */}
+              {showAddressForm && (
+                <div className="address-form">
+
+                  <div className="row">
+                    <div className="col-md-6 mb-3">
+                      <input
+                        type="text"
+                        name="fullName"
+                        placeholder="Full Name"
+                        className="form-control"
+                        value={addressForm.fullName}
+                        onChange={handleAddressChange}
+                      />
+                    </div>
+
+                    <div className="col-md-6 mb-3">
+                      <input
+                        type="text"
+                        name="phone"
+                        placeholder="Phone Number"
+                        className="form-control"
+                        value={addressForm.phone}
+                        onChange={handleAddressChange}
+                      />
+                    </div>
+
+                    {/* <div className="col-md-6 mb-3">
+                      <input
+                        type="text"
+                        name="whatsapp_number"
+                        placeholder="WhatsApp Number"
+                        className="form-control"
+                        value={addressForm.whatsapp_number}
+                        onChange={handleAddressChange}
+                      />
+                    </div> */}
+
+                    <div className="col-12 mb-3">
+                      <input
+                        type="text"
+                        name="addressLine1"
+                        placeholder="House No, Building Name"
+                        className="form-control"
+                        value={addressForm.addressLine1}
+                        onChange={handleAddressChange}
+                      />
+                    </div>
+
+                    {/* <div className="col-12 mb-3">
+                      <input
+                        type="text"
+                        name="addressLine2"
+                        placeholder="Road name, Area, Colony"
+                        className="form-control"
+                        value={addressForm.addressLine2}
+                        onChange={handleAddressChange}
+                      />
+                    </div> */}
+
+                    <div className="col-md-4 mb-3">
+                      <input
+                        type="text"
+                        name="city"
+                        placeholder="City"
+                        className="form-control"
+                        value={addressForm.city}
+                        onChange={handleAddressChange}
+                      />
+                    </div>
+
+                    <div className="col-md-4 mb-3">
+                      <input
+                        type="text"
+                        name="state"
+                        placeholder="State"
+                        className="form-control"
+                        value={addressForm.state}
+                        onChange={handleAddressChange}
+                      />
+                    </div>
+
+                    <div className="col-md-4 mb-3">
+                      <input
+                        type="text"
+                        name="country"
+                        placeholder="Country"
+                        className="form-control"
+                        value={addressForm.country}
+                        onChange={handleAddressChange}
+                      />
+                    </div>
+
+                    <div className="col-md-4 mb-3">
+                      <input
+                        type="text"
+                        name="pincode"
+                        placeholder="Pincode"
+                        className="form-control"
+                        value={addressForm.pincode}
+                        onChange={handleAddressChange}
+                      />
+                    </div>
+
+                  </div>
+
+                  <button
+                    className="btn btn-primary"
+                    onClick={handleSaveAddress}
+                  >
+                    Save Address
+                  </button>
+
+                </div>
+              )}
+
+              {/* SAVED ADDRESSES */}
+              <div className="saved-addresses mt-4">
+
+                {addresses.map((address) => (
+                  <div
+                    key={address.address_ID}
+                    className={`address-card ${
+                      selectedAddress === address.address_ID ? "active" : ""
+                    }`}
+                    onClick={() => setSelectedAddress(address.address_ID)}
+                  >
+                    <input
+                      type="radio"
+                      class ="form-check-input-checkout"
+                      checked={selectedAddress === address.address_ID}
+                      readOnly
+                    />
+
+                    <div>
+                      <h6>{address.fullname}</h6>
+
+                      <p>
+                        {address.address},
+                        {address.city},{" "}
+                        {address.state} - {address.pincode}
+                      </p>
+
+                      <span>{address.mobile}</span>
+                    </div>
+                  </div>
+                ))}
+
               </div>
 
-              <input
-                name="address"
-                placeholder="Full Address"
-                className="full-input"
-                value={form.address}
-                onChange={handleChange}
-              />
+            </div>
 
-              <input
-                name="pincode"
-                placeholder="Pincode"
-                className="full-input"
-                value={form.pincode}
-                onChange={handleChange}
-              />
+            {/* PAYMENT SECTION */}
+            <div className="checkout-card">
 
-              {/* PAYMENT */}
-              <h4 className="section-title mt-4">Payment Method</h4>
+              <h4 className="mb-3">Payment Method</h4>
 
               <div className="payment-options">
-                <label className={`payment-box ${paymentMethod === "razorpay" ? "active" : ""}`}>
-                  <input
-                    type="radio"
-                    value="razorpay"
-                    checked={paymentMethod === "razorpay"}
-                    onChange={(e) => setPaymentMethod(e.target.value)}
-                  />
-                  <span>UPI / Card / Net Banking</span>
-                </label>
 
-                <label className={`payment-box ${paymentMethod === "cod" ? "active" : ""}`}>
-                  <input
-                    type="radio"
-                    value="cod"
-                    checked={paymentMethod === "cod"}
-                    onChange={(e) => setPaymentMethod(e.target.value)}
-                  />
-                  <span>Cash on Delivery</span>
-                </label>
+                {["upi", "card", "cod"].map((method) => (
+                  <label
+                    key={method}
+                    className={`payment-box ${
+                      paymentMethod === method ? "active" : ""
+                    }`}
+                  >
+                    <input
+                      type="radio"
+                      value={method}
+                      checked={paymentMethod === method}
+                      onChange={(e) =>
+                        setPaymentMethod(e.target.value)
+                      }
+                    />
+
+                    <span>{method.toUpperCase()}</span>
+                  </label>
+                ))}
+
               </div>
 
-              <button className="place-order-btn" onClick={handlePayment}>
-                Place Order
+            </div>
+
+          </div>
+
+          {/* RIGHT SIDE */}
+          <div className="col-lg-4">
+
+            <div className="order-summary sticky-top">
+
+              <h4 className="mb-4">Order Summary</h4>
+
+              {cartProducts?.map((item, i) => (
+                <div key={i} className="summary-item">
+
+                  <Image
+                    src={item.mainimage || "/images/no-image.png"}
+                    width={60}
+                    height={60}
+                    alt="img"
+                  />
+
+                  <div>
+                    <p>{item.title}</p>
+
+                    <small>
+                      {item.quantity} × ₹{item.discount_price}
+                    </small>
+                  </div>
+
+                </div>
+              ))}
+
+              <hr />
+
+              <div className="d-flex justify-content-between mb-3">
+                <strong>Total</strong>
+                <strong>₹{totalPrice}</strong>
+              </div>
+
+              <button
+                className="place-order-btn"
+                onClick={handlePayment}
+              >
+                Proceed To Pay
               </button>
 
             </div>
-          </div>
 
-          {/* RIGHT */}
-          <div className="col-lg-5">
-            <div className="order-summary">
-
-              <h4 className="section-title">Order Summary</h4>
-
-              {cartProducts?.length > 0 ? (
-                cartProducts.map((item, i) => (
-                  <div key={i} className="summary-item">
-                    <Image
-                      src={item.imgSrc || "/images/no-image.png"}
-                      width={60}
-                      height={60}
-                      alt="img"
-                    />
-                    <div>
-                      <p className="item-title">{item.title}</p>
-                      <p className="item-meta">
-                        {item.quantity} × ₹{item.price}
-                      </p>
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <p className="empty-cart">Your cart is empty</p>
-              )}
-
-              <div className="summary-total">
-                <span>Total</span>
-                <span>₹{Number(totalPrice || 0)}</span>
-              </div>
-
-            </div>
           </div>
 
         </div>

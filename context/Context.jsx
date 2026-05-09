@@ -18,7 +18,8 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 export const useContextElement = () => useContext(dataContext);
 
 export default function Context({ children }) {
-  const { userId } = useAuth();
+  const { user } = useAuth();
+  const userId = user?.id;
 
   const [homebanner, sethomebanner] = useState([]);
   const [categorybanner, setcategorybanner] = useState([]);
@@ -32,6 +33,8 @@ export default function Context({ children }) {
   const [totalPrice, setTotalPrice] = useState(0);
   const [teamMembers, setteamMember] = useState([]);
   const [customerReview, setCustomerReview] = useState([]);
+  const [addresses, setAddresses] = useState([]);
+  const [selectedAddress, setSelectedAddress] = useState(null);
 
   // // console.log('user_Id.............................................',Number(localStorage.getItem("userId")))
   // useEffect(() => {
@@ -384,6 +387,9 @@ const addProductToCart = async (productId, qty = 1) => {
       });
   }, []);
 
+
+
+
    // reset cart + wishlist when user changes
 
   useEffect(() => {
@@ -391,6 +397,219 @@ const addProductToCart = async (productId, qty = 1) => {
     setWishList([]);
   }, [userId]);
 
+
+
+//   const getAddresses = async () => {
+//   try {
+//     if (!userId) return;
+
+//     const res = await fetch(
+//       `${API_URL}/api/address/list/${userId}`,
+//       // {
+//       //   headers: {
+//       //     Authorization: `Bearer ${localStorage.getItem("token")}`,
+//       //   },
+//       // }
+//     );
+
+//     const data = await res.json();
+
+//     if (data.success) {
+//       setAddresses(data.data);
+
+//       // auto select default address
+//       const defaultAddr = data.data.find(
+//         (a) => a.is_default === 1
+//       );
+
+//       if (defaultAddr) {
+//         setSelectedAddress(defaultAddr.address_ID);
+//       }
+//     }
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
+
+
+const getAddresses = async () => {
+  try {
+    // if (!userId) return;
+
+    const res = await fetch(`${API_URL}/api/address/list/${userId}`);
+    const data = await res.json();
+    console.log("Fetched addresses:.............................", data); 
+
+    if (data.success) {
+      const list = data.data || [];
+
+      
+
+      setAddresses(list);
+
+      // auto select default OR first
+  
+      const defaultAddr =
+        list.find((a) => a.is_default === 1) || list[0];
+
+      if (defaultAddr) {
+        setSelectedAddress(defaultAddr.address_ID);
+      } else {
+        setSelectedAddress(null);
+      }
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+
+// const saveAddress = async (addressForm) => {
+//   try {
+//     const res = await fetch(
+//       `${API_URL}/api/address/add`,
+//       {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json",
+//           Authorization: `Bearer ${localStorage.getItem("token")}`,
+//         },
+//         body: JSON.stringify(addressForm),
+//       }
+//     );
+
+//     const data = await res.json();
+
+//     if (data.success) {
+//       setAddresses((prev) => [...prev, data.data]);
+//       setSelectedAddress(data.data.address_ID);
+//     }
+
+//     return data;
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
+
+const saveAddress = async (addressForm) => {
+  try {
+    const res = await fetch(`${API_URL}/api/address/add`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify(addressForm),
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      //  ALWAYS REFRESH FROM SERVER
+      await getAddresses();
+    }
+
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+
+const placeOrder = async (payload) => {
+  try {
+    const res = await fetch(`${API_URL}/api/order/create`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify(payload),
+    });
+
+    return await res.json();
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+
+const openRazorpay = ({ orderData }) => {
+
+  const options = {
+    key: orderData.payment.key,
+
+    amount: orderData.payment.amount * 100,
+
+    currency: "INR",
+
+    order_id: orderData.payment.razorpay_order_id,
+
+    name: "HandandHost",
+
+    description: "Order Payment",
+
+    handler: async function (response) {
+
+      const verify = await fetch(
+        `${API_URL}/api/payment/verify`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+
+          body: JSON.stringify({
+            order_ID: orderData.order_ID,
+
+            razorpay_order_id:
+              response.razorpay_order_id,
+
+            razorpay_payment_id:
+              response.razorpay_payment_id,
+
+            razorpay_signature:
+              response.razorpay_signature,
+          }),
+        }
+      );
+
+      const result = await verify.json();
+
+      if (result.success) {
+
+        alert("Payment successful");
+
+        window.location.href =
+          `/order-success/${orderData.order_code}`;
+
+      } else {
+
+        alert("Payment verification failed");
+      }
+    },
+
+    prefill: {
+      name: orderData.user?.name,
+      email: orderData.user?.email,
+      contact: orderData.user?.phone_number,
+    },
+
+    theme: {
+      color: "#000000",
+    },
+  };
+
+  const rzp = new window.Razorpay(options);
+
+  rzp.open();
+};
+
+
+useEffect(() => {
+  console.log("userId changed:.............................", userId);
+  getAddresses();
+}, [userId]);
   /* ---------------- CONTEXT ---------------- */
   const contextElement = {
     homebanner,
@@ -424,7 +643,18 @@ const addProductToCart = async (productId, qty = 1) => {
 
     productreview,
     teamMembers,
-    customerReview
+    customerReview,
+
+
+    addresses,
+    setAddresses,
+    selectedAddress,
+    setSelectedAddress,
+    saveAddress,
+    getAddresses,
+
+    openRazorpay,
+    placeOrder,
   };
 
   return (

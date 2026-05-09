@@ -809,7 +809,7 @@ function LoginContent() {
         );
 
       if (res.data?.user?.id) {
-        login(res.data.user.id);
+        login(res.data.user);
       }
 
       setSuccess(true);
