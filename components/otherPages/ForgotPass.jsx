@@ -11,8 +11,7 @@ export default function ForgotPass() {
   const [success, setSuccess] = useState(false);
 
   const API_URL =
-    process.env.NEXT_PUBLIC_API_URL ||
-    "http://localhost:8000";
+    process.env.NEXT_PUBLIC_API_URL ;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
