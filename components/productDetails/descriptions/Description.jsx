@@ -71,10 +71,14 @@ export default function Description({ product }) {
           {product?.title}
         </div>
 
-        <p className="mb_12 text-secondary">
-          {product?.description ||
-            "Nodding to retro styles, this Hyperbola T-shirt is defined by its off-the-shoulder design."}
-        </p>
+        <p
+          className="mb_12 text-secondary"
+          dangerouslySetInnerHTML={{
+            __html:
+              product?.description ||
+              "Nodding to retro styles, this Hyperbola T-shirt is defined by its off-the-shoulder design.",
+          }}
+        />
       </div>
     </>
   );
