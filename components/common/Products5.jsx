@@ -7,6 +7,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 export default function Products5() {
   const { product } = useContextElement();
+  const productsList = Array.isArray(product) ? product : [];
+
+  if (productsList.length === 0) return null;
   return (
     <section className="flat-spacing">
       <div className="container">
@@ -32,7 +35,7 @@ export default function Products5() {
             el: ".spd6",
           }}
         >
-          {product.map((product, i) => (
+          {productsList.map((product, i) => (
             <SwiperSlide key={i} className="swiper-slide" >
               <ProductCard1 product={product} />
             </SwiperSlide>

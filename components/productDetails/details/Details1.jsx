@@ -11,24 +11,25 @@ import Image from "next/image";
 import ProductStikyBottom from "../ProductStikyBottom";
 import axios from "axios";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useCheckout } from "@/context/CheckoutContext";
+import { useAuth } from "@/context/AuthContext";
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export default function Details1({ product }) {
+  const { user } = useAuth();
+  const userId = user?.id;
+  const router = useRouter();
   const [activeColor, setActiveColor] = useState("gray");
   const [quantity, setQuantity] = useState(1);
   const [showPopup, setShowPopup] = useState(false);
+  const { setBuyNow } = useCheckout();
 
   const [productDetails, setProductDetails] = useState(null);
 
   const [isCartAdded, setIsCartAdded] = useState(false);
   const [isWishlisted, setIsWishlisted] = useState(false);
-
-  const API_URL =
-    process.env.NEXT_PUBLIC_API_URL;
-
-  const userId =
-  typeof window !== "undefined"
-    ? Number(localStorage.getItem("userId"))
-    : null;
 
   /* ======================================
       GET PRODUCT DETAILS
@@ -169,10 +170,39 @@ const syncFromResponse = (updatedProduct) => {
     }
   };
 
+  // const buyNow = () => {
+
+  //   if (!userId) {
+
+  //     router.push(
+  //       "/login?from=/checkout"
+  //     );
+
+  //     return;
+  //   }
+
+  //   router.push("/checkout");
+  // };
+
+
   const buyNow = () => {
-    if (!checkLogin()) return;
-    window.location.href = "/checkout";
-  };
+    console.log('useridbuynow...............................',userId);
+  if (!userId) {
+    router.push("/login?from=/checkout");
+    return;
+  }
+
+  setBuyNow({
+    id: data.id,
+    title: data.title,
+    price: data.price,
+    discount_price: data.discount_price,
+    quantity: quantity,
+    mainimage: data.mainimage,
+  });
+
+  router.push("/checkout");
+ };
 
   const data = productDetails || product;
 

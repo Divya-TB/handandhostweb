@@ -21102,6 +21102,20 @@ input {
     height: 100%;
     object-fit: contain;
 }
+.checkout-radio{
+  width: 15px;
+}
+.description ul {
+  list-style: disc;
+  padding-left: 18px;
+  margin-top: 5px;
+}
+
+.description li {
+  margin-left: 15px;
+  list-style: disc;
+}
+
 /*  hide arrows on mobile */
 @media (max-width: 767px) {
   .desktop-nav {

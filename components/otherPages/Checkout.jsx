@@ -1,419 +1,234 @@
 "use client";
+
 import Script from "next/script";
-import { useContextElement } from "@/context/Context";
-import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import { useCheckout } from "@/context/CheckoutContext";
+import { useAuth } from "@/context/AuthContext";
+import { useContextElement } from "@/context/Context";
+
 export default function Checkout() {
+  const { user } = useAuth();
+  const { cartProducts, totalPrice, placeOrder, openRazorpay } =
+    useContextElement();
 
   const {
-    cartProducts,
-    totalPrice,
+    checkoutMode,
+    checkoutItems,
     addresses,
     selectedAddress,
     setSelectedAddress,
     saveAddress,
-    placeOrder,
-    openRazorpay,
-    } = useContextElement();
+    getAddresses,
+  } = useCheckout();
+  console.log('checkoutmode............................', checkoutMode);
+ const items = checkoutItems?.length
+  ? checkoutItems
+  : cartProducts;
 
+  /* ---------------- LOAD ADDRESSES ---------------- */
+  useEffect(() => {
+    if (user) getAddresses();
+  }, [user]);
 
-    console.log("Cart Products:..................................", cartProducts);
+  /* ---------------- ADDRESS FORM ---------------- */
+  const [showForm, setShowForm] = useState(false);
 
- 
-  const { user } = useAuth();
-
-  // const [paymentMethod, setPaymentMethod] = useState("upi");
-
-  const [showAddressForm, setShowAddressForm] = useState(false);
-
-  const [addressForm, setAddressForm] = useState({
+  const [form, setForm] = useState({
     fullName: "",
     phone: "",
     addressLine1: "",
-    // addressLine2: "",
     city: "",
     state: "",
+    country: "",
     pincode: "",
-    landmark: "",
   });
-
 
   useEffect(() => {
     if (user) {
-      setAddressForm((prev) => ({
-        ...prev,
+      setForm((p) => ({
+        ...p,
         fullName: user.name || "",
         phone: user.phone_number || "",
       }));
     }
   }, [user]);
 
-  const handleAddressChange = (e) => {
-    setAddressForm({
-      ...addressForm,
-      [e.target.name]: e.target.value,
-    });
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSaveAddress = async () => {
-  const payload = {
-    user_ID: user.id,
-    fullname: addressForm.fullName,
-    mobile: addressForm.phone,
-    address:
-      addressForm.addressLine1,
-    //   " " +
-    //   addressForm.addressLine2,
-    city: addressForm.city,
-    state: addressForm.state,
-    pincode: addressForm.pincode,
-    country: addressForm.country,
-    is_default: addresses.length === 0 ? 1 : 0,
+    const payload = {
+      user_ID: user.id,
+      fullname: form.fullName,
+      mobile: form.phone,
+      address: form.addressLine1,
+      city: form.city,
+      state: form.state,
+      pincode: form.pincode,
+      country: form.country,
+      is_default: addresses.length === 0 ? 1 : 0,
+    };
+
+    const res = await saveAddress(payload);
+
+    if (res?.success) setShowForm(false);
+    else alert(res?.message);
   };
 
-  const res = await saveAddress(payload);
+  /* ---------------- PAYMENT ---------------- */
+  const handlePayment = async () => {
+    if (!selectedAddress) {
+      alert("Select address");
+      return;
+    }
 
-  if (res?.success) {
-    setShowAddressForm(false);
-    // await getAddresses(); // refresh address list after adding new address
-  } else {
-    alert(res?.message || "Failed to save address");
-  }
-};
+    const payload = {
+      user_ID: user.id,
+      address_ID: selectedAddress,
+      items: items.map((i) => ({
+        product_ID: i.product_ID || i.id || i.productid,
+        quantity: i.quantity || 1,
+      })),
+      discount: 0,
+      shipping_charge: 0,
+    };
 
-// const handlePayment = async () => {
-//   if (!selectedAddress) {
-//     alert("Please select address");
-//     return;
-//   }
+    const res = await placeOrder(payload);
 
-//   const payload = {
-//     userId: user.id,
-//     addressId: selectedAddress,
-//     paymentMethod: paymentMethod, // upi | card | netbanking
-//     items: cartProducts.map((item) => ({
-//       productId: item.product_ID,
-//       quantity: item.quantity,
-//       price: item.discount_price,
-//     })),
-//     totalAmount: totalPrice,
-//   };
+    if (!res.success) {
+      alert(res.message);
+      return;
+    }
 
-//   const res = await placeOrder(payload);
-
-//   if (res?.success) {
-//     // redirect to payment gateway OR success page
-//     window.location.href = res.paymentUrl; 
-//   } else {
-//     alert(res.message || "Order failed");
-//   }
-// };
-
-
-const handlePayment = async () => {
-  if (!selectedAddress) {
-    alert("Please select address");
-    return;
-  }
-
-  const payload = {
-    user_ID: user.id,
-    address_ID: selectedAddress,
-    items: cartProducts.map((item) => ({
-      product_ID:
-        item.product_ID ||
-        item.productId ||
-        item.id,
-      quantity: item.quantity,
-    })),
-    discount: 0,
-    shipping_charge: 0,
+    openRazorpay(res.payment);
   };
-
-  console.log("Order Payload:", payload);
-
-  const res = await placeOrder(payload);
-
-  if (!res.success) {
-    alert(res.message || "Order failed");
-    return;
-  }
-
-  openRazorpay(res.payment);
-};
 
   return (
     <>
+      <Script
+        src="https://checkout.razorpay.com/v1/checkout.js"
+        strategy="lazyOnload"
+      />
 
-    <Script
-      src="https://checkout.razorpay.com/v1/checkout.js"
-      strategy="lazyOnload"
-    />
-    <section className="checkout-section py-5">
-      <div className="container">
-        <div className="row g-4">
+      <section className="checkout-section py-5">
+        <div className="container">
+          <div className="row g-4">
 
-          {/* LEFT SIDE */}
-          <div className="col-lg-8">
+            {/* LEFT */}
+            <div className="col-lg-8">
 
-            {/* ADDRESS SECTION */}
-            <div className="checkout-card mb-4">
-
-              <div className="d-flex justify-content-between align-items-center mb-3">
-                <h4>Delivery Address</h4>
-
-                <button
-                  className="btn btn-dark"
-                  onClick={() => setShowAddressForm(!showAddressForm)}
-                >
-                  + Add New Address
-                </button>
-              </div>
-
-              {!user && (
-                <div className="alert alert-warning">
-                  Already have an account? <Link href="/login">Login</Link>
-                </div>
-              )}
-
-              {/* ADDRESS FORM */}
-              {showAddressForm && (
-                <div className="address-form">
-
-                  <div className="row">
-                    <div className="col-md-6 mb-3">
-                      <input
-                        type="text"
-                        name="fullName"
-                        placeholder="Full Name"
-                        className="form-control"
-                        value={addressForm.fullName}
-                        onChange={handleAddressChange}
-                      />
-                    </div>
-
-                    <div className="col-md-6 mb-3">
-                      <input
-                        type="text"
-                        name="phone"
-                        placeholder="Phone Number"
-                        className="form-control"
-                        value={addressForm.phone}
-                        onChange={handleAddressChange}
-                      />
-                    </div>
-
-                    {/* <div className="col-md-6 mb-3">
-                      <input
-                        type="text"
-                        name="whatsapp_number"
-                        placeholder="WhatsApp Number"
-                        className="form-control"
-                        value={addressForm.whatsapp_number}
-                        onChange={handleAddressChange}
-                      />
-                    </div> */}
-
-                    <div className="col-12 mb-3">
-                      <input
-                        type="text"
-                        name="addressLine1"
-                        placeholder="House No, Building Name"
-                        className="form-control"
-                        value={addressForm.addressLine1}
-                        onChange={handleAddressChange}
-                      />
-                    </div>
-
-                    {/* <div className="col-12 mb-3">
-                      <input
-                        type="text"
-                        name="addressLine2"
-                        placeholder="Road name, Area, Colony"
-                        className="form-control"
-                        value={addressForm.addressLine2}
-                        onChange={handleAddressChange}
-                      />
-                    </div> */}
-
-                    <div className="col-md-4 mb-3">
-                      <input
-                        type="text"
-                        name="city"
-                        placeholder="City"
-                        className="form-control"
-                        value={addressForm.city}
-                        onChange={handleAddressChange}
-                      />
-                    </div>
-
-                    <div className="col-md-4 mb-3">
-                      <input
-                        type="text"
-                        name="state"
-                        placeholder="State"
-                        className="form-control"
-                        value={addressForm.state}
-                        onChange={handleAddressChange}
-                      />
-                    </div>
-
-                    <div className="col-md-4 mb-3">
-                      <input
-                        type="text"
-                        name="country"
-                        placeholder="Country"
-                        className="form-control"
-                        value={addressForm.country}
-                        onChange={handleAddressChange}
-                      />
-                    </div>
-
-                    <div className="col-md-4 mb-3">
-                      <input
-                        type="text"
-                        name="pincode"
-                        placeholder="Pincode"
-                        className="form-control"
-                        value={addressForm.pincode}
-                        onChange={handleAddressChange}
-                      />
-                    </div>
-
-                  </div>
+              {/* ADDRESS */}
+              <div className="checkout-card mb-4">
+                <div className="d-flex justify-content-between mb-3">
+                  <h4>Delivery Address</h4>
 
                   <button
-                    className="btn btn-primary"
-                    onClick={handleSaveAddress}
+                    className="btn btn-dark"
+                    onClick={() => setShowForm(!showForm)}
                   >
-                    Save Address
+                    + Add Address
                   </button>
-
                 </div>
-              )}
 
-              {/* SAVED ADDRESSES */}
-              <div className="saved-addresses mt-4">
+                {!user && (
+                  <div className="alert alert-warning">
+                    <Link href="/login">Login</Link>
+                  </div>
+                )}
 
-                {addresses.map((address) => (
+                {/* FORM */}
+                {showForm && (
+                  <div className="address-form">
+                    <div className="row">
+                      {Object.keys(form).map((key) => (
+                        <div className="col-md-6 mb-3" key={key}>
+                          <input
+                            name={key}
+                            value={form[key]}
+                            onChange={handleChange}
+                            className="form-control"
+                            placeholder={key}
+                          />
+                        </div>
+                      ))}
+                    </div>
+
+                    <button
+                      className="btn btn-primary"
+                      onClick={handleSaveAddress}
+                    >
+                      Save
+                    </button>
+                  </div>
+                )}
+
+                {/* ADDRESS LIST */}
+                {addresses.map((a) => (
                   <div
-                    key={address.address_ID}
+                    key={a.address_ID}
                     className={`address-card ${
-                      selectedAddress === address.address_ID ? "active" : ""
+                      selectedAddress === a.address_ID ? "active" : ""
                     }`}
-                    onClick={() => setSelectedAddress(address.address_ID)}
+                    onClick={() => setSelectedAddress(a.address_ID)}
                   >
-                    <input
-                      type="radio"
-                      className ="form-check-input-checkout"
-                      checked={selectedAddress === address.address_ID}
-                      readOnly
+                    <input className= "checkout-radio" type="radio" checked={selectedAddress === a.address_ID} readOnly />
+                    <div>
+                      <h6>{a.fullname}</h6>
+                      <p>
+                        {a.address}, {a.city}, {a.state}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* RIGHT */}
+            <div className="col-lg-4">
+              <div className="order-summary sticky-top">
+                <h4>Order Summary</h4>
+
+                {items.map((item, i) => (
+                  <div key={i} className="summary-item">
+                    <Image
+                      src={item.mainimage || "/no-image.png"}
+                      width={60}
+                      height={60}
+                      alt="img"
                     />
 
                     <div>
-                      <h6>{address.fullname}</h6>
-
-                      <p>
-                        {address.address},
-                        {address.city},{" "}
-                        {address.state} - {address.pincode}
-                      </p>
-
-                      <span>{address.mobile}</span>
+                      <p>{item.title}</p>
+                      <small>
+                        {item.quantity} × ₹{item.discount_price}
+                      </small>
                     </div>
                   </div>
                 ))}
 
-              </div>
+                <hr />
 
-            </div>
-
-            {/* PAYMENT SECTION */}
-            {/* <div className="checkout-card">
-
-              <h4 className="mb-3">Payment Method</h4>
-
-              <div className="payment-options">
-
-                {["upi", "card", "netbanking"].map((method) => (
-                  <label
-                    key={method}
-                    className={`payment-box ${
-                      paymentMethod === method ? "active" : ""
-                    }`}
-                  >
-                    <input
-                      type="radio"
-                      value={method}
-                      checked={paymentMethod === method}
-                      onChange={(e) =>
-                        setPaymentMethod(e.target.value)
-                      }
-                    />
-
-                    <span>{method.toUpperCase()}</span>
-                  </label>
-                ))}
-
-              </div>
-
-            </div> */}
-
-          </div>
-
-          {/* RIGHT SIDE */}
-          <div className="col-lg-4">
-
-            <div className="order-summary sticky-top">
-
-              <h4 className="mb-4">Order Summary</h4>
-              
-
-              {cartProducts?.map((item, i) => (
-                <div key={i} className="summary-item">
-
-                  <Image
-                    src={item.mainimage || "/images/no-image.png"}
-                    width={60}
-                    height={60}
-                    alt="img"
-                  />
-
-                  <div>
-                    <p>{item.title}</p>
-
-                    <small>
-                      {item.quantity} × ₹{item.discount_price}
-                    </small>
-                  </div>
-
+                <div className="d-flex justify-content-between">
+                  <strong>Total</strong>
+                  <strong>₹{totalPrice}</strong>
                 </div>
-              ))}
 
-              <hr />
-
-              <div className="d-flex justify-content-between mb-3">
-                <strong>Total</strong>
-                <strong>₹{totalPrice}</strong>
+                <button
+                  className="place-order-btn"
+                  onClick={handlePayment}
+                >
+                  Proceed To Pay
+                </button>
               </div>
-
-              <button
-                className="place-order-btn"
-                onClick={handlePayment}
-              >
-                Proceed To Pay
-              </button>
-
             </div>
 
           </div>
-
         </div>
-      </div>
-    </section>
+      </section>
     </>
   );
 }

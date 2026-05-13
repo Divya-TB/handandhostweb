@@ -23,6 +23,7 @@ import Categories from "@/components/modals/Categories";
 import RtlToggler from "@/components/common/RtlToggler";
 import AccountSidebar from "@/components/modals/AccountSidebar";
 import {AuthProvider} from "@/context/AuthContext"; 
+import CheckoutProvider from "@/context/CheckoutContext";
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
@@ -124,12 +125,18 @@ export default function RootLayout({ children }) {
     });
     wow.init();
   }, [pathname]);
-  return (
-    <html lang="en">
-      <body className="preload-wrapper popup-loader">
-        <AuthProvider>
-          <Context>
+ return (
+  <html lang="en">
+    <body className="preload-wrapper popup-loader">
+
+      <AuthProvider>
+
+        <Context>
+
+          <CheckoutProvider>   {/* 🔥 ADD THIS */}
+
             <RtlToggler />
+
             <div id="wrapper">{children}</div>
 
             <CartModal />
@@ -144,10 +151,14 @@ export default function RootLayout({ children }) {
             <DemoModal />
             <Categories />
             <AccountSidebar />
-          </Context>
-        </AuthProvider> 
-        
-      </body>
-    </html>
-  );
+
+          </CheckoutProvider>
+
+        </Context>
+
+      </AuthProvider>
+
+    </body>
+  </html>
+);
 }

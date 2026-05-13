@@ -33,8 +33,7 @@ export default function Context({ children }) {
   const [totalPrice, setTotalPrice] = useState(0);
   const [teamMembers, setteamMember] = useState([]);
   const [customerReview, setCustomerReview] = useState([]);
-  const [addresses, setAddresses] = useState([]);
-  const [selectedAddress, setSelectedAddress] = useState(null);
+
 
   // // console.log('user_Id.............................................',Number(localStorage.getItem("userId")))
   // useEffect(() => {
@@ -399,93 +398,6 @@ const addProductToCart = async (productId, qty = 1) => {
 
 
 
-//   const getAddresses = async () => {
-//   try {
-//     if (!userId) return;
-
-//     const res = await fetch(
-//       `${API_URL}/api/address/list/${userId}`,
-//       // {
-//       //   headers: {
-//       //     Authorization: `Bearer ${localStorage.getItem("token")}`,
-//       //   },
-//       // }
-//     );
-
-//     const data = await res.json();
-
-//     if (data.success) {
-//       setAddresses(data.data);
-
-//       // auto select default address
-//       const defaultAddr = data.data.find(
-//         (a) => a.is_default === 1
-//       );
-
-//       if (defaultAddr) {
-//         setSelectedAddress(defaultAddr.address_ID);
-//       }
-//     }
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-
-
-const getAddresses = async () => {
-  try {
-    if (!userId) return;
-
-    console.log('userid...................................',userId);
-    const res = await fetch(`${API_URL}/api/address/list/${userId}`);
-    const data = await res.json();
-    console.log("Fetched addresses:.............................", data); 
-
-    if (data.success) {
-      const list = data.data || [];
-
-      setAddresses(list);
-
-      // auto select default OR first
-  
-      const defaultAddr =
-        list.find((a) => a.is_default === 1) || list[0];
-
-      if (defaultAddr) {
-        setSelectedAddress(defaultAddr.address_ID);
-      } else {
-        setSelectedAddress(null);
-      }
-    }
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-const saveAddress = async (addressForm) => {
-  try {
-    const res = await fetch(`${API_URL}/api/address/add`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-      body: JSON.stringify(addressForm),
-    });
-
-    const data = await res.json();
-
-    if (data.success) {
-      //  ALWAYS REFRESH FROM SERVER
-      await getAddresses();
-    }
-
-    return data;
-  } catch (err) {
-    console.log(err);
-  }
-};
-
 
 const placeOrder = async (payload) => {
   try {
@@ -689,10 +601,6 @@ const openRazorpay = async (paymentData) => {
 };
 
 
-useEffect(() => {
-  console.log("userId changed:.............................", userId);
-  getAddresses();
-}, [userId]);
   /* ---------------- CONTEXT ---------------- */
   const contextElement = {
     homebanner,
@@ -727,14 +635,6 @@ useEffect(() => {
     productreview,
     teamMembers,
     customerReview,
-
-
-    addresses,
-    setAddresses,
-    selectedAddress,
-    setSelectedAddress,
-    saveAddress,
-    getAddresses,
 
     openRazorpay,
     placeOrder,

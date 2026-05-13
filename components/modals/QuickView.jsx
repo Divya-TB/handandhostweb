@@ -6,7 +6,17 @@ import ColorSelect from "../productDetails/ColorSelect";
 import Grid5 from "../productDetails/grids/Grid5";
 import { useContextElement } from "@/context/Context";
 import QuantitySelect from "../productDetails/QuantitySelect";
+import DOMPurify from "dompurify";
+import { useRouter } from "next/navigation";
+import { useCheckout } from "@/context/CheckoutContext";
+import { useAuth } from "@/context/AuthContext";
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+
 export default function QuickView() {
+  const { user } = useAuth();
+  const userId = user?.id;
   const [activeColor, setActiveColor] = useState("gray");
   const [quantity, setQuantity] = useState(1); // Initial quantity is 1
   const {
@@ -20,6 +30,9 @@ export default function QuickView() {
     cartProducts,
     updateQuantity,
   } = useContextElement();
+
+  const router = useRouter();
+  const { setBuyNow } = useCheckout();
 
   const discountPercentage =
   quickViewItem?.price && quickViewItem?.discount_price
@@ -47,6 +60,26 @@ export default function QuickView() {
     alt: quickViewItem?.title,
     zoom: img.image,
   })) || [];
+
+  const handleBuyNow = () => {
+    if (!quickViewItem?.id) return;
+
+    if (!userId) {
+      router.push("/login?from=/checkout");
+      return;
+    }
+
+    setBuyNow({
+      product_ID: quickViewItem.id,
+      title: quickViewItem.title,
+      price: quickViewItem.price,
+      discount_price: quickViewItem.discount_price,
+      quantity: quantity,
+      mainimage: quickViewItem.mainimage,
+    });
+
+    router.push("/checkout");
+  };
 
   const openModalSizeChoice = () => {
     const bootstrap = require("bootstrap"); // dynamically import bootstrap
@@ -122,13 +155,13 @@ export default function QuickView() {
                 <div className="tf-product-info-desc">
                   <div className="tf-product-info-price">
                     <h5 className="price-on-sale font-2">
-                      Rs{quickViewItem?.discount_price}
+                      ₹{quickViewItem?.discount_price}
                     </h5>
                     {quickViewItem?.price ? (
                       <>
                         <div className="compare-at-price font-2">
                           {" "}
-                          Rs{quickViewItem?.price}
+                          ₹{quickViewItem?.price}
                         </div>
                         <div className="badges-on-sale text-btn-uppercase">
                           -{discountPercentage}%
@@ -138,9 +171,12 @@ export default function QuickView() {
                       ""
                     )}
                   </div>
-                  <p>
-                    {quickViewItem?.description}
-                  </p>
+                 <div
+                    className="description"
+                    dangerouslySetInnerHTML={{
+                      __html: quickViewItem?.description,
+                    }}
+                  />
                   <div className="tf-product-info-liveview">
                     <i className="icon icon-eye" />
                     <p className="text-caption-1">
@@ -188,11 +224,11 @@ export default function QuickView() {
                           ? "Already Added - "
                           : "Add to cart - "}
                       </span>
-                      <span className="tf-qty-price total-price">
-                        Rs
+                      <span className="tf-qty-price total-price ms-1">
+                        ₹
                         {isAddedToCartProducts(quickViewItem?.id)
                           ? (
-                              (quickViewItem?.price ?? 0) *
+                              (quickViewItem?.discount_price ?? quickViewItem?.price ?? 0) *
                               (cartProducts.find((elm) => elm.id == quickViewItem?.id)?.quantity ?? 1)
                             )
                           : (
@@ -215,7 +251,7 @@ export default function QuickView() {
                           : "Compare"}
                       </span>
                     </a> */}
-                    <a
+                    {/* <a
                       onClick={() => addToWishlist(quickViewItem?.id)}
                       className="box-icon hover-tooltip text-caption-2 wishlist btn-icon-action"
                     >
@@ -225,9 +261,13 @@ export default function QuickView() {
                           ? "Already Wishlished"
                           : "Wishlist"}
                       </span>
-                    </a>
+                    </a> */}
                   </div>
-                  <a href="#" className="btn-style-3 text-btn-uppercase">
+                 <a
+                    onClick={handleBuyNow}
+                    className="btn-style-3 text-btn-uppercase"
+                    style={{ cursor: "pointer" }}
+                  >
                     Buy it now
                   </a>
                 </div>
