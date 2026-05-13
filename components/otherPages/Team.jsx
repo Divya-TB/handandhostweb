@@ -108,7 +108,7 @@ export default function Team() {
           {teamMembers?.map((member, index) => (
             <div
               key={index}
-              className="col-12 col-md-6 col-lg-4"
+              className="col-8 col-md-6 col-lg-3"
             >
               <div className="team-item hover-image wow fadeInUp text-center">
 
@@ -122,7 +122,7 @@ export default function Team() {
                   />
                 </div>
 
-                <div className="content mt-3">
+                <div className="content mt-1 ">
                   <h6 className="name">
                     {member.name}
                   </h6>

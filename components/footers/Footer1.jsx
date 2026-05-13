@@ -123,7 +123,7 @@ export default function Footer1({
   <li>
     <i className="icon-mail" />
     <p>
-      <a href="mailto:support@handandhost.com">
+      <a href="mailto:support@handandhost.com" className="contact-link">
         support@handandhost.com
       </a>
     </p>
@@ -132,7 +132,7 @@ export default function Footer1({
   <li>
     <i className="icon-phone" />
     <p>
-      <a href="tel:+918921254349" >
+      <a href="tel:+918921254349" className="contact-link">
         +91 8921254349
       </a>
     </p>

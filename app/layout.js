@@ -20,10 +20,12 @@ import SizeGuide from "@/components/modals/SizeGuide";
 import Wishlist from "@/components/modals/Wishlist";
 import DemoModal from "@/components/modals/DemoModal";
 import Categories from "@/components/modals/Categories";
-import RtlToggler from "@/components/common/RtlToggler";
+// import RtlToggler from "@/components/common/RtlToggler";
 import AccountSidebar from "@/components/modals/AccountSidebar";
 import {AuthProvider} from "@/context/AuthContext"; 
 import CheckoutProvider from "@/context/CheckoutContext";
+import {MessageProvider} from "@/context/MessageContext";
+import { AccountProvider } from "@/context/AccountContext";
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
@@ -130,12 +132,15 @@ export default function RootLayout({ children }) {
     <body className="preload-wrapper popup-loader">
 
       <AuthProvider>
+        <AccountProvider>
 
         <Context>
 
-          <CheckoutProvider>   {/* 🔥 ADD THIS */}
+          <CheckoutProvider>   
 
-            <RtlToggler />
+            <MessageProvider>
+
+            {/* <RtlToggler /> */}
 
             <div id="wrapper">{children}</div>
 
@@ -152,9 +157,13 @@ export default function RootLayout({ children }) {
             <Categories />
             <AccountSidebar />
 
+            </MessageProvider>
+
           </CheckoutProvider>
 
         </Context>
+
+        </AccountProvider>
 
       </AuthProvider>
 

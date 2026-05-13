@@ -306,14 +306,14 @@ const syncFromResponse = (updatedProduct) => {
                                 : "Add to cart -"}
                             </span>
 
-                            <span className="tf-qty-price total-price">
-                              Rs
+                            <span className="tf-qty-price total-price ms-1">
+                              ₹
                               {(Number(data.discount_price || data.price) * quantity).toFixed(2)}
                             </span>
                           </a>
 
                           {/* WISHLIST */}
-                          <a
+                          {/* <a
                             onClick={toggleWishlist}
                             className="box-icon hover-tooltip text-caption-2 wishlist btn-icon-action"
                             style={{ cursor: "pointer" }}
@@ -325,7 +325,7 @@ const syncFromResponse = (updatedProduct) => {
                                 transition: "0.3s",
                               }}
                             />
-                          </a>
+                          </a> */}
 
                         </div>
 

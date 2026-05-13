@@ -3,38 +3,41 @@
 import { useEffect, useState } from "react";
 
 const sectionIds = [
-  "Privacy Policy",
-  "Information We Collect",
-  "How We Use Your Information",
-  "Payment Security",
-  "Sharing Your Information",
-  "Data Protection",
-  "Cookies",
-  "Your Rights",
-  "Third-Party Links",
-  "Changes to This Policy",
+  "General",
+  "Products & Information",
+  "Orders & Acceptance",
+  "Pricing & Payments",
+  "Shipping",
+  "Returns & Refunds",
+  "User Responsibilities",
+  "Intellectual Property",
+  "Limitation of Liability",
+  "Indemnification",
+  "Governing Law",
   "Contact Us"
 ];
 const sections = [
-  { id: 1, text: "Privacy Policy", scroll: "Privacy Policy" },
-  { id: 2, text: "Information We Collect", scroll: "Information We Collect" },
+  // { id: 1, text: "Terms & Conditions", scroll: "Terms & Conditions" },
+  { id: 1, text: "General", scroll: "General" },
+  {
+    id: 2,
+    text: "Products & Information",
+    scroll: "Products & Information",
+  },
   {
     id: 3,
-    text: "How We Use Your Information",
-    scroll: "How We Use Your Information",
+    text: "Orders & Acceptance",
+    scroll: "Orders & Acceptance",
   },
-  {
-    id: 4,
-    text: "Payment Security",
-    scroll: "Payment Security",
-  },
-  { id: 5, text: "Sharing Your Information", scroll: "Sharing Your Information" },
-   {id: 6, text: "Data Protection", scroll: "Data Protection" },
-   {id: 7, text: "Cookies", scroll: "Cookies" },
-   {id: 8, text: "Your Rights", scroll: "Your Rights" },
-   {id: 9, text: "Third-Party Links", scroll: "Third-Party Links" },
-   {id: 10, text: "Changes to This Policy", scroll: "Changes to This Policy" },
-   {id: 11, text: "Contact Us", scroll: "Contact Us" },
+  { id: 4, text: "Pricing & Payments", scroll: "Pricing & Payments" },
+   {id: 5, text: "Shipping", scroll: "Shipping" },
+   {id: 6, text: "Returns & Refunds", scroll: "Returns & Refunds" },
+   {id: 7, text: "User Responsibilities", scroll: "User Responsibilities" },
+   {id: 8, text: "Intellectual Property", scroll: "Intellectual Property" },
+   {id: 9, text: "Limitation of Liability", scroll: "Limitation of Liability" },
+   {id: 10, text: "Indemnification", scroll: "Indemnification" },
+   {id: 11, text: "Governing Law", scroll: "Governing Law" },
+   {id: 12, text: "Contact Us", scroll: "Contact Us" },
 ];
 
 export default function Terms() {
@@ -94,31 +97,34 @@ export default function Terms() {
             ))}
           </div>
           <div className="right">
-            <h4 className="heading">Privacy Policy</h4>
-            <div className="terms-of-use-item item-scroll-target" id="Privacy Policy">
-              <h5 className="terms-of-use-title">1. Policy</h5>
-              <div className="terms-of-use-content">
-                <p>
-                  At Hand & Host, your privacy is extremely important to us. This Privacy Policy explains how we collect, use, 
-                  and protect your personal information when you visit or make a purchase from our website.
-                </p>
-                <p>
+            {/* <h4 className="heading">Terms & Conditions</h4> */}
+            <div className="terms-of-use-item item-scroll-target" id="Terms & Conditions">
+              {/* <h5 className="terms-of-use-title">1. Terms & Conditions</h5> */}
+              <div className="terms-of-use-content" >
+                <p style={{ textAlign: "center" }}>
+  Welcome to Hand &amp; Host. By accessing or using our website,
+  you agree to be bound by the following Terms &amp; Conditions.
+  Please read them carefully before using our services.
+</p>
+                {/* <p>
                   By using our website, you agree to the practices described in this policy.
-                </p>
+                </p> */}
               </div>
             </div>
             <div
                 className="terms-of-use-item item-scroll-target"
-                id="Information We Collect"
+                id="General"
               >
-                <h5 className="terms-of-use-title">2. Information We Collect</h5>
+                <h5 className="terms-of-use-title">1. General</h5>
 
                 <div className="terms-of-use-content">
                   <p>
-                    When you interact with our website, we may collect the following types of information:
+                    These Terms & Conditions govern your use of our website and services. By placing an order, you confirm that you are at least 18 years of age or are using the website under the supervision of a parent or legal guardian.
                   </p>
 
-                  <ul className="policy-ul">
+                  <p>We reserve the right to update or modify these terms at any time without prior notice.</p>
+
+                  {/* <ul className="policy-ul">
                     <li>
                       <strong>Personal Information:</strong> Name, phone number, email address, shipping and billing address
                     </li>
@@ -130,44 +136,40 @@ export default function Terms() {
                     <li>
                       <strong>Technical Information:</strong> IP address, browser type, device information, and website usage data
                     </li>
-                  </ul>
+                  </ul> */}
                 </div>
               </div>
             <div
               className="terms-of-use-item item-scroll-target"
-              id="How We Use Your Information"
+              id="Products & Information"
             >
-              <h5 className="terms-of-use-title">3. How We Use Your Information</h5>
+              <h5 className="terms-of-use-title">2. Products & Information</h5>
               <div className="terms-of-use-content">
                 <p>
-                  We use your information to:
+                  We strive to ensure that all product descriptions, images, and information are accurate. However:
                 </p>
 
                 <ul className="policy-ul">
-                  <li>Process and deliver your orders</li>
-                  <li>Communicate with you regarding orders, updates, or support</li>
-                  <li>Improve our products, services, and user experience</li>
-                  <li>
-                    Send promotional offers or updates (only if you opt-in)
-                  </li>
-                  <li>
-                    Prevent fraudulent transactions and ensure website security
-                  </li>
+                  <li>Minor variations in color, taste, or appearance may occur.</li>
+                  <li>Product results may vary from person to person.</li>
+                  <li>Information provided is for general purposes and should not be considered medical advice.</li>
                 </ul>
               </div>
             </div>
             <div
               className="terms-of-use-item item-scroll-target"
-              id="Payment Security"
+              id="Orders & Acceptance"
             >
               <h5 className="terms-of-use-title">
-                4. Payment Security
+                3. Orders & Acceptance
               </h5>
               <div className="terms-of-use-content">
-                <p>
-                  We do not store your payment details such as card numbers or CVV.
-                  All payments are processed securely through trusted third-party payment gateways that follow industry-standard security protocols.
-                </p>
+                <ul className="policy-ul">
+                     <li>	All orders are subject to availability and acceptance.</li>
+                  <li>We reserve the right to cancel or refuse any order at our discretion.</li>
+                  <li>In case of cancellation, you will be notified and refunded (if applicable).</li>
+                </ul>
+               
                 {/* <p>
                   In malesuada neque quis libero laoreet posuere. In consequat
                   vitae ligula quis rutrum. Morbi dolor orci, maximus a pulvinar
@@ -185,91 +187,112 @@ export default function Terms() {
                 </p> */}
               </div>
             </div>
-            <div className="terms-of-use-item item-scroll-target" id="Sharing Your Information">
-              <h5 className="terms-of-use-title">5. Sharing Your Information</h5>
+            <div className="terms-of-use-item item-scroll-target" id="Pricing & Payments">
+              <h5 className="terms-of-use-title">4. Pricing & Payments</h5>
               <div className="terms-of-use-content">
-                <p>
-                  We do not sell or rent your personal information. We may share your data only with:
-                </p>
-
                 <ul className="policy-ul">
-                  <li>Shipping partners (such as Blue Dart and DTDC) for order delivery</li>
-                  <li>Payment gateways for secure transaction processing</li>
-                  <li>
-                    Service providers who help operate our website and services
-                  </li>
+                  <li>All prices listed on the website are in INR and inclusive/exclusive of applicable taxes as mentioned.</li>
+                  <li>We reserve the right to change pricing at any time without prior notice.</li>
+                  <li>Payments are processed securely through third-party payment gateways.</li>
                 </ul>
-
-                <p>
-                  All such parties are required to handle your data securely and only for the intended purpose.
-                </p>
+                 
               </div>
             </div>
-            <div className="terms-of-use-item item-scroll-target" id="Data Protection">
-              <h5 className="terms-of-use-title">6. Data Protection</h5>
+            <div className="terms-of-use-item item-scroll-target" id="Shipping">
+              <h5 className="terms-of-use-title">5. Shipping</h5>
               <div className="terms-of-use-content">
-                <p>
+
+                <ul className="policy-ul">
+                  <li>Orders are processed and shipped as per our Shipping Policy.</li>
+                  <li>Delivery timelines are estimates and may vary due to external factors.</li>
+                  <li>We are not liable for delays caused by courier partners or unforeseen circumstances.</li>
+                </ul>
+
+                {/* <p>
                   We take appropriate security measures to protect your personal information from unauthorized access, misuse, or disclosure.
                   However, no online system is completely secure, and we cannot guarantee absolute security.
-                </p>
+                </p> */}
               </div>
             </div>
-            <div className="terms-of-use-item item-scroll-target" id="Cookies">
-              <h5 className="terms-of-use-title">7. Cookies</h5>
+            <div className="terms-of-use-item item-scroll-target" id="Returns & Refunds">
+              <h5 className="terms-of-use-title">6. Returns & Refunds</h5>
               <div className="terms-of-use-content">
-                <p>
-                  Our website may use cookies and similar technologies to enhance your browsing experience, analyze traffic, and understand user behavior.
-                  You can choose to disable cookies through your browser settings.
-                </p>
-              </div>
-            </div>
-            <div className="terms-of-use-item item-scroll-target" id="Your Rights">
-              <h5 className="terms-of-use-title">8. Your Rights</h5>
-              <div className="terms-of-use-content">
-                <p>You have the right to:</p>
                 <ul className="policy-ul">
-                  <li>Access or update your personal information</li>
+                  <li>Returns and refunds are governed by our Return & Refund Policy.</li>
+                  <li>Due to the consumable nature of our products, returns are limited to specific conditions.</li>
+                  {/* <li>We are not liable for delays caused by courier partners or unforeseen circumstances.</li> */}
+                </ul>
+
+              </div>
+            </div>
+            <div className="terms-of-use-item item-scroll-target" id="User Responsibilities">
+              <h5 className="terms-of-use-title">7. User Responsibilities</h5>
+              <div className="terms-of-use-content">
+                <p>By using our website, you agree:</p>
+                <ul className="policy-ul">
+                  <li>Not to misuse or interfere with the website functionality.</li>
                   <li>
-                    Request deletion of your data (subject to legal or operational requirements)
+                    Not to provide false or misleading information.
                   </li>
                   <li>
-                    Opt out of marketing communications at any time
+                    Not to use the website for any unlawful activities.
                   </li>
                 </ul>
               </div>
             </div>
-            <div className="terms-of-use-item item-scroll-target" id="Third-Party Links">
-              <h5 className="terms-of-use-title">9. Third-Party Links</h5>
+            <div className="terms-of-use-item item-scroll-target" id="Intellectual Property">
+              <h5 className="terms-of-use-title">8. Intellectual Property</h5>
               <div className="terms-of-use-content">
-                <p>Our website may contain links to third-party websites.
-                  We are not responsible for the privacy practices or content of those websites.</p>
+                <p>All content on this website, including text, images, logos, and branding, is the property of Hand & Host and is protected by applicable laws. 
+                  You may not use, reproduce, or distribute any content without prior written permission.</p>
               </div>
             </div>
-            <div className="terms-of-use-item item-scroll-target" id="Changes to This Policy">
-              <h5 className="terms-of-use-title">10. Changes to This Policy</h5>
+            <div className="terms-of-use-item item-scroll-target" id="Limitation of Liability">
+              <h5 className="terms-of-use-title">9. Limitation of Liability</h5>
               <div className="terms-of-use-content">
-                <p>We may update this Privacy Policy from time to time. 
-                  Any changes will be posted on this page with updated information.</p>
+                <p>Hand & Host shall not be held liable for:</p>
+                <ul className="policy-ul">
+                  <li>Any indirect, incidental, or consequential damages.</li>
+                  <li>
+                    	Any adverse reactions or outcomes resulting from product use (customers are advised to check ingredients and consult professionals if needed).
+                  </li>
+                  <li>
+                    Delays, interruptions, or technical issues beyond our control.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="terms-of-use-item item-scroll-target" id="Indemnification">
+              <h5 className="terms-of-use-title">10. Indemnification</h5>
+              <div className="terms-of-use-content">
+                <p>You agree to indemnify and hold Hand & Host harmless from any claims, damages, or expenses arising from your use of the website or violation of these terms.</p>
+              </div>
+            </div>
+            <div className="terms-of-use-item item-scroll-target" id="Governing Law">
+              <h5 className="terms-of-use-title">11. Governing Law</h5>
+              <div className="terms-of-use-content">
+                <p>These Terms & Conditions shall be governed by and interpreted in accordance with the laws of India. Any disputes shall be subject to the jurisdiction of the appropriate courts in Kerala.</p>
+                
               </div>
             </div>
             <div className="terms-of-use-item item-scroll-target" id="Contact Us">
-              <h5 className="terms-of-use-title">11. Contact Us</h5>
+              <h5 className="terms-of-use-title">12. Contact Us</h5>
               <div className="terms-of-use-content">
                <div className="terms-of-use-content">
                   <p>
-                    If you have any questions or concerns regarding this Privacy Policy, feel free to contact us:
+                    If you have any questions or concerns regarding this Terms & Conditions, feel free to contact us:
                   </p>
 
                   <ul className="policy-ul">
                     <li>
-                      Email:{" "}
+                      <b>Email:</b>{" "}
                       <a href="mailto:support@handandhost.com" className="contact-link">
                         support@handandhost.com
                       </a>
                     </li>
 
                     <li>
-                      Contact Number:{" "}
+                      <b>Contact Number:</b>{" "}
                       <a href="tel:+918921254349" className="contact-link">
                         +91 8921254349
                       </a>

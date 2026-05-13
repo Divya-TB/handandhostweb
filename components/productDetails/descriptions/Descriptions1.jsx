@@ -70,6 +70,7 @@ export default function Descriptions1({ product, reviews, ratingStats }) {
                 >
                   <div className="tab-shipping">
                     <Shipping />
+                    
                   </div>
                 </div>
 

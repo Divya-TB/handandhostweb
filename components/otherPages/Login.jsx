@@ -138,9 +138,15 @@ function LoginContent() {
         );
 
       if (res.data?.user?.id) {
-        login(res.data.user);
-      }
 
+        localStorage.setItem(
+          "accessToken",
+          res.data.accessToken
+        );
+
+        login(res.data.user);
+
+      }
       setSuccess(true);
       setMessage(
         "Login successful"
