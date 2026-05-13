@@ -1,5 +1,5 @@
 "use client";
-
+import Script from "next/script";
 import { useContextElement } from "@/context/Context";
 import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
@@ -20,12 +20,12 @@ export default function Checkout() {
     } = useContextElement();
 
 
-    console.log("Addresses in Checkout:.............................", addresses);
+    console.log("Cart Products:..................................", cartProducts);
 
  
   const { user } = useAuth();
 
-  const [paymentMethod, setPaymentMethod] = useState("upi");
+  // const [paymentMethod, setPaymentMethod] = useState("upi");
 
   const [showAddressForm, setShowAddressForm] = useState(false);
 
@@ -122,26 +122,36 @@ const handlePayment = async () => {
   const payload = {
     user_ID: user.id,
     address_ID: selectedAddress,
-    payment_method: paymentMethod, // upi | card | netbanking
     items: cartProducts.map((item) => ({
-      product_ID: item.product_ID,
+      product_ID:
+        item.product_ID ||
+        item.productId ||
+        item.id,
       quantity: item.quantity,
     })),
     discount: 0,
     shipping_charge: 0,
   };
 
+  console.log("Order Payload:", payload);
+
   const res = await placeOrder(payload);
 
   if (!res.success) {
-      alert(orderData.message || "Order failed");
-      return;
-    }
+    alert(res.message || "Order failed");
+    return;
+  }
 
-    openRazorpay({ orderData });
+  openRazorpay(res.payment);
 };
 
   return (
+    <>
+
+    <Script
+      src="https://checkout.razorpay.com/v1/checkout.js"
+      strategy="lazyOnload"
+    />
     <section className="checkout-section py-5">
       <div className="container">
         <div className="row g-4">
@@ -298,7 +308,7 @@ const handlePayment = async () => {
                   >
                     <input
                       type="radio"
-                      class ="form-check-input-checkout"
+                      className ="form-check-input-checkout"
                       checked={selectedAddress === address.address_ID}
                       readOnly
                     />
@@ -322,13 +332,13 @@ const handlePayment = async () => {
             </div>
 
             {/* PAYMENT SECTION */}
-            <div className="checkout-card">
+            {/* <div className="checkout-card">
 
               <h4 className="mb-3">Payment Method</h4>
 
               <div className="payment-options">
 
-                {["upi", "card", "cod"].map((method) => (
+                {["upi", "card", "netbanking"].map((method) => (
                   <label
                     key={method}
                     className={`payment-box ${
@@ -350,7 +360,7 @@ const handlePayment = async () => {
 
               </div>
 
-            </div>
+            </div> */}
 
           </div>
 
@@ -360,6 +370,7 @@ const handlePayment = async () => {
             <div className="order-summary sticky-top">
 
               <h4 className="mb-4">Order Summary</h4>
+              
 
               {cartProducts?.map((item, i) => (
                 <div key={i} className="summary-item">
@@ -403,5 +414,6 @@ const handlePayment = async () => {
         </div>
       </div>
     </section>
+    </>
   );
 }

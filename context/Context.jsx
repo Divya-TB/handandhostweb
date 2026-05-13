@@ -434,16 +434,15 @@ const addProductToCart = async (productId, qty = 1) => {
 
 const getAddresses = async () => {
   try {
-    // if (!userId) return;
+    if (!userId) return;
 
+    console.log('userid...................................',userId);
     const res = await fetch(`${API_URL}/api/address/list/${userId}`);
     const data = await res.json();
     console.log("Fetched addresses:.............................", data); 
 
     if (data.success) {
       const list = data.data || [];
-
-      
 
       setAddresses(list);
 
@@ -462,34 +461,6 @@ const getAddresses = async () => {
     console.log(err);
   }
 };
-
-
-// const saveAddress = async (addressForm) => {
-//   try {
-//     const res = await fetch(
-//       `${API_URL}/api/address/add`,
-//       {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//           Authorization: `Bearer ${localStorage.getItem("token")}`,
-//         },
-//         body: JSON.stringify(addressForm),
-//       }
-//     );
-
-//     const data = await res.json();
-
-//     if (data.success) {
-//       setAddresses((prev) => [...prev, data.data]);
-//       setSelectedAddress(data.data.address_ID);
-//     }
-
-//     return data;
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
 
 const saveAddress = async (addressForm) => {
   try {
@@ -534,75 +505,187 @@ const placeOrder = async (payload) => {
 };
 
 
-const openRazorpay = ({ orderData }) => {
+// const openRazorpay = async (paymentData) => {
 
+//   if (typeof window === "undefined") return;
+
+//   if (!window.Razorpay) {
+//     alert("Razorpay SDK failed to load! Check Your Internet Connection");
+//     return;
+//   }
+
+//   const options = {
+//     key: paymentData.key,
+
+//     amount: Number(paymentData.amount) * 100,
+
+//     currency: paymentData.currency,
+
+//     name: "Hand and Host",
+
+//     description: "Order Payment",
+
+//     order_id: paymentData.razorpay_order_id,
+
+//     handler: async function (response) {
+
+//       console.log("PAYMENT SUCCESS", response);
+
+//       alert("Payment Successful");
+
+//       /*
+//       response contains:
+//       razorpay_payment_id
+//       razorpay_order_id
+//       razorpay_signature
+//       */
+
+//       // CALL VERIFY PAYMENT API HERE
+//     },
+
+//     prefill: {
+//       name: user?.name || "",
+//       email: user?.email || "",
+//       contact: user?.phone_number || "",
+//     },
+
+//     theme: {
+//       color: "#000000",
+//     },
+
+//     modal: {
+//       ondismiss: function () {
+//         console.log("Payment popup closed");
+//       },
+//     },
+//   };
+
+//   const razorpay = new window.Razorpay(options);
+
+//   razorpay.on("payment.failed", function (response) {
+//     console.log("PAYMENT FAILED", response);
+//   });
+
+//   razorpay.open();
+// };
+
+
+const openRazorpay = async (paymentData) => {
+
+  if (!window.Razorpay) {
+    alert("Razorpay SDK not loaded");
+    return;
+  }
+
+  // console.log('payment method...........................',paymentData);
   const options = {
-    key: orderData.payment.key,
 
-    amount: orderData.payment.amount * 100,
+    key: paymentData.key,
 
-    currency: "INR",
+    amount: Number(paymentData.amount) * 100,
 
-    order_id: orderData.payment.razorpay_order_id,
+    currency: paymentData.currency || "INR",
 
-    name: "HandandHost",
+    name: "Hand and Host",
 
     description: "Order Payment",
 
+    image: "/logo.png",
+
+    order_id: paymentData.razorpay_order_id,
+
     handler: async function (response) {
 
-      const verify = await fetch(
-        `${API_URL}/api/payment/verify`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+      console.log("PAYMENT SUCCESS", response);
 
-          body: JSON.stringify({
-            order_ID: orderData.order_ID,
+      try {
 
-            razorpay_order_id:
-              response.razorpay_order_id,
+        const verifyRes = await fetch(
+          `${API_URL}/api/payment/verify`,
+          {
+            method: "POST",
 
-            razorpay_payment_id:
-              response.razorpay_payment_id,
+            headers: {
+              "Content-Type": "application/json",
+            },
 
-            razorpay_signature:
-              response.razorpay_signature,
-          }),
+            body: JSON.stringify({
+
+              razorpay_order_id:
+                response.razorpay_order_id,
+
+              razorpay_payment_id:
+                response.razorpay_payment_id,
+
+              razorpay_signature:
+                response.razorpay_signature,
+
+              user_ID: userId,
+
+              order_ID: paymentData.order_ID,
+
+              product: paymentData.product
+            }),
+          }
+        );
+
+        const verifyData = await verifyRes.json();
+
+        if (verifyData.success) {
+
+          alert("Payment Verified Successfully");
+
+          // clear cart here if needed
+
+          // redirect here if needed
+          // router.push("/success");
+
+        } else {
+
+          alert("Payment verification failed");
         }
-      );
 
-      const result = await verify.json();
+      } catch (err) {
 
-      if (result.success) {
+        console.log(err);
 
-        alert("Payment successful");
-
-        window.location.href =
-          `/order-success/${orderData.order_code}`;
-
-      } else {
-
-        alert("Payment verification failed");
+        alert("Something went wrong");
       }
     },
 
     prefill: {
-      name: orderData.user?.name,
-      email: orderData.user?.email,
-      contact: orderData.user?.phone_number,
+      name: user?.name || "",
+
+      email: user?.email || "",
+
+      contact: user?.phone_number || "",
+    },
+
+    notes: {
+      address: "Hand and Host",
     },
 
     theme: {
-      color: "#000000",
+      color: "#ece3e3",
+    },
+
+    modal: {
+      ondismiss: function () {
+        console.log("Payment popup closed");
+      },
     },
   };
 
-  const rzp = new window.Razorpay(options);
+  const rzp1 = new window.Razorpay(options);
 
-  rzp.open();
+  rzp1.on("payment.failed", function (response) {
+
+    console.log("PAYMENT FAILED", response);
+
+    alert(response.error.description);
+  });
+
+  rzp1.open();
 };
 
 
