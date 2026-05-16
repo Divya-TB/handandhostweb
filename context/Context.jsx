@@ -4,6 +4,7 @@
 
 import React, { useEffect, useContext, useState } from "react";
 import { useAuth } from "@/context/AuthContext";
+import { usePathname, useRouter } from "next/navigation";
 
 // const { useAuth  } = useAuth();
 
@@ -18,6 +19,8 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 export const useContextElement = () => useContext(dataContext);
 
 export default function Context({ children }) {
+  const pathname = usePathname();
+  const router = useRouter();
   const { user } = useAuth();
   const userId = user?.id;
 
@@ -405,7 +408,7 @@ const placeOrder = async (payload) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
       body: JSON.stringify(payload),
     });
@@ -417,69 +420,6 @@ const placeOrder = async (payload) => {
 };
 
 
-// const openRazorpay = async (paymentData) => {
-
-//   if (typeof window === "undefined") return;
-
-//   if (!window.Razorpay) {
-//     alert("Razorpay SDK failed to load! Check Your Internet Connection");
-//     return;
-//   }
-
-//   const options = {
-//     key: paymentData.key,
-
-//     amount: Number(paymentData.amount) * 100,
-
-//     currency: paymentData.currency,
-
-//     name: "Hand and Host",
-
-//     description: "Order Payment",
-
-//     order_id: paymentData.razorpay_order_id,
-
-//     handler: async function (response) {
-
-//       console.log("PAYMENT SUCCESS", response);
-
-//       alert("Payment Successful");
-
-//       /*
-//       response contains:
-//       razorpay_payment_id
-//       razorpay_order_id
-//       razorpay_signature
-//       */
-
-//       // CALL VERIFY PAYMENT API HERE
-//     },
-
-//     prefill: {
-//       name: user?.name || "",
-//       email: user?.email || "",
-//       contact: user?.phone_number || "",
-//     },
-
-//     theme: {
-//       color: "#000000",
-//     },
-
-//     modal: {
-//       ondismiss: function () {
-//         console.log("Payment popup closed");
-//       },
-//     },
-//   };
-
-//   const razorpay = new window.Razorpay(options);
-
-//   razorpay.on("payment.failed", function (response) {
-//     console.log("PAYMENT FAILED", response);
-//   });
-
-//   razorpay.open();
-// };
 
 
 const openRazorpay = async (paymentData) => {
@@ -543,15 +483,18 @@ const openRazorpay = async (paymentData) => {
 
         const verifyData = await verifyRes.json();
 
-        if (verifyData.success) {
+        if (verifyData?.success === true || verifyData?.success === "true") {
 
-          alert("Payment Verified Successfully");
+          // alert("Payment Verified Successfully");
 
           // clear cart here if needed
 
           // redirect here if needed
-          // router.push("/success");
+           router.push(
+              "/my-account-orders"
+            );
 
+            return;
         } else {
 
           alert("Payment verification failed");

@@ -47,7 +47,7 @@ export default function LanguageSelect({
             </option>
           ))}
         </select>
-        <button
+        {/* <button
           type="button"
           tabIndex={-1}
           className={`btn dropdown-toggle btn-light  ${
@@ -59,7 +59,7 @@ export default function LanguageSelect({
               <div className="filter-option-inner-inner">{selected.label}</div>
             </div>
           </div>
-        </button>
+        </button> */}
         <div
           className={`dropdown-menu ${isDDOpen ? "show" : ""} `}
           style={{

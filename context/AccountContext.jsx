@@ -9,6 +9,9 @@ import {
 
 const AccountContext = createContext();
 
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL;
+
 import { useAuth } from "@/context/AuthContext";
 
 export const AccountProvider = ({ children }) => {
@@ -32,7 +35,7 @@ export const AccountProvider = ({ children }) => {
       }
 
       const response = await fetch(
-        `/api/getaccount-details`,
+        `${API_URL}/api/getaccount-details`,
         {
           method: "GET",
           headers: {

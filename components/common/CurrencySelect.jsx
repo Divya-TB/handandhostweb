@@ -46,7 +46,7 @@ export default function CurrencySelect({ topStart = false, light = false }) {
         light ? "color-white" : ""
       } dropup`}
     >
-      <button
+      {/* <button
         type="button"
         tabIndex={-1}
         className={`btn dropdown-toggle btn-light  ${isDDOpen ? "show" : ""} `}
@@ -65,7 +65,7 @@ export default function CurrencySelect({ topStart = false, light = false }) {
             </div>
           </div>{" "}
         </div>
-      </button>
+      </button> */}
       <div
         className={`dropdown-menu ${isDDOpen ? "show" : ""} `}
         style={{

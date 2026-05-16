@@ -26,6 +26,7 @@ import {AuthProvider} from "@/context/AuthContext";
 import CheckoutProvider from "@/context/CheckoutContext";
 import {MessageProvider} from "@/context/MessageContext";
 import { AccountProvider } from "@/context/AccountContext";
+import OrderProvider from "@/context/OrderContext";
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
@@ -136,7 +137,10 @@ export default function RootLayout({ children }) {
 
         <Context>
 
-          <CheckoutProvider>   
+          <OrderProvider>
+             <CheckoutProvider> 
+
+
 
             <MessageProvider>
 
@@ -160,6 +164,8 @@ export default function RootLayout({ children }) {
             </MessageProvider>
 
           </CheckoutProvider>
+          </OrderProvider>
+         
 
         </Context>
 

@@ -1,10 +1,25 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 export default function AccountSidebar() {
   const pathname = usePathname();
+    const [user, setUser] = useState([]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedUser = localStorage.getItem("user");
+
+      if (storedUser) {
+        try {
+          setUser(JSON.parse(storedUser));
+        } catch (err) {
+          console.log("Invalid user data");
+        }
+      }
+    }
+  }, []);
   return (
     <div className="wrap-sidebar-account">
       <div className="sidebar-account">
@@ -17,8 +32,13 @@ export default function AccountSidebar() {
               height={280}
             />
           </div>
-          <h6 className="mb_4">Tony Nguyen</h6>
-          <div className="body-text-1">themesflat@gmail.com</div>
+          <h6 className="mb_4">
+             {user?.name || "User Name"}
+          </h6>
+
+           <div className="body-text-1">
+             {user?.email || "user@email.com"}
+           </div>
         </div>
         <ul className="my-account-nav">
           <li>
@@ -154,3 +174,108 @@ export default function AccountSidebar() {
     </div>
   );
 }
+
+
+
+// "use client";
+
+// import React, { useEffect, useState } from "react";
+// import Image from "next/image";
+// import Link from "next/link";
+// import { usePathname } from "next/navigation";
+
+// export default function AccountSidebar() {
+//   const pathname = usePathname();
+
+//   const [user, setUser] = useState([]);
+
+//   useEffect(() => {
+//     if (typeof window !== "undefined") {
+//       const storedUser = localStorage.getItem("user");
+
+//       if (storedUser) {
+//         try {
+//           setUser(JSON.parse(storedUser));
+//         } catch (err) {
+//           console.log("Invalid user data");
+//         }
+//       }
+//     }
+//   }, []);
+
+//   return (
+//     <div className="wrap-sidebar-account">
+//       <div className="sidebar-account">
+
+//         <div className="account-avatar">
+//           <div className="image">
+//             <Image
+//               alt=""
+//               src="/images/avatar/user-account.jpg"
+//               width={281}
+//               height={280}
+//             />
+//           </div>
+
+//           {/* ONLY DATA CHANGE (NO DESIGN CHANGE) */}
+//           <h6 className="mb_4">
+//             {user?.name || "User Name"}
+//           </h6>
+
+//           <div className="body-text-1">
+//             {user?.email || "user@email.com"}
+//           </div>
+//         </div>
+
+//         <ul className="my-account-nav">
+
+//           <li>
+//             <Link
+//               href={`/my-account`}
+//               className={`my-account-nav-item ${
+//                 pathname == "/my-account" ? "active" : ""
+//               } `}
+//             >
+//               Account Details
+//             </Link>
+//           </li>
+
+//           <li>
+//             <Link
+//               href={`/my-account-orders`}
+//               className={`my-account-nav-item ${
+//                 pathname == "/my-account-orders" ? "active" : ""
+//               } `}
+//             >
+//               Your Orders
+//             </Link>
+//           </li>
+
+//           <li>
+//             <Link
+//               href={`/my-account-address`}
+//               className={`my-account-nav-item ${
+//                 pathname == "/my-account-address" ? "active" : ""
+//               } `}
+//             >
+//               My Address
+//             </Link>
+//           </li>
+
+//           {/* KEEP YOUR ORIGINAL DESIGN FOR LOGOUT */}
+//           <li>
+//             <Link
+//               href={`/login`}
+//               className={`my-account-nav-item ${
+//                 pathname == "/login" ? "active" : ""
+//               } `}
+//             >
+//               Logout
+//             </Link>
+//           </li>
+
+//         </ul>
+//       </div>
+//     </div>
+//   );
+// }
